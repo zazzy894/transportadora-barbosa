@@ -1,0 +1,73 @@
+/* Faixa contínua: os dois grupos idênticos garantem um loop sem salto. */
+.clients-section .partners-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 0 18px;
+  border: 0;
+  background: transparent;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.clients-section .partners-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  padding: 0;
+  animation: partners-marquee 34s linear infinite;
+  will-change: transform;
+}
+
+.clients-section .partners-set {
+  display: flex;
+  gap: 18px;
+}
+
+.clients-section .partner-wordmark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 214px;
+  width: 214px;
+  min-height: 104px;
+  padding: 13px 18px;
+  border: 1px solid rgba(181, 216, 255, .32);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+
+.clients-section .partner-wordmark img {
+  width: 100%;
+  height: 78px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.clients-section .partner-wordmark--light {
+  background: #fff;
+}
+
+.clients-section .partner-wordmark--light img {
+  mix-blend-mode: normal;
+}
+
+.clients-section .partners-marquee:hover .partners-track,
+.clients-section .partners-marquee:focus-within .partners-track {
+  animation-play-state: paused;
+}
+
+@keyframes partners-marquee {
+  to { transform: translateX(calc(-50% - 9px)); }
+}
+
+@media (max-width: 620px) {
+  .clients-section .partners-track,
+  .clients-section .partners-set { gap: 12px; }
+  .clients-section .partner-wordmark { flex-basis: 166px; width: 166px; min-height: 84px; padding: 11px; }
+  .clients-section .partner-wordmark img { height: 58px; }
+  @keyframes partners-marquee { to { transform: translateX(calc(-50% - 6px)); } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-section .partners-marquee { overflow-x: auto; mask-image: none; }
+  .clients-section .partners-track { animation: none; }
+}

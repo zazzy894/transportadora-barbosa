@@ -1,0 +1,48 @@
+/* Marca horizontal tratada para cabeçalhos e rodapés. */
+.logo-wrap .header-logo-frame {
+  width: 168px;
+  max-width: 168px;
+  height: 56px;
+  overflow: visible;
+}
+
+.logo-wrap .header-logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.topbar .brand img {
+  width: 146px;
+  height: 57px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.footer .footer-logo {
+  width: 124px !important;
+  height: 49px;
+  padding: 3px 5px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.footer-logo-frame .footer-main-logo {
+  width: 142px;
+  height: 56px;
+  padding: 3px 5px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  border-radius: 8px;
+}
+
+@media (max-width: 620px) {
+  .logo-wrap .header-logo-frame { width: 138px; max-width: 138px; height: 46px; }
+  .topbar .brand img { width: 128px; height: 50px; }
+  .footer .footer-logo { width: 112px !important; height: 44px; }
+  .footer-logo-frame .footer-main-logo { width: 126px; height: 50px; }
+}

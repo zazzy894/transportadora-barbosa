@@ -2338,6 +2338,8 @@
         @media (max-width: 620px) { .services-section, .clients-section { padding-block: 64px; } .service-card { min-height: auto; } .state-picker-grid { grid-template-columns: repeat(4, 1fr); } .partners-heading h2 { font-size: 32px; } }
         @media (prefers-reduced-motion: reduce) { .service-card { transition: none; } }
     </style>
+    <link rel="stylesheet" href="assets/branding.css">
+    <link rel="stylesheet" href="assets/partner-marquee.css">
 </head>
 <body>
 
@@ -2346,7 +2348,7 @@
         <div class="header-inner">
             <a href="#" class="logo-wrap" aria-label="Barbosa Fretes e Cargas — página inicial">
                 <span class="header-logo-frame">
-                    <img src="assets/logo.png" alt="" class="header-logo-image" width="206" height="64">
+                    <img src="assets/logo-horizontal.png" alt="Barbosa Fretes e Cargas" class="header-logo-image" width="168" height="56">
                 </span>
             </a>
 
@@ -2588,12 +2590,22 @@
             </div>
             <div class="partners-marquee" aria-label="Parceiros mencionados na trajetória da Barbosa Fretes">
                 <div class="partners-track">
-                    <div class="partner-wordmark"><img src="assets/partner-briqfeno-4k.webp" alt="Briqfeno"></div>
-                    <div class="partner-wordmark"><img src="assets/partner-major-4k.webp" alt="Major Nutrição Animal"></div>
-                    <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-4k.webp" alt="Complem Agrícola"></div>
-                    <div class="partner-wordmark"><img src="assets/partner-caramuru-4k.webp" alt="Caramuru"></div>
-                    <div class="partner-wordmark"><img src="assets/partner-comigo-4k.webp" alt="Comigo"></div>
-                    <div class="partner-wordmark"><img src="assets/partner-agrofava-4k.webp" alt="Agro Fava Sementes"></div>
+                    <div class="partners-set">
+                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-4k.webp" alt="Briqfeno"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-major-4k.webp" alt="Major Nutrição Animal"></div>
+                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-4k.webp" alt="Complem Agrícola"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-caramuru-4k.webp" alt="Caramuru"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-comigo-4k.webp" alt="Comigo"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-agrofava-4k.webp" alt="Agro Fava Sementes"></div>
+                    </div>
+                    <div class="partners-set" aria-hidden="true">
+                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-4k.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-major-4k.webp" alt=""></div>
+                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-4k.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-caramuru-4k.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-comigo-4k.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-agrofava-4k.webp" alt=""></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3146,10 +3158,7 @@
             <div class="footer-grid">
                 <div class="footer-about">
                     <a href="#" class="footer-logo-frame" aria-label="Barbosa Fretes e Cargas">
-                        <span class="footer-brand-icon" aria-hidden="true">
-                            <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h25v21H4z"/><path d="M29 19h9l6 7v7H29z"/><path d="M10 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM36 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M29 31H14M38 26h6"/></svg>
-                        </span>
-                        <span class="footer-brand-copy"><strong>BARBOSA</strong><small>Fretes e Cargas</small></span>
+                        <img src="assets/logo-horizontal.png" class="footer-main-logo" alt="Barbosa Fretes e Cargas">
                     </a>
                     <p>Atividades de logística de transportes iniciadas em 4 de fevereiro de 2016. Sede Matriz em Itumbiara – GO.</p>
                     <p style="font-size: 12.5px; color: #64748b;">Av. Copacabana, 1142 – Setor Santa Maria, Itumbiara-GO | CEP: 75520-210</p>
