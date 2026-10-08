@@ -1,0 +1,101 @@
+/* Galeria de operações reais: mantém o foco na frota sem competir com as CTAs. */
+.fleet-showcase {
+  background: var(--surface);
+}
+
+.fleet-showcase .section-heading {
+  margin-bottom: 30px;
+}
+
+.fleet-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fleet-shot {
+  position: relative;
+  min-height: 248px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--blue-deep);
+  box-shadow: 0 8px 20px rgba(10, 48, 95, .06);
+  transition: transform var(--motion-standard, .24s) var(--motion-ease, ease), box-shadow var(--motion-standard, .24s) var(--motion-ease, ease), border-color var(--motion-standard, .24s) var(--motion-ease, ease);
+}
+
+.fleet-shot--wide {
+  grid-column: span 2;
+}
+
+.fleet-shot img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  transition: transform var(--motion-standard, .24s) var(--motion-ease, ease);
+}
+
+.fleet-shot::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 29, 67, 0) 32%, rgba(6, 29, 67, .84) 100%);
+}
+
+.fleet-shot figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: 18px;
+  left: 20px;
+  display: grid;
+  gap: 4px;
+  color: var(--white);
+}
+
+.fleet-shot figcaption span {
+  color: #a8d2ff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.fleet-shot figcaption strong {
+  max-width: 28ch;
+  font-size: 17px;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}
+
+.fleet-shot:hover,
+.fleet-shot:focus-within {
+  border-color: #b9d7fb;
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.fleet-shot:hover img,
+.fleet-shot:focus-within img {
+  transform: scale(1.035);
+}
+
+@media (max-width: 760px) {
+  .fleet-gallery { grid-template-columns: 1fr 1fr; }
+  .fleet-shot--wide { grid-column: span 2; }
+}
+
+@media (max-width: 520px) {
+  .fleet-gallery { grid-template-columns: 1fr; }
+  .fleet-shot,
+  .fleet-shot--wide { min-height: 234px; grid-column: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fleet-shot,
+  .fleet-shot img { transition: none; }
+}
