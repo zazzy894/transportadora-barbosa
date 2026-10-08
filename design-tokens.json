@@ -1,0 +1,35 @@
+{
+  "brand": "Barbosa Fretes e Cargas",
+  "color": {
+    "bg": "#ffffff",
+    "surface": "#f8fafc",
+    "fg": "#1e293b",
+    "muted": "#64748b",
+    "primary": "#0056b3",
+    "primary-fg": "#ffffff",
+    "accent": "#0b63ce",
+    "border": "#e2e8f0"
+  },
+  "font": {
+    "display": "Inter, sans-serif",
+    "body": "Inter, sans-serif"
+  },
+  "radius": {
+    "sm": "8px",
+    "md": "14px",
+    "lg": "16px",
+    "pill": "999px"
+  },
+  "space": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "32px",
+    "xl": "64px"
+  },
+  "shadow": {
+    "sm": "0 1px 3px rgba(0,0,0,.06)",
+    "md": "0 10px 24px rgba(11,99,206,.08)",
+    "lg": "0 16px 30px rgba(11,99,206,.22)"
+  }
+}

@@ -1,0 +1,3426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=6ec9e361-9627-4a98-af68-bb59ec23f006
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <title>Barbosa Fretes - Transporte e Logística</title>
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & ROOT ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            color-scheme: light;
+            --primary: #0056b3;
+            --primary-dark: #003d82;
+            --primary-light: #0d6efd;
+            --primary-pale: #bfdbfe;
+            --accent-blue: #0077ff;
+            --footer-accent: #60a5fa;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --navy-dark: #071529;
+            --navy-banner: #051937;
+            --action: #0b63ce;
+            --action-hover: #094fad;
+            --surface-tint: #e0edff;
+            --map-region: #dbeafe;
+            --map-region-hover: #bfdbfe;
+            --map-region-active: #0b63ce;
+            --map-neutral: #d7dde5;
+            --map-text: #475569;
+            --marquee-duration: 32s;
+            --motion-fast: 180ms;
+            --motion-standard: 260ms;
+            --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --radius-pill: 999px;
+            --shadow-lift: 0 16px 30px rgba(11, 99, 206, 0.22), 0 4px 10px rgba(7, 21, 41, 0.12);
+            --focus-ring: 0 0 0 4px rgba(13, 110, 253, 0.24);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        section[id],
+        .quote-card[id] {
+            scroll-margin-top: 116px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-card);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        /* ===== NAVBAR ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 92px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: background-color var(--motion-standard) var(--motion-ease), box-shadow var(--motion-standard) var(--motion-ease), backdrop-filter var(--motion-standard) var(--motion-ease);
+        }
+
+        .header.is-scrolled {
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 12px 30px rgba(7, 21, 41, 0.09);
+            backdrop-filter: blur(14px);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            background: var(--border-color);
+            opacity: 1;
+            transform: scaleX(1);
+            transform-origin: center;
+            transition: opacity var(--motion-standard) var(--motion-ease), transform var(--motion-standard) var(--motion-ease);
+        }
+
+        .header.is-scrolling-down {
+            box-shadow: none;
+        }
+
+        .header.is-scrolling-down::after {
+            opacity: 0;
+            transform: scaleX(0.92);
+        }
+
+        .header-inner {
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-wrap {
+            align-items: center;
+            color: var(--text-dark);
+            display: inline-flex;
+            flex: 0 0 auto;
+            gap: 11px;
+            min-width: 0;
+        }
+
+        .header-logo-frame {
+            align-items: center;
+            display: inline-flex;
+            height: 72px;
+            justify-content: flex-start;
+            max-width: 206px;
+            overflow: hidden;
+            transition: transform var(--motion-standard) var(--motion-ease), filter var(--motion-standard) var(--motion-ease);
+            width: 206px;
+        }
+
+        .header-logo-image {
+            display: block;
+            height: 100%;
+            max-width: none;
+            object-fit: cover;
+            object-position: center 51%;
+            width: 100%;
+        }
+
+        .logo-wrap:hover .header-logo-frame,
+        .logo-wrap:focus-visible .header-logo-frame {
+            filter: drop-shadow(0 8px 12px rgba(11, 99, 206, 0.16));
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .mobile-nav-contact {
+            display: none;
+        }
+
+        .nav-link {
+            font-size: 15px;
+            font-weight: 500;
+            color: #334155;
+            position: relative;
+            transition: color var(--motion-fast) var(--motion-ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-link[aria-current="page"] {
+            color: var(--action);
+            font-weight: 700;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -8px;
+            left: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--action);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--motion-fast) var(--motion-ease);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus-visible::after,
+        .nav-link[aria-current="page"]::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link svg {
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-parent:hover .nav-link svg {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-parent {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            padding: 8px 0;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .dropdown-parent:hover .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-parent:focus-within .dropdown-menu {
+            display: flex;
+        }
+
+        .dropdown-item {
+            padding: 10px 18px;
+            font-size: 14px;
+            color: #475569;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .dropdown-item:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .btn-header-quote {
+            background-color: #0b63ce;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-header-quote:hover {
+            background-color: #094fad;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(11, 99, 206, 0.25);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            min-width: 44px;
+            min-height: 44px;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: #1e293b;
+            border-radius: 2px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            position: relative;
+            margin-top: 92px;
+            min-height: 520px;
+            background-color: #050d1a;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center right;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, 
+                #050d1a 0%, 
+                rgba(5, 13, 26, 0.95) 35%, 
+                rgba(5, 13, 26, 0.70) 58%, 
+                rgba(5, 13, 26, 0.15) 85%, 
+                transparent 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 64px 24px 88px;
+        }
+
+        .hero-text-box {
+            max-width: 620px;
+        }
+
+        .hero-title {
+            font-size: 46px;
+            line-height: 1.15;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 34px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background-color: #0b63ce;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-hero-primary:hover {
+            background-color: #094fad;
+            transform: translateY(-1px);
+        }
+
+        .btn-hero-secondary {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s ease;
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.16);
+            border-color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* ===== ATENDIMENTO SOB MEDIDA (FLOATING) ===== */
+        .service-callout-section {
+            position: relative;
+            z-index: 10;
+            margin-top: -46px;
+            padding: 0 24px;
+        }
+
+        .service-callout-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 22px 30px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09), 0 2px 6px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .service-callout-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .service-callout-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: var(--surface-tint);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--action);
+        }
+
+        .service-callout-copy h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .service-callout-copy p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .btn-service-callout {
+            background-color: var(--action);
+            color: var(--bg-card);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 22px;
+            border-radius: 8px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-service-callout:hover,
+        .btn-service-callout:focus-visible {
+            background-color: var(--action-hover);
+        }
+
+        /* ===== SERVICES GRID (4 CARDS) ===== */
+        .services-section {
+            padding: 68px 24px 44px;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .segments-intro {
+            max-width: 660px;
+            margin: 0 auto 34px;
+            text-align: center;
+        }
+
+        .segments-intro .section-title {
+            margin-bottom: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px 22px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: #93c5fd;
+            box-shadow: 0 10px 24px rgba(11, 99, 206, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .service-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .service-icon-box {
+            width: 44px;
+            height: 44px;
+            background: #eef5ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b63ce;
+        }
+
+        .service-arrow {
+            color: #94a3b8;
+            transition: all 0.2s ease;
+        }
+
+        .service-card:hover .service-arrow {
+            color: #0b63ce;
+            transform: translateX(3px);
+        }
+
+        .service-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #64748b;
+        }
+
+        /* ===== FEATURES STRIP (DARK BLUE BANNER) ===== */
+        .features-strip-section {
+            padding: 0 24px 64px;
+            max-width: 1288px;
+            margin: 0 auto;
+        }
+
+        .features-strip-card {
+            background-color: #04162e;
+            border-radius: 16px;
+            padding: 38px 44px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 36px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .feature-icon-circle {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+        }
+
+        .feature-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #94a3b8;
+        }
+
+        /* ===== SECTION HEADER UNIVERSAL ===== */
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 44px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0b63ce;
+            background: #eef5ff;
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ===== SOBRE A EMPRESA ===== */
+        .about-section {
+            padding: 64px 24px;
+            background: #ffffff;
+        }
+
+        .about-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.25;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+
+        .about-content h3 span {
+            color: #0b63ce;
+        }
+
+        .about-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .about-lede {
+            color: var(--text-dark);
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .about-story-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 22px 0;
+        }
+
+        .about-story-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+        }
+
+        .about-story-item span {
+            color: var(--action);
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .about-story-item h4 {
+            color: var(--text-dark);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .about-story-item p {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .about-closing {
+            border-left: 3px solid var(--action);
+            margin-bottom: 0;
+            padding-left: 14px;
+        }
+
+        .partners-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 24px;
+        }
+
+        .partners-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .partners-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .partner-pill {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .partner-pill svg {
+            color: #0b63ce;
+        }
+
+        .about-card-right {
+            background: linear-gradient(145deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: #ffffff;
+            box-shadow: 0 22px 48px rgba(11, 99, 206, 0.24);
+            isolation: isolate;
+            overflow: hidden;
+            position: relative;
+            transition: box-shadow var(--motion-standard) var(--motion-ease), transform var(--motion-standard) var(--motion-ease);
+        }
+
+        .about-card-right::before {
+            content: '';
+            position: absolute;
+            right: -90px;
+            bottom: -115px;
+            width: 270px;
+            height: 270px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            box-shadow: 0 0 0 36px rgba(255, 255, 255, 0.06), 0 0 0 72px rgba(255, 255, 255, 0.04);
+            z-index: -1;
+        }
+
+        .about-card-right::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 82px;
+            height: 82px;
+            border-top: 1px solid rgba(255, 255, 255, 0.34);
+            border-right: 1px solid rgba(255, 255, 255, 0.34);
+            border-radius: 0 18px 0 0;
+            z-index: -1;
+        }
+
+        .about-card-right:hover {
+            box-shadow: 0 28px 56px rgba(11, 99, 206, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .about-card-kicker {
+            align-items: center;
+            color: var(--primary-pale);
+            display: inline-flex;
+            font-size: 11px;
+            font-weight: 800;
+            gap: 8px;
+            letter-spacing: 0.12em;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .about-card-kicker::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--primary-pale);
+        }
+
+        .about-card-right h4 {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.12;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .about-card-right p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #e2e8f0;
+            max-width: 390px;
+            margin-bottom: 28px;
+        }
+
+        .start-date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(4, 14, 30, 0.22);
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(8px);
+        }
+
+        .start-date-badge strong {
+            display: block;
+            font-size: 17px;
+            color: #ffffff;
+        }
+
+        .start-date-badge div {
+            font-size: 12.5px;
+            color: #dbeafe;
+            margin-top: 2px;
+        }
+
+        /* ===== FROTA SECTION ===== */
+        .fleet-section {
+            padding: 72px 24px;
+            background: #f8fafc;
+            border-top: 1px solid #edf2f7;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .fleet-container {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .fleet-stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .fleet-stat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .fleet-stat-icon {
+            width: 64px;
+            height: 64px;
+            background: #eef5ff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b63ce;
+        }
+
+        .fleet-stat-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--action);
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .fleet-stat-info p {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .fleet-stat-info span {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .fleet-types-panel {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 32px;
+        }
+
+        .fleet-types-panel h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .fleet-tags-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .fleet-tag-item {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 16px 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .fleet-tag-item:hover {
+            background: #e0edff;
+            color: #0b63ce;
+            border-color: #93c5fd;
+        }
+
+        .fleet-differential {
+            background: #eef5ff;
+            border-left: 4px solid #0b63ce;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            font-size: 14px;
+            color: #1e3a8a;
+            line-height: 1.6;
+        }
+
+        /* ===== PLANEJAMENTO POR REGIÃO ===== */
+        .regions-section {
+            padding: 72px 24px;
+            background: var(--bg-card);
+        }
+
+        .coverage-container {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .coverage-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+            gap: 32px;
+            align-items: center;
+        }
+
+        .coverage-map-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .coverage-map-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .coverage-map-heading h3 {
+            color: var(--text-dark);
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .coverage-map-heading p {
+            color: var(--text-muted);
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .brazil-map {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .state-map {
+            max-height: 510px;
+            padding: 4px 12px 0;
+        }
+
+        .state-map .state-region {
+            cursor: pointer;
+            outline: none;
+        }
+
+        .state-map .state-region path:not(.circle) {
+            fill: var(--map-neutral);
+            stroke: var(--bg-card);
+            stroke-width: 1.2;
+            stroke-linejoin: round;
+            transition: fill 0.2s ease, stroke 0.2s ease, transform 0.2s ease;
+        }
+
+        .state-map .state-region .circle {
+            fill: var(--bg-card);
+            stroke: var(--map-neutral);
+            stroke-width: 1.1;
+        }
+
+        .state-map .state-region text {
+            fill: var(--map-text);
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            pointer-events: none;
+        }
+
+        .state-map .state-region:hover path:not(.circle),
+        .state-map .state-region:focus path:not(.circle) {
+            fill: var(--map-region-hover);
+            stroke: var(--action);
+            stroke-width: 1.8;
+        }
+
+        .state-map .state-region:hover .circle,
+        .state-map .state-region:focus .circle {
+            fill: var(--map-region-hover);
+            stroke: var(--action);
+        }
+
+        .state-map.region-norte .state-region[data-region="norte"] path:not(.circle),
+        .state-map.region-nordeste .state-region[data-region="nordeste"] path:not(.circle),
+        .state-map.region-centro-oeste .state-region[data-region="centro-oeste"] path:not(.circle),
+        .state-map.region-sudeste .state-region[data-region="sudeste"] path:not(.circle),
+        .state-map.region-sul .state-region[data-region="sul"] path:not(.circle) {
+            fill: var(--map-region-active);
+            stroke: var(--primary-dark);
+        }
+
+        .state-map.region-norte .state-region[data-region="norte"] .circle,
+        .state-map.region-nordeste .state-region[data-region="nordeste"] .circle,
+        .state-map.region-centro-oeste .state-region[data-region="centro-oeste"] .circle,
+        .state-map.region-sudeste .state-region[data-region="sudeste"] .circle,
+        .state-map.region-sul .state-region[data-region="sul"] .circle {
+            fill: var(--map-region-active);
+            stroke: var(--primary-dark);
+        }
+
+        .state-map.region-norte .state-region[data-region="norte"] text,
+        .state-map.region-nordeste .state-region[data-region="nordeste"] text,
+        .state-map.region-centro-oeste .state-region[data-region="centro-oeste"] text,
+        .state-map.region-sudeste .state-region[data-region="sudeste"] text,
+        .state-map.region-sul .state-region[data-region="sul"] text {
+            fill: var(--bg-card);
+        }
+
+        .state-map .state-region:focus-visible path:not(.circle) {
+            stroke: var(--navy-dark);
+            stroke-width: 3;
+        }
+
+        .region-chip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .region-chip {
+            appearance: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 12px;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .region-chip:hover,
+        .region-chip:focus-visible {
+            border-color: var(--action);
+            color: var(--action);
+        }
+
+        .region-chip.is-selected {
+            background: var(--action);
+            border-color: var(--action);
+            color: var(--bg-card);
+        }
+
+        /* Mapa detalhado do Brasil: estados e regiões selecionáveis. */
+        .region-map {
+            display: none;
+        }
+
+        .state-map {
+            display: block;
+        }
+
+        .region-chip-list {
+            display: flex;
+        }
+
+        .brazil-outline {
+            fill: #eff6ff;
+            stroke: var(--primary-pale);
+            stroke-width: 3;
+            stroke-linejoin: round;
+        }
+
+        .map-region {
+            cursor: pointer;
+            outline: none;
+        }
+
+        .map-region-shape {
+            fill: var(--map-neutral);
+            stroke: var(--bg-card);
+            stroke-width: 3;
+            stroke-linejoin: round;
+            transition: fill var(--motion-standard) var(--motion-ease), stroke var(--motion-standard) var(--motion-ease), filter var(--motion-standard) var(--motion-ease);
+        }
+
+        .map-region-label {
+            fill: var(--map-text);
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 800;
+            pointer-events: none;
+            transition: fill var(--motion-standard) var(--motion-ease);
+        }
+
+        .map-region:hover .map-region-shape,
+        .map-region:focus .map-region-shape {
+            fill: var(--map-region-hover);
+            stroke: var(--action);
+            filter: drop-shadow(0 8px 10px rgba(11, 99, 206, 0.18));
+        }
+
+        .map-region.is-selected .map-region-shape {
+            fill: var(--map-region-active);
+            stroke: var(--primary-dark);
+            filter: drop-shadow(0 9px 12px rgba(11, 99, 206, 0.24));
+        }
+
+        .map-region.is-selected .map-region-label {
+            fill: var(--bg-card);
+        }
+
+        .map-region:focus-visible .map-region-shape {
+            stroke: var(--navy-dark);
+            stroke-width: 5;
+        }
+
+        .map-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .map-hint span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--action);
+        }
+
+        .coverage-panel {
+            background: var(--navy-banner);
+            border-radius: 16px;
+            padding: 36px;
+            color: var(--bg-card);
+        }
+
+        .coverage-panel-tag {
+            color: #93c5fd;
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .coverage-panel h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .coverage-panel p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .coverage-panel-note {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .coverage-panel-note h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--footer-accent);
+            margin-bottom: 4px;
+        }
+
+        .coverage-panel-note p {
+            color: #cbd5e1;
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        /* ===== SEGURANÇA ===== */
+        .security-section {
+            padding: 72px 24px;
+            background: #f8fafc;
+            border-top: 1px solid #edf2f7;
+        }
+
+        .security-container {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .security-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .security-card-icon {
+            width: 50px;
+            height: 50px;
+            background: #eef5ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b63ce;
+            margin-bottom: 20px;
+        }
+
+        .security-card h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .security-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+        /* ===== PARCEIROS ===== */
+        .clients-section {
+            overflow: hidden;
+            padding: 0;
+            background: #ffffff;
+            border-top: 1px solid #edf2f7;
+        }
+
+        .clients-container {
+            max-width: none;
+        }
+
+        .partners-heading {
+            border-top: 6px solid var(--action);
+            padding: 32px 24px 22px;
+            text-align: center;
+        }
+
+        .partners-heading p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        .partners-heading h2 {
+            color: var(--text-dark);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .partners-marquee {
+            mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+            overflow: hidden;
+            padding: 8px 0 42px;
+        }
+
+        .partners-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: partners-scroll var(--marquee-duration) linear infinite;
+        }
+
+        .partners-marquee:hover .partners-track,
+        .partners-marquee:focus-within .partners-track {
+            animation-play-state: paused;
+        }
+
+        .partner-wordmark {
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-dark);
+            display: flex;
+            flex: 0 0 auto;
+            font-size: 17px;
+            font-weight: 800;
+            justify-content: center;
+            letter-spacing: -0.04em;
+            min-height: 78px;
+            min-width: 245px;
+            padding: 18px 28px;
+        }
+
+        .partner-wordmark small {
+            color: var(--text-muted);
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            margin-top: 3px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .partner-wordmark .partner-mark {
+            align-items: center;
+            background: var(--surface-tint);
+            border-radius: 50%;
+            color: var(--action);
+            display: inline-flex;
+            font-size: 13px;
+            height: 30px;
+            justify-content: center;
+            letter-spacing: 0;
+            margin-right: 11px;
+            width: 30px;
+        }
+
+        @keyframes partners-scroll {
+            to { transform: translateX(calc(-50% - 10px)); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .partners-track {
+                animation: none;
+                transform: none;
+            }
+        }
+
+        /* ===== CONTATO & COTAÇÃO ===== */
+        .quote-contact-section {
+            padding: 72px 24px 88px;
+            background: #ffffff;
+            border-top: 1px solid #edf2f7;
+        }
+
+        .quote-contact-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, #04162e 0%, #082d5e 100%);
+            border-radius: 20px;
+            padding: 44px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quote-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .quote-card p {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .quote-action-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .quote-action-box h5 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #93c5fd;
+            margin-bottom: 0;
+        }
+
+        .quote-channel-heading {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .quote-channel-toggle {
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            display: inline-flex;
+            gap: 3px;
+            padding: 3px;
+        }
+
+        .quote-channel-button {
+            align-items: center;
+            background: transparent;
+            border-radius: 999px;
+            color: #cbd5e1;
+            display: inline-flex;
+            font-size: 12px;
+            font-weight: 700;
+            gap: 6px;
+            padding: 7px 10px;
+            transition: background-color var(--motion-standard) var(--motion-ease), color var(--motion-standard) var(--motion-ease), transform var(--motion-standard) var(--motion-ease);
+        }
+
+        .quote-channel-button:hover,
+        .quote-channel-button:focus-visible {
+            color: var(--bg-card);
+        }
+
+        .quote-channel-button.is-active {
+            background: var(--primary-light);
+            color: var(--bg-card);
+        }
+
+        .quote-channel-button svg {
+            flex: 0 0 auto;
+        }
+
+        .quote-channel-icon {
+            align-items: center;
+            display: inline-flex;
+            justify-content: center;
+            width: 22px;
+        }
+
+        .quote-email-link {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.2s;
+            word-break: break-all;
+        }
+
+        .quote-email-link:hover {
+            color: var(--footer-accent);
+        }
+
+        .btn-send-email {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #0b63ce;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-send-email:hover {
+            background: #094fad;
+        }
+
+        .contact-info-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .contact-info-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .contact-item-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b63ce;
+        }
+
+        .contact-item-text h5 {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 3px;
+        }
+
+        .contact-item-text p, .contact-item-text a {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .contact-item-text a:hover {
+            color: #0b63ce;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #040e1e;
+            color: #ffffff;
+            padding: 56px 24px 28px;
+        }
+
+        .footer-container {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-logo-frame {
+            align-items: center;
+            display: inline-flex;
+            gap: 11px;
+            min-height: 56px;
+            margin-bottom: 18px;
+        }
+
+        .footer-brand-icon {
+            align-items: center;
+            background: rgba(11, 99, 206, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.42);
+            border-radius: 14px;
+            color: #ffffff;
+            display: inline-flex;
+            height: 52px;
+            justify-content: center;
+            padding: 10px;
+            width: 52px;
+        }
+
+        .footer-brand-copy {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .footer-brand-copy strong {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+        }
+
+        .footer-brand-copy small {
+            color: #60a5fa;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer-about p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .footer-quick-actions {
+            display: none;
+        }
+
+        .footer-disclosure {
+            min-width: 0;
+        }
+
+        .footer-disclosure summary {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 18px;
+            list-style: none;
+        }
+
+        .footer-disclosure summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .footer-disclosure summary svg {
+            display: none;
+        }
+
+        .footer-disclosure ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-disclosure ul li a, .footer-disclosure ul li span {
+            font-size: 13.5px;
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+
+        .footer-disclosure ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* ===== MICROINTERAÇÕES ===== */
+        :where(a, button, [role="button"]):focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email) {
+            background: linear-gradient(108deg, var(--action) 0%, var(--action) 52%, var(--primary-light) 130%);
+            background-position: 0 0;
+            background-size: 155% 100%;
+            border-radius: 999px;
+            box-shadow: 0 8px 18px rgba(11, 99, 206, 0.18);
+            isolation: isolate;
+            overflow: hidden;
+            position: relative;
+            transition: background-position 520ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow var(--motion-standard) var(--motion-ease), transform var(--motion-standard) var(--motion-ease);
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email)::before {
+            content: none;
+        }
+
+        .button-label,
+        .button-icon,
+        .button-arrow {
+            position: relative;
+            z-index: 1;
+        }
+
+        .button-label,
+        .button-icon {
+            transition: transform var(--motion-standard) var(--motion-ease);
+        }
+
+        .button-icon {
+            display: inline-flex;
+        }
+
+        .button-arrow {
+            align-items: center;
+            background: var(--primary-dark);
+            border-radius: 50%;
+            display: inline-flex;
+            height: 24px;
+            justify-content: center;
+            margin-right: -5px;
+            transition: background-color var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+            width: 24px;
+        }
+
+        .button-arrow svg {
+            transition: transform var(--motion-fast) var(--motion-ease);
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email):hover {
+            box-shadow: var(--shadow-lift);
+            transform: translateY(-3px);
+            background-position: 100% 0;
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email):hover .button-label,
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email):hover .button-icon {
+            transform: translateX(2px);
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email):hover .button-arrow {
+            background: var(--primary-dark);
+            color: var(--bg-card);
+            transform: translateX(4px);
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email):hover .button-arrow svg {
+            transform: translateX(2px);
+        }
+
+        :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email):active {
+            box-shadow: 0 4px 10px rgba(11, 99, 206, 0.16);
+            transform: translateY(0) scale(0.985);
+        }
+
+        :is(.service-card, .security-card, .fleet-tag-item, .partner-wordmark, .contact-item) {
+            transition: border-color var(--motion-standard) var(--motion-ease), box-shadow var(--motion-standard) var(--motion-ease), background-color var(--motion-standard) var(--motion-ease), color var(--motion-standard) var(--motion-ease), transform var(--motion-standard) var(--motion-ease);
+        }
+
+        .service-card:hover,
+        .security-card:hover {
+            border-color: #93c5fd;
+            box-shadow: 0 16px 30px rgba(11, 99, 206, 0.11);
+            transform: translateY(-5px);
+        }
+
+        .security-card:hover .security-card-icon,
+        .service-card:hover .service-icon-box {
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .security-card-icon,
+        .service-icon-box,
+        .contact-item-icon {
+            transition: transform var(--motion-fast) var(--motion-ease), background-color var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
+        }
+
+        .fleet-tag-item:hover,
+        .partner-wordmark:hover {
+            box-shadow: 0 10px 20px rgba(11, 99, 206, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .contact-item:hover {
+            transform: translateX(4px);
+        }
+
+        .contact-item:hover .contact-item-icon {
+            background: var(--surface-tint);
+            color: var(--action);
+            transform: scale(1.06);
+        }
+
+        .footer-col ul li a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            transition: color var(--motion-fast) var(--motion-ease), gap var(--motion-fast) var(--motion-ease);
+        }
+
+        .footer-col ul li a::before {
+            content: '→';
+            color: #60a5fa;
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: opacity var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+        }
+
+        .footer-col ul li a:hover {
+            gap: 6px;
+        }
+
+        .footer-col ul li a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .footer-logo-frame:hover .footer-brand-icon,
+        .footer-logo-frame:focus-visible .footer-brand-icon {
+            background: var(--action);
+            transform: translateY(-2px) rotate(-4deg);
+        }
+
+        .footer-logo-frame:hover .footer-brand-copy strong,
+        .footer-logo-frame:focus-visible .footer-brand-copy strong {
+            color: var(--primary-pale);
+        }
+
+        .footer-brand-icon,
+        .footer-brand-copy strong {
+            transition: background-color var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            :is(.btn-header-quote, .btn-hero-primary, .btn-service-callout, .btn-send-email, .service-card, .security-card, .fleet-tag-item, .partner-wordmark, .contact-item, .security-card-icon, .service-icon-box, .contact-item-icon, .footer-col ul li a, .footer-col ul li a::before) {
+                transition-duration: 0.01ms;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1080px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-strip-card {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .fleet-tags-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .about-container, .coverage-layout, .quote-contact-container {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                height: 76px;
+                padding-top: env(safe-area-inset-top);
+            }
+            .header-inner {
+                padding: 0 16px;
+            }
+            .logo-wrap {
+                gap: 8px;
+                height: auto;
+                width: auto;
+            }
+            .header-logo-frame {
+                height: 52px;
+                max-width: 156px;
+                width: 156px;
+            }
+            .nav-menu, .btn-header-quote {
+                display: none;
+            }
+            .nav-menu.is-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 76px;
+                right: 12px;
+                left: 12px;
+                gap: 18px;
+                padding: 20px 24px 22px;
+                border: 1px solid var(--border-color);
+                border-radius: 0 0 16px 16px;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 18px 32px rgba(7, 21, 41, 0.14);
+            }
+            .nav-menu.is-open > li {
+                width: 100%;
+            }
+            .nav-menu.is-open .nav-link {
+                align-items: center;
+                justify-content: space-between;
+                min-height: 44px;
+                width: 100%;
+            }
+            .nav-menu.is-open .dropdown-menu {
+                background: var(--bg-light);
+                border: 1px solid var(--border-color);
+                box-shadow: none;
+                display: grid;
+                gap: 2px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                margin-top: 8px;
+                min-width: 0;
+                padding: 6px;
+                position: static;
+                width: 100%;
+            }
+            .nav-menu.is-open .dropdown-item {
+                align-items: center;
+                border-radius: 8px;
+                display: inline-flex;
+                font-size: 12px;
+                min-height: 42px;
+                padding: 8px 10px;
+            }
+            .mobile-nav-contact {
+                display: block;
+                margin-top: 2px;
+            }
+            .mobile-whatsapp-link {
+                background: var(--action);
+                border-radius: var(--radius-pill);
+                color: var(--bg-card);
+                justify-content: center !important;
+                padding: 0 16px;
+            }
+            .mobile-whatsapp-link:hover,
+            .mobile-whatsapp-link:focus-visible {
+                color: var(--bg-card);
+            }
+            .mobile-whatsapp-link::after {
+                display: none;
+            }
+            .nav-menu.is-open .nav-link::after {
+                bottom: -5px;
+            }
+            .mobile-toggle {
+                display: flex;
+            }
+            .mobile-toggle span {
+                transition: transform var(--motion-fast) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease);
+            }
+            .mobile-toggle.is-open span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .mobile-toggle.is-open span:nth-child(2) {
+                opacity: 0;
+            }
+            .mobile-toggle.is-open span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+            .hero-title {
+                font-size: clamp(30px, 8.7vw, 36px);
+                letter-spacing: -0.035em;
+            }
+            .hero-subtitle {
+                font-size: 15px;
+            }
+            .hero-section {
+                margin-top: 76px;
+                min-height: 544px;
+            }
+            .hero-content {
+                align-self: stretch;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 58px 20px 94px;
+            }
+            .hero-text-box,
+            .hero-subtitle {
+                max-width: 100%;
+            }
+            .hero-overlay {
+                background: linear-gradient(180deg, rgba(5, 13, 26, 0.58) 0%, rgba(5, 13, 26, 0.9) 48%, #050d1a 100%);
+            }
+            .hero-bg-img {
+                object-position: 62% center;
+            }
+            .hero-buttons,
+            .btn-hero-primary,
+            .btn-service-callout,
+            .btn-send-email {
+                width: 100%;
+            }
+            .btn-hero-primary,
+            .btn-service-callout,
+            .btn-send-email {
+                justify-content: center;
+                min-height: 52px;
+            }
+            .service-callout-card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+                padding: 20px;
+            }
+            .btn-service-callout {
+                justify-content: center;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-section {
+                padding: 56px 20px 36px;
+            }
+            .segments-intro {
+                margin-bottom: 26px;
+            }
+            .service-card {
+                min-height: 184px;
+                padding: 22px 20px;
+            }
+            .fleet-stats-row {
+                grid-template-columns: 1fr;
+            }
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+            .fleet-tags-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .coverage-map-card,
+            .coverage-panel {
+                padding: 20px;
+            }
+            .coverage-map-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .coverage-map-heading p {
+                text-align: left;
+            }
+            .state-map {
+                padding: 0;
+            }
+            .region-chip-list {
+                gap: 6px;
+            }
+            .region-chip {
+                font-size: 11px;
+                padding: 7px 10px;
+            }
+            .about-section {
+                padding: 56px 20px;
+            }
+            .about-container {
+                gap: 28px;
+            }
+            .about-content h3 {
+                font-size: clamp(28px, 8vw, 34px);
+            }
+            .about-story-grid {
+                grid-template-columns: 1fr;
+            }
+            .partners-box {
+                padding: 18px;
+            }
+            .quote-contact-section {
+                padding: 56px 20px 64px;
+            }
+            .quote-contact-container {
+                gap: 20px;
+            }
+            .quote-card,
+            .contact-info-card {
+                border-radius: 18px;
+                padding: 26px 22px;
+            }
+            .quote-card h3 {
+                font-size: 26px;
+            }
+            .quote-channel-heading {
+                align-items: stretch;
+                flex-direction: column;
+            }
+            .quote-channel-toggle {
+                align-self: flex-start;
+            }
+            .quote-channel-button {
+                min-height: 40px;
+                padding: 9px 12px;
+            }
+            .quote-email-link {
+                font-size: 17px;
+            }
+            .contact-item {
+                gap: 12px;
+            }
+            .contact-item-icon {
+                height: 42px;
+                min-width: 42px;
+                width: 42px;
+            }
+            .partners-heading {
+                padding: 28px 20px 18px;
+            }
+            .partners-heading h2 {
+                font-size: 20px;
+            }
+            .partners-marquee {
+                padding-bottom: 30px;
+            }
+            .partner-wordmark {
+                min-height: 66px;
+                min-width: 214px;
+                padding: 14px 22px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+            .footer {
+                padding: 34px 20px calc(20px + env(safe-area-inset-bottom));
+            }
+            .footer-logo-frame {
+                margin-bottom: 14px;
+            }
+            .footer-about p {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+            .footer-quick-actions {
+                display: grid;
+                gap: 10px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                margin-top: 18px;
+            }
+            .footer-quick-action {
+                align-items: center;
+                border: 1px solid rgba(96, 165, 250, 0.35);
+                border-radius: 12px;
+                color: var(--bg-card);
+                display: inline-flex;
+                font-size: 12px;
+                font-weight: 700;
+                gap: 7px;
+                justify-content: center;
+                min-height: 46px;
+                padding: 10px;
+            }
+            .footer-quick-action:first-child {
+                background: var(--action);
+                border-color: var(--action);
+            }
+            .footer-disclosure {
+                border-top: 1px solid rgba(255, 255, 255, 0.12);
+                padding: 0;
+            }
+            .footer-disclosure summary {
+                align-items: center;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+                min-height: 54px;
+            }
+            .footer-disclosure summary::-webkit-details-marker {
+                display: none;
+            }
+            .footer-disclosure summary svg {
+                color: var(--footer-accent);
+                display: block;
+                transition: transform var(--motion-fast) var(--motion-ease);
+            }
+            .footer-disclosure[open] summary svg {
+                transform: rotate(180deg);
+            }
+            .footer-disclosure ul {
+                padding-bottom: 18px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            section[id],
+            .quote-card[id] {
+                scroll-margin-top: 92px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .header-inner {
+                padding: 0 14px;
+            }
+            .logo-wrap {
+                gap: 7px;
+            }
+            .header-logo-frame {
+                height: 48px;
+                max-width: 144px;
+                width: 144px;
+            }
+            .hero-content {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+            .quote-card,
+            .contact-info-card {
+                padding: 24px 18px;
+            }
+            .quote-action-box {
+                padding: 18px;
+            }
+            .quote-email-link {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== HEADER / NAVBAR ====== -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo-wrap" aria-label="Barbosa Fretes e Cargas — página inicial">
+                <span class="header-logo-frame">
+                    <img src="assets/logo.png" alt="" class="header-logo-image" width="206" height="64">
+                </span>
+            </a>
+
+            <nav aria-label="Navegação principal">
+                <ul class="nav-menu" id="mainNavigation">
+                    <li class="dropdown-parent">
+                        <a href="#segmentos" class="nav-link">
+                            Soluções
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#segmentos" class="dropdown-item">Carga seca</a>
+                            <a href="#segmentos" class="dropdown-item">Granéis sólidos</a>
+                            <a href="#segmentos" class="dropdown-item">Pranchas</a>
+                            <a href="#segmentos" class="dropdown-item">Especiais</a>
+                        </div>
+                    </li>
+                    <li><a href="#frota" class="nav-link">Frota</a></li>
+                    <li><a href="#atuacao" class="nav-link">Área de Atuação</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre nós</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                    <li class="mobile-nav-contact"><a href="https://wa.me/5564981306666" class="nav-link mobile-whatsapp-link" target="_blank" rel="noopener noreferrer">Falar no WhatsApp <span aria-hidden="true">↗</span></a></li>
+                </ul>
+            </nav>
+
+            <a href="https://wa.me/5564981306666" class="btn-header-quote" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp pelo número (64) 98130-6666">
+                <span class="button-label">Falar no WhatsApp</span>
+                <span class="button-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNavigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero-section">
+        <div class="hero-bg-container">
+            <img src="assets/hero-truck.png" alt="Caminhão Barbosa Fretes" class="hero-bg-img">
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-text-box">
+                <h1 class="hero-title">Logística que acompanha<br>o ritmo do seu negócio.</h1>
+                <p class="hero-subtitle">Transporte planejado para conectar carga, rota e decisão com mais clareza em cada etapa da operação.</p>
+                <div class="hero-buttons">
+                    <a href="#cotacao" class="btn-hero-primary">
+                        <span class="button-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+                        <span class="button-label">Solicitar cotação</span>
+                        <span class="button-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ATENDIMENTO SOB MEDIDA ====== -->
+    <section class="service-callout-section" aria-labelledby="serviceCalloutTitle">
+        <div class="service-callout-card">
+            <div class="service-callout-info">
+                <div class="service-callout-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path d="M7 8h6M7 12h6M7 16h3"/><path d="M19 9v8M16 12h6"/></svg>
+                </div>
+                <div class="service-callout-copy">
+                    <h3 id="serviceCalloutTitle">Atendimento sob medida</h3>
+                    <p>Planejamento logístico e resposta comercial para avaliar sua necessidade.</p>
+                </div>
+            </div>
+            <a href="#cotacao" class="btn-service-callout">
+                <span class="button-label">Solicitar cotação</span>
+                <span class="button-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ====== SERVICES SECTION (SEGMENTOS OFICIAIS) ====== -->
+    <section class="services-section" id="segmentos" aria-labelledby="segmentsTitle">
+        <div class="segments-intro">
+            <span class="section-tag">Segmentos</span>
+            <h2 class="section-title" id="segmentsTitle">Soluções para cada tipo de carga</h2>
+            <p class="section-desc">Conheça os segmentos atendidos e encontre o ponto de partida mais adequado para a sua operação.</p>
+        </div>
+        <div class="services-grid">
+            <!-- Carga Seca -->
+            <div class="service-card">
+                <div class="service-card-top">
+                    <div class="service-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+                <h4>Carga seca</h4>
+                <p>Transporte alinhado à sua operação, com planejamento de rota e cuidado em cada etapa.</p>
+            </div>
+
+            <!-- Granéis Sólidos -->
+            <div class="service-card">
+                <div class="service-card-top">
+                    <div class="service-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+                <h4>Granéis sólidos</h4>
+                <p>Atendimento para operações com conjuntos graneleiros próprios e agregados preparados.</p>
+            </div>
+
+            <!-- Pranchas -->
+            <div class="service-card">
+                <div class="service-card-top">
+                    <div class="service-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+                <h4>Pranchas</h4>
+                <p>Estruturas adequadas para operações que pedem estabilidade, atenção e segurança.</p>
+            </div>
+
+            <!-- Especiais -->
+            <div class="service-card">
+                <div class="service-card-top">
+                    <div class="service-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 16 12 12 8"/></svg>
+                    </div>
+                    <svg class="service-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+                <h4>Especiais</h4>
+                <p>Soluções desenhadas a partir das particularidades da sua carga e da sua rota.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FEATURES STRIP (BANNER ESCURO DE DIFERENCIAIS) ====== -->
+    <section class="features-strip-section">
+        <div class="features-strip-card">
+            <!-- Item 1 -->
+            <div class="feature-item">
+                <div class="feature-icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <div class="feature-text">
+                    <h4>Planejamento de rotas</h4>
+                    <p>Antes de partir, entendemos a carga, a rota e as prioridades da operação.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="feature-item">
+                <div class="feature-icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="feature-text">
+                    <h4>Segurança operacional</h4>
+                    <p>Decisões orientadas por cuidado operacional em cada etapa da jornada.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="feature-item">
+                <div class="feature-icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                </div>
+                <div class="feature-text">
+                    <h4>Flexibilidade comercial</h4>
+                    <p>Uma conversa objetiva para construir uma proposta compatível com a sua demanda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SOBRE A EMPRESA ====== -->
+    <section class="about-section" id="sobre">
+        <div class="about-container">
+            <div class="about-content">
+                <span class="section-tag">Desde 2016</span>
+                <h3>Experiência na estrada, <span>propósito em cada operação.</span></h3>
+                <p class="about-lede">A Barbosa Fretes nasceu para transformar conhecimento prático em uma operação próxima, responsável e preparada para as demandas de cada cliente.</p>
+
+                <div class="about-story-grid">
+                    <article class="about-story-item">
+                        <span>01 · ORIGEM</span>
+                        <h4>Uma história construída no transporte</h4>
+                        <p>Fundada em 4 de fevereiro de 2016 por Eleomar Pereira e Katiana Rita da Silva.</p>
+                    </article>
+                    <article class="about-story-item">
+                        <span>02 · ATUAÇÃO</span>
+                        <h4>Cargas que movem negócios</h4>
+                        <p>Cargas secas, fracionadas, lotações e demandas especiais, de matérias-primas a equipamentos.</p>
+                    </article>
+                </div>
+
+                <p class="about-text about-closing">A cada nova solicitação, começamos pela carga, pela rota e pela urgência. Assim, o planejamento ganha clareza antes de a operação começar.</p>
+
+                <div class="partners-box">
+                        <h4>Parcerias presentes na trajetória</h4>
+                    <div class="partners-tags">
+                        <div class="partner-pill">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Major Nutrição Animal
+                        </div>
+                        <div class="partner-pill">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Caramuru Alimentos
+                        </div>
+                        <div class="partner-pill">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                            Agro Fava Sementes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card-right">
+                <span class="about-card-kicker">Visão de futuro</span>
+                <h4>Cuidar de cada etapa</h4>
+                <p>Da primeira conversa à entrega, cada operação é pensada com clareza, responsabilidade e foco naquilo que importa para o cliente.</p>
+                
+                <div class="start-date-badge">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <div>
+                        <strong>Fundada em 2016</strong>
+                        <div>Construindo soluções em movimento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PARCEIROS ====== -->
+    <section class="clients-section" id="parceiros" aria-labelledby="partnersTitle">
+        <div class="clients-container">
+            <div class="partners-heading">
+                <h2 id="partnersTitle">Parcerias que fazem parte da nossa história</h2>
+                <p>Empresas mencionadas em nossa trajetória.</p>
+            </div>
+            <div class="partners-marquee" aria-label="Parceiros mencionados na trajetória da Barbosa Fretes">
+                <div class="partners-track">
+                    <div class="partner-wordmark"><span class="partner-mark">M</span><span>Major<small>Nutrição Animal</small></span></div>
+                    <div class="partner-wordmark"><span class="partner-mark">C</span><span>Caramuru<small>Alimentos</small></span></div>
+                    <div class="partner-wordmark"><span class="partner-mark">A</span><span>Agro Fava<small>Sementes</small></span></div>
+                    <div class="partner-wordmark"><span class="partner-mark">M</span><span>Major<small>Nutrição Animal</small></span></div>
+                    <div class="partner-wordmark"><span class="partner-mark">C</span><span>Caramuru<small>Alimentos</small></span></div>
+                    <div class="partner-wordmark"><span class="partner-mark">A</span><span>Agro Fava<small>Sementes</small></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FROTA SECTION ====== -->
+    <section class="fleet-section" id="frota">
+        <div class="fleet-container">
+            <div class="section-header">
+                <span class="section-tag">Como trabalhamos</span>
+                <h2 class="section-title">Uma operação que começa entendendo a sua demanda</h2>
+                <p class="section-desc">Planejamento, diálogo e cuidado operacional para organizar cada solicitação com clareza.</p>
+            </div>
+
+            <div class="fleet-stats-row">
+                <div class="fleet-stat-card">
+                    <div class="fleet-stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div class="fleet-stat-info">
+                        <h3>Planejamento logístico</h3>
+                        <p>Uma leitura criteriosa antes de definir os próximos passos.</p>
+                        <span>Carga e rota avaliadas conforme o seu cenário.</span>
+                    </div>
+                </div>
+
+                <div class="fleet-stat-card">
+                    <div class="fleet-stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <div class="fleet-stat-info">
+                        <h3>Flexibilidade no atendimento</h3>
+                        <p>Uma conversa direta, orientada pelas prioridades do seu negócio.</p>
+                        <span>Informações organizadas com clareza e responsabilidade.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fleet-types-panel">
+                <h4>Como uma solicitação ganha forma</h4>
+                <div class="fleet-tags-grid">
+                    <div class="fleet-tag-item">Entendimento da demanda</div>
+                    <div class="fleet-tag-item">Planejamento de rota</div>
+                    <div class="fleet-tag-item">Alinhamento comercial</div>
+                    <div class="fleet-tag-item">Cuidado operacional</div>
+                    <div class="fleet-tag-item">Comunicação clara</div>
+                    <div class="fleet-tag-item">Flexibilidade</div>
+                </div>
+
+                <div class="fleet-differential">
+                    <strong>Atendimento Barbosa Fretes:</strong> cada solicitação é lida com atenção para construir uma proposta compatível com o que você precisa movimentar.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SEGURANÇA E ORGANIZAÇÃO OPERACIONAL ====== -->
+    <section class="security-section">
+        <div class="security-container">
+            <div class="section-header">
+                <span class="section-tag">Cuidado operacional</span>
+                <h2 class="section-title">Segurança que orienta cada decisão</h2>
+                <p class="section-desc">Uma operação responsável começa com processos claros, comunicação próxima e atenção às características de cada carga.</p>
+            </div>
+
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h4>Planejamento operacional</h4>
+                    <p>Etapas organizadas a partir das necessidades e prioridades apresentadas.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>Segurança e gestão de riscos</h4>
+                    <p>Processos alinhados às características da carga e às exigências de cada operação.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h4>Comunicação comercial</h4>
+                    <p>Informações alinhadas de forma objetiva ao longo da conversa comercial.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PLANEJAMENTO POR REGIÃO ====== -->
+    <section class="regions-section" id="atuacao" aria-labelledby="coverageTitle">
+        <div class="coverage-container">
+            <div class="section-header">
+                <span class="section-tag">Planejamento por região</span>
+                <h2 class="section-title" id="coverageTitle">Quando sua demanda pedir, planejamos por região</h2>
+                <p class="section-desc">Depois de entender sua necessidade, selecione uma região para orientar os próximos passos da conversa.</p>
+            </div>
+
+            <div class="coverage-layout">
+                <div class="coverage-map-card">
+                    <div class="coverage-map-heading">
+                        <h3>Brasil em detalhes</h3>
+                        <p>Toque em um estado ou escolha uma região.</p>
+                    </div>
+
+                    <svg class="brazil-map region-map" viewBox="0 0 540 520" role="group" aria-labelledby="regionalMapTitle regionalMapDescription" aria-hidden="true">
+                        <title id="regionalMapTitle">Mapa visual das cinco regiões do Brasil</title>
+                        <desc id="regionalMapDescription">Um mapa interativo e esquemático com Norte, Nordeste, Centro-Oeste, Sudeste e Sul.</desc>
+                        <path class="brazil-outline" d="M127 54 L259 36 L328 78 L426 88 L472 146 L450 230 L462 316 L410 378 L392 458 L332 486 L286 433 L182 320 L126 244 L92 128 Z"/>
+                        <g class="map-region is-selected" data-region="norte" role="button" tabindex="0" aria-label="Selecionar região Norte" aria-pressed="true">
+                            <path class="map-region-shape" d="M127 54 L259 36 L328 78 L300 174 L258 208 L164 180 L92 128 Z"/>
+                            <text class="map-region-label" x="196" y="126" text-anchor="middle">Norte</text>
+                        </g>
+                        <g class="map-region" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar região Nordeste" aria-pressed="false">
+                            <path class="map-region-shape" d="M328 78 L426 88 L472 146 L450 230 L383 258 L340 211 L300 174 Z"/>
+                            <text class="map-region-label" x="395" y="160" text-anchor="middle">Nordeste</text>
+                        </g>
+                        <g class="map-region" data-region="centro-oeste" role="button" tabindex="0" aria-label="Selecionar região Centro-Oeste" aria-pressed="false">
+                            <path class="map-region-shape" d="M164 180 L258 208 L340 211 L354 290 L292 350 L182 320 L126 244 Z"/>
+                            <text class="map-region-label" x="248" y="266" text-anchor="middle">Centro-Oeste</text>
+                        </g>
+                        <g class="map-region" data-region="sudeste" role="button" tabindex="0" aria-label="Selecionar região Sudeste" aria-pressed="false">
+                            <path class="map-region-shape" d="M354 290 L450 230 L462 316 L410 378 L335 385 L292 350 Z"/>
+                            <text class="map-region-label" x="387" y="324" text-anchor="middle">Sudeste</text>
+                        </g>
+                        <g class="map-region" data-region="sul" role="button" tabindex="0" aria-label="Selecionar região Sul" aria-pressed="false">
+                            <path class="map-region-shape" d="M335 385 L410 378 L392 458 L332 486 L286 433 Z"/>
+                            <text class="map-region-label" x="343" y="430" text-anchor="middle">Sul</text>
+                        </g>
+                    </svg>
+
+                    <!-- Geometria do mapa: Lucas Bassetti, mapa-brasil-svg (MIT), 2016. Veja MAP_LICENSE.md. -->
+                    <svg class="brazil-map state-map region-norte" viewBox="0 0 450 460" role="group" aria-labelledby="brazilMapTitle brazilMapDescription">
+                        <title id="brazilMapTitle">Mapa interativo dos estados do Brasil</title>
+                        <desc id="brazilMapDescription">Selecione um estado ou uma região para destacar a área no mapa.</desc>
+                    <g>
+                    <a xlink:href="#tocantins" class="estado state-region" name="Tocantins" code="17" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Tocantins, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M289.558,235.641
+                    c16.104,0.575,44.973-31.647,44.835-45.259c-0.136-13.612-17.227-58.446-22.349-66.088c-5.122-7.628-37.905,2.506-37.905,2.506
+                    S234.852,233.695,289.558,235.641z"></path>
+                    <text transform="matrix(1 0 0 1 287.0137 188.3208)" fill="#FFFFFF">TO</text>
+                    </a>
+                    <a xlink:href="#bahia" class="estado state-region" name="Bahia" code="29" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Bahia, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M313.276,197.775
+                    c2.084-2.739,3.506-7.012,6.464-8.764c1.641-0.973,3.232-4.684,4.271-5.163c2.304-1.014,12.161-25.143,20.706-22.513
+                    c1.095,0.342,29.881,3.478,32.153,7.532c2.246-0.506,17.582-8.804,25.829-4.999c9.172,4.246,11.225,20.679,11.2,20.843
+                    c0.107,0.328-0.823,5.765-0.985,5.929c-1.15,1-5.258-0.807-4.22,2.138c1.317,3.751,5.094,10.583,9.97,6.613
+                    c-3.669,6.574-6.846,16.022-13.966,17.747c-5.808,1.411-4.605,13.421-5.178,18.037c-0.465,3.75,0.192,8.448,1.014,12.117
+                    c1.148,4.959-0.821,8.6-1.808,13.42c-0.822,4.162-0.219,8.299-0.987,12.297c-0.271,1.286-4.407,5.723-5.559,7.148
+                    c-1.616-1.426-63.952-37.248-73.1-36.265c1.149-3.738,2.438-9.559-0.741-12.723c-8.625-8.572-0.135-19.335-0.162-19.432
+                    c-0.546-1.725-5.396-6.079-0.026-7.175c-3.175,0.959-1.944-4.027,0.875-3.012C316.726,200.733,314.044,200.527,313.276,197.775z"></path>
+                    <text transform="matrix(1 0 0 1 359.7324 210.1221)" fill="#FFFFFF">BA</text>
+                    </a>
+                    <a xlink:href="#sergipe" class="estado state-region" name="Sergipe" code="28" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Sergipe, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M408.561,191.735
+                    c0.521-1.505,2.465-0.725,3.533-0.794c2.273-0.164,0.494-2.738,1.095-3.778c2.026-3.793-2.738-5.999-1.998-10.408
+                    c4.024,1.931,9.448,3.397,12.408,6.89c1.343,1.533,5.504,2.656,5.832,4.847c-6.822,0.384-6.901,8.819-11.942,11.572
+                    C413.545,202.212,407.055,193.721,408.561,191.735z"></path>
+                    <path class="circle" d="M417.324,182.854c6.214,0,11.266,5.035,11.266,11.262c0,6.208-5.052,11.261-11.266,11.261
+                    c-6.238,0-11.258-5.053-11.258-11.261C406.063,187.89,411.084,182.854,417.324,182.854z"></path>
+                    <text transform="matrix(1 0 0 1 408.9121 198.6689)" fill="#FFFFFF">SE</text>
+                    </a>
+                    <a xlink:href="#pernambuco" class="estado state-region" name="Pernambuco" code="26" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Pernambuco, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M373.011,167.238
+                    c2.709-0.795,6.218-14.106,8.325-15.106c4.136-1.986,17.255-1.437,17.8,4.903c-0.437-0.068,8.189-2.273,7.479-1.466
+                    c1.7-0.711,10.518-4.723,12.599-4.82c0.274-0.013,4.603,0.905,3.068,2.315c-0.464,0.439,4.219,3.698,10.789,3.45
+                    c4.66-0.176,5.179-3.436,8.627-4.409c5.89-1.67,4.737,3.698,5.589,6.943c-1.182,2.684-1.646,5.586-2.74,8.285
+                    c-1.533,3.792-9.804,9.791-13.39,12.119c-7.287,4.778-21.802-4.067-22.762-5.67c-0.602-0.985-2.55-5.121-3.178-5.107
+                    c-0.629,0.356-1.04,0.861-1.287,1.519c-0.904-0.013-7.256-3.533-7.502-4.655c-4.769-1.151-5.425,6.108-8.957,6.19
+                    c0.219,0.108-8.244,6.681-7.506,3.314C383.556,170.4,374.241,168.566,373.011,167.238z"></path>
+                    <text transform="matrix(1 0 0 1 401.3984 165.8003)" fill="#FFFFFF">PE</text>
+                    </a>
+                    <a xlink:href="#alagoas" class="estado state-region" name="Alagoas" code="27" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Alagoas, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M413.953,169.018
+                    c3.78,3.313,9.424,5.505,12.547,5.491c3.229-0.013,5.009-3.328,7.421-4.794c1.177-0.712,10.297-1.93,9.174,1.042
+                    c-1.807,4.848-7.122,8.585-10.024,12.789c-2.792,2-3.423,7.093-6.354,1.864c-3.259,0.424-3.722-4.424-6.957-4.477
+                    c-3.668-2.261-7.998-3.769-11.201-6.342C410.615,172.646,412.751,171.359,413.953,169.018z"></path>
+                    <path class="circle" d="M436.423,168.763c6.236,0,11.258,5.054,11.258,11.278c0,6.207-5.02,11.259-11.258,11.259
+                    c-6.241,0-11.263-5.052-11.263-11.259C425.16,173.816,430.182,168.763,436.423,168.763z"></path>
+                    <text transform="matrix(1 0 0 1 429.7891 183.895)" fill="#FFFFFF">AL</text>
+                    </a>
+                    <a xlink:href="#riograndedonorte" class="estado state-region" name="Rio Grande do Norte" code="24" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Rio Grande do Norte, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M404.698,138.795
+                    c2.383-4.027,6.574-6.123,8.49-11.149c1.973-5.107,3.834-5.818,8.764-4.642c5.041,1.207,9.339,0.837,14.57,1.671
+                    c7.534,1.193,6.848,10.968,9.206,16.516c-1.919,1.096-13.972,0.521-15.064-1.657c-1.041-2.067-2.904,7.107-5.094,7.3
+                    c1.532-5.847-12.654,1.78-5.424-8.683c2.545-3.67-6.302-0.808-6.711,0.725C410.121,144.013,407.217,139.151,404.698,138.795z"></path>
+                    <path class="circle" d="M430.827,107.798c6.241,0,11.261,5.039,11.261,11.261c0,6.224-5.02,11.261-11.261,11.261
+                    c-6.209,0-11.26-5.037-11.26-11.261C419.567,112.837,424.618,107.798,430.827,107.798z"></path>
+                    <text transform="matrix(1 0 0 1 422.541 123.9009)" fill="#FFFFFF">RN</text>
+                    </a>
+                    <a xlink:href="#ceara" class="estado state-region" name="Ceará" code="23" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Ceará, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M372.379,104.409
+                    c0.437-1.368,2.961-3.627,1.043-5.025c12.106-1.328,17.581-0.849,27.66,6.723c4.026,3.054,6.822,5.574,10.571,9.147
+                    c1.317,1.273,7.614,4.313,7.914,6.164c-0.054-0.316-5.396,3.696-5.997,5.217c-1.066,2.684-2.659,6.093-4.3,8.298
+                    c0.025-0.055-6.903,3.957-3.532,4.217c-4.41,3.821-1.015,8.135-0.797,11.517c0.196,2.767-4.38,7.587-6.765,5.422
+                    c-2.244-1.999-3.998-5.711-7.779-5.094c-1.998,0.329-5.476,2.189-7.612,0.479c-2.52-2.054,3.669-5.162-0.545-7.354
+                    c-6.987-3.615-1.264-15.393-6.684-20.239c-3.504-3.136,1.753-7.313,0.109-10.749C374.952,111.68,373.694,105.244,372.379,104.409
+                    C373.035,102.314,374.815,105.971,372.379,104.409z"></path>
+                    <text transform="matrix(1 0 0 1 386.8379 129.0347)" fill="#FFFFFF">CE</text>
+                    </a>
+                    <a xlink:href="#piaui" class="estado state-region" name="Piauí" code="22" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Piauí, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M320.781,185.478
+                    c2.465-5.149-7.505-20.801-7.505-20.801s47.354-65.868,54.285-66.841c0.299-0.042,6.243,1.768,6.463,2.219
+                    c0.438,0.863-0.821,5.244-0.685,6.587c0.275,2.629,2.879,6.587,2.328,8.684c-1.15,4.736-1.863,6.134,1.369,9.901
+                    c2.794,3.245,0.325,10.16,2.544,14.269c-1.778,4.23,4.768,3.656,3.943,7.613c-0.655,3.163-5.424,7.655-1.176,10.312
+                    c0.274,4.642-4.685,4.983-6.79,7.818c-2.631,2.835-5.535,5.013-7.999,7.888c-0.55,0.671-8.821,4.096-9.998,4.082
+                    c0.302-0.301-17.665-6.449-11.967,2.354c2.463,3.808-1.505,5.56-3.177,8.778c-0.633,2.164-5.836,0.958-7.836,3.205
+                    C328.176,198.748,327.409,180.727,320.781,185.478z"></path>
+                    <text transform="matrix(1 0 0 1 355.127 158.1045)" fill="#FFFFFF">PI</text>
+                    </a>
+                    <a xlink:href="#maranhao" class="estado state-region" name="Maranhão" code="21" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Maranhão, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M288.845,127.827
+                    c4.108-2.726,31.195-48.985,31.386-50.395c1.235,0.397,6.084,7.435,7.562,5.025c0.493,0.013-0.328,2.15-0.547,2.396
+                    c-0.054-0.135,2.189-2.286,2.52-2.436c0.521-0.233,1.948,1.903,3.451-0.726c5.642,1.575,1.314,14.31,9.121,11.694
+                    c-1.147,0.384,1.452,0.74,0.848,1.905c5.095-6.587,8.488-0.027,15.337,1.491c2.025,0.466,6.243,0.575,8.162,0.207
+                    c3.808-0.823-2.082,6.847-2.082,6.887c-1.369,2.986-5.041,1.713-6.818,5.683c-0.684,1.549-3.506,4.327-3.042,6.148
+                    c0.494,1.781,2.081,2.863,0.274,4.629c0.603,2.793,3.066,7.109-0.385,9.12c-4.601,4.383,2.304,7.52,1.316,11.598
+                    c-0.9,3.726-6.244,5.725-9.147,2.78c-4.847-0.11-6.872,3.821-10.406,6.45c-2.74,2.041-8.793,2.493-10.327,5.642
+                    c-1.918,3.929-3.699,8.763-5.341,12.79c-1.699,4.204,6.383,18.762-4.328,15.611c-0.932-0.273-3.396-4.725-3.396-5.738
+                    c-0.081-3.739-2.738-4.176-4.821-7.477c0.356-3.025,2.466-6.929,4.766-8.052c3.342-1.63,1.919-6.629-2.466-4.465
+                    c-3.505,1.726-4.709-2.794-6.958-5.287c0.548,0.59-3.064-4.696-3.146-3.697c0.19-1.89,2.876-5.833,3.341-8.448
+                    c0.575-3.259,0.52-6.764-0.521-10.105c-0.63-2.068-4.656-4.521-6.518-4.437c-1.289,0.287-2.443,0-3.427-0.878
+                    C290.983,125.675,290.983,128.044,288.845,127.827z"></path>
+                    <text transform="matrix(1 0 0 1 318.2754 126.7036)" fill="#FFFFFF">MA</text>
+                    </a>
+                    <a xlink:href="#amapa" class="estado state-region" name="Amapá" code="16" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Amapá, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M225.198,39.089
+                    c3.274,1.165,3.985-1.315,6.572-1.74c3.616-0.603,5.683,2.725,9.037,2.067c4.055-0.78,7.093-8.025,7.314-11.598
+                    c4.492-3.534,5.503-11.258,9.42-14.68c6.055,4.258,6.11,15.788,7.589,22.485c-0.164,0.083,6.57,7.998,7.944,8.682
+                    c3.396,1.657,3.366,6.203,0.078,9.34c-3.777,3.587-7.449,34.275-7.449,34.275h-46.489c0,0,0.932-50.366,0-51.449
+                    C221.814,36.458,223.334,38.417,225.198,39.089z"></path>
+                    <text transform="matrix(1 0 0 1 245.9023 52.6099)" fill="#FFFFFF">AP</text>
+                    </a>
+                    <a xlink:href="#para" class="estado state-region" name="Pará" code="15" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Pará, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M173.378,50.619
+                    c2.259,2.63,5.629-4.478,7.901-3.82c3.19,0.918,1.478-1.108,5.026-1.752c1.931,0.806,3.096,0.273,3.519-1.631
+                    c0.535-1.26,1.453-1.726,2.725-1.384c1.768-1.684,13.558,3.603,14.68,0.384c0.629-1.821-4.287-5.709-0.302-6.997
+                    c1.643-0.533,6.012,0.808,8.75-0.068c3.986-1.288,4.876,2.684,4.382,6.066c0.631,3.587,13.145,5.766,12.982,7.97
+                    c3.589-1.518,5.354,12.763,7.105,14.447c0.357,4.26,6.304,8.585,7.07,12.544c0.628,3.396,7.065,3.616,8.213,0.095
+                    c2.578-8.133,9.696-10.022,13.475-16.651c4.603-8.038,3.725,3.752,8.955,1.067c2.11,0.411,2.876,3.629,4.574,4.724
+                    c3.18,2.027,7.779,0.974,10.572,3.013c-4.192,4.382,8.188,3.752,9.231,3.875c4.682,0.575,8.104,2.383,11.855,3.629
+                    c-0.164-0.069,4.792,0.52,5.178,1.245c2.026,3.767-4.904,19.214-6.382,21.486c-1.121,1.713-2.932,4.985-3.727,6.834
+                    c-0.902,2.026-4.764,7.313-4.655,9.229c-1.888,0.972-2.248,4.835-5.012,4.328c-3.096,3.026-8.187,4.999-10.27,8.956
+                    c2.057,0.781,8.325,1.041,5.311,4.272c-0.821,0.877-1.094,5.533-1.615,6.833c-0.575,1.384-4.464,4.779-6.108,5.34
+                    c-4.107,1.426-2.736,4.135-4.271,7.655c-0.933,2.054-0.546,3.491,1.756,4.339c-0.083,2.835-0.988,5.575-2.385,7.998
+                    c-3.041,5.245-9.009,9.818-10.079,16.27c-3.261,3.408-87.066-1.22-87.464-2.644c-1.423-5.012,1.508-24.006-2.808-27.88
+                    c-0.19-2.082-29.893-6.299-30.714-8.081C150.016,140.479,173.173,58.561,173.378,50.619z M319.139,77.664
+                    C319.302,76.912,319.74,78.76,319.139,77.664z"></path>
+                    <text transform="matrix(1 0 0 1 232.7725 122.5137)" fill="#FFFFFF">PA</text>
+                    </a>
+                    <a xlink:href="#roraima" class="estado state-region" name="Roraima" code="14" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Roraima, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M113.18,24.107
+                    c-0.972-2.753-7.861-5.889-6.999-8.984c0.068-0.232,13.229,6.053,12.79,2.808c0.398,1.329,1.219,1.889,2.439,1.685
+                    c1.889-1.301,7.148,4.204,8.216,1.889c0.438-0.959-1.657-3.753,0.74-3.848c1.026,0.438,1.534,0.164,1.52-0.822
+                    c0.835-1.752,3.575,0.219,4.793,0.083c0.767-1.056,10.625-3.026,9.037-5.094c1.37,0.438,4.574,0.808,4.63-1.547
+                    c4.546-2.054,1.15-4.409,2.644-6.354c2.177-2.82,9.791,0.809,7.327,5.738c-1.972,3.93,7.121,4.027,5.724,9.366
+                    c-0.452,1.686-2.479,2.724-3.423,3.971c-1.179,1.546-1.836,9.243-1.356,11.53c1.041,4.889,3.231,8.695,6.134,12.16
+                    c1.712,2.027,5.614,2.261,5.724,4.369c0.164,2.945,1.165,6.177,0.329,9.092c-1.547,5.424-36.618,30.471-36.618,30.471
+                    s-12.517-52.736-20.335-54.063C115.261,36.417,111.523,25.682,113.18,24.107z"></path>
+                    <text transform="matrix(1 0 0 1 136.2939 42.3862)" fill="#FFFFFF">RR</text>
+                    </a>
+                    <a xlink:href="#amazonas" class="estado state-region" name="Amazonas" code="13" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Amazonas, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M10.078,136.412
+                    c1.15-4.972,4.258-10.394,8.215-13.105c4.41-3.027,7.656-5.71,13.105-6.082c2.165-0.149,10.216-5.75,11.983-2.984
+                    c3.711,5.765,4.998-3.739,5.574-7.025c1.726-9.667,3.697-19.322,4.86-29.086c-0.342-1.356-2.013-6.231-2.833-7.163
+                    c-1.453-1.616-4.287-2.122-4.768-4.544c-0.272-1.452-0.574-7.258,1.109-8.121c3.494-1.768,6.547-0.042,9.737-0.89
+                    c-2.561-4.053,0.302-4.327-5.532-5.135c-3.438-0.466-3.971-2.466-2.738-6.368c1.053-3.3,15.898-1,19.088-1.396
+                    c-1.534,0.178-1.11-2.479-0.042-2.616c1.274-0.165,1.576,2.684,3.165,0.998c1.286-1.395,3.189-2.915,4.6-3.751
+                    c2.438-1.45,4.533,8.217,4.465,9.833c-0.041,0.78-0.137,2.438,1.177,2.246c3.012-0.466,4.219,2.849,7.273,4.231
+                    c3.778,1.713,3.929-1.355,7.023-2.068c4.301-0.985,0.711,3.396,2.383,3.793c1.589,0.385,3.806-4.969,4.821-5.572
+                    c0.93-0.533,3.725-0.753,4.846-1.602c3.013-2.245,1.933-1.686,3.492-1.206c3.478,1.041,2.233-8.367,6.491-7.066
+                    c1.822-0.466,3.643-2.34,5.533-2.423c1.041-0.043,6.066,2.287,6.544,3.147c0.589,1.465,0.316,2.795-0.793,3.986
+                    c1.575,1.425,2.698,3.149,3.355,5.162c0.904,2.862-1.286,6.807,0.588,9.299c-0.22,6.655,4.808,7.887-0.396,12.597
+                    c0.192-0.178,6.711,7.067,7.121,8.039c0.971-0.711,4.066,0.849,4.381,1.535c-1.658-3.629,0.547-17.09,6.628-10.915
+                    c7.203,7.327,5.491-3.615,9.148-8.627c2.834-3.875,14.597-3.136,14.077,3.246c-1.082,3.273,6.271,14.256,9.667,11.436
+                    c2.26,5.737,6.889,4.285,10.407,8.051c5.094,5.464,4.37,3.396,11.313,2.848c-2.259,3.602-3.425,4.808-5.272,8.86
+                    c-3.149,6.862-6.15,13.776-9.204,20.678c-2.437,5.505-14.843,23.471-11.105,28.442c4.806,6.395,9.339,30.183,11.324,29.934
+                    c-6.162-0.26-48.079-10.625-51.652-8.105c-1.453,1.013-53.626,10.503-55.9,10.819c-6.369,0.875-18.09-7.272-23.719-10.136
+                    c-8.601-4.381-16.61-8.981-26.088-11.05c-10.282-2.259-20.635-4.793-29.878-10.011C4.121,145.766,12.433,144.779,10.078,136.412z"></path>
+                    <text transform="matrix(1 0 0 1 98.1406 119.0591)" fill="#FFFFFF">AM</text>
+                    </a>
+                    <a xlink:href="#acre" class="estado state-region" name="Acre" code="12" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Acre, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M3.656,148.545
+                    c12.557,7.544,27.524,8.367,41.082,13.2c12.802,8.065,27.278,12.845,40.616,19.872c-2.834,1.205-7.587,4.382-9.983,6.395
+                    c-2.93,2.45-1.3,2.04-4.628,1.957c-2.93-0.069-3.957,4.615-7.203,5.259c-2.999,0.603-7.161-1.958-10.995-1.697
+                    c-1.905,0.136-11.969-0.056-12.64,0.603c0.313-3.642-0.385-7.299-0.165-10.941c0.096-1.439,1.998-6.533,1.245-7.451
+                    c-6.82,3.149-8.339,7.19-16.733,7.013c-2.136-0.042-2.562-2.492-3.081-4.001c-1.247-3.572-7.218-3.422-10.559-3.778
+                    c6.299-3.41-3.107-11.9-5.216-15.679c-0.52-0.918-3.588-4.655-3.629-5.957C1.642,150.174,6.612,151.968,3.656,148.545z"></path>
+                    <text transform="matrix(1 0 0 1 47.7017 184.9355)" fill="#FFFFFF">AC</text>
+                    </a>
+                    <a xlink:href="#rondonia" class="estado state-region" name="Rondônia" code="11" data-region="norte" role="button" tabindex="0" aria-label="Selecionar Rondônia, região norte" aria-pressed="true">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M83.34,180.232
+                    c0.931-1.574,5.341-4.668,6.312-4.656c1.355-0.067,2.671,0.138,3.958,0.603c3.012,1.44,2.039-1.135,5.341-0.123
+                    c-1.274-2.287,3.793-2.943,2.86-0.315c3.068,0.247,2.725-4.683,6.668-5.12c4.438-0.508,5.054-0.646,7.122-4.534
+                    c0.135-0.246,2.628-5.519,2.752-5.025c2.191-6.491,14.585-0.878,15.638,3.355c0.397,1.615,1.834,3.137,3.642,4.369
+                    c1.246,0.862,6.327-3.999,6.134,1.314c-0.78,1.274,26.663,7.656,30.005,19.282c3.82,13.338-16.421,32.167-18.173,34.043
+                    c-4.464,1.191-2.039,1.726-6.6,0.15c-2.574-0.875-6.422,0.986-9.08,0.289c-2.409-0.645-3.041-3.957-5.86-4.683
+                    c-3.055-0.78-5.423-1.795-7.654-3.93c-4.041-3.876-8.983-2.645-14.475-3.808c-1.835-0.083-6.053-6.779-7.874-5.327
+                    c-1.821-0.438-5.381-9.094-3.397-11.204c0.124-1.67-0.26-3.204-1.163-4.627c-0.986-2.644,1.041-5.026,0.863-7.806
+                    c-0.384-6.081-1.028-1.986-3.382-1.903C94.336,180.686,85.957,181.671,83.34,180.232z"></path>
+                    <text transform="matrix(1 0 0 1 118.1299 195.3193)" fill="#FFFFFF">RO</text>
+                    </a>
+                    <a xlink:href="#matogrosso" class="estado state-region" name="Mato Grosso" code="51" data-region="centro-oeste" role="button" tabindex="0" aria-label="Selecionar Mato Grosso, região centro oeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M142.237,173.962
+                    c4-0.316-1.888-6.452,5-5.738c7.914,0.808,16.295,0.328,24.279,0.218c1.629-0.013,8.902,1.288,7.395-1.833
+                    c-1.192-2.453,1.821-6.425,0.425-9.725c2.027-0.864,1.289-3.807,2.629-5.107c1.151-1.123,4.176,7.244,4.436,7.819
+                    c1.097,2.451,0.398,5.478,1.932,7.654c1.41,1.987,4.574,2.136,5.889,4.259c3.136,5.136,10.845,4.137,17.13,4.657
+                    c20.159,1.656,40.356,2.669,60.486,4.752c-3.48,7.763-3.999,14.912-5.122,22.552c-0.437,2.972,1.863,7.163-0.056,10.065
+                    c1.945,1.287,1.346,2.753,1.424,4.409c1.151,25.129-20.429,60.186-33.548,58.569c-10.914-1.369-45.3,0.058-46.928-3.396
+                    c-1.165-3.944-6.136-2.658-8.395-6.603c-2.301-4.051,0.684-6.299,0.737-10.242c-6.997,0.603-14.09-0.384-21.102-0.324
+                    c0.793-5.016-3.725-9.288-2.929-13.809c0.519-3.025,2.726-2.916,0.932-6.79c-1.206-2.589-0.261-4.247-0.699-6.382
+                    c-0.289-1.385-1.042-1.876-2.124-2.424c-2.931-1.493,1.246-2.48,2.056-3.644c1.726-2.465,3.299-11.394,6.545-11.612
+                    c1.219-1.999-1.781-3.643-1.465-5.56c-3.902-3.588,0.506-4.643,0.369-7.984c-0.151-3.627-9.654-3.944-12.256-3.751
+                    c-1.821,0.137-4.109,0.562-5.888-0.094c0.493-3.521-0.521-6.054-0.535-9.217c-0.014-2.286,1.288-5.177,0.835-7.45
+                    C143.581,176.618,141.937,174.714,142.237,173.962z"></path>
+                    <text transform="matrix(1 0 0 1 200.0244 218.4175)" fill="#FFFFFF">MT</text>
+                    </a>
+                    <a xlink:href="#mattogrossodosul" class="estado state-region" name="Mato Grosso do Sul" code="50" data-region="centro-oeste" role="button" tabindex="0" aria-label="Selecionar Mato Grosso do Sul, região centro oeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M183.198,294.536
+                    c2.136-4.464,3.177-9.394,5.312-13.61c1.712-3.344-4.067-7.587-2.423-9.807c0.027-0.026,2.738,3.641,3.917,3.725
+                    c3.204-1.534,4.807-2.272,6.984-5.228c2.615-3.59,10.832-3.014,14.051-0.305c1.259,1.041,3.068,2.107,4.668,2.574
+                    c3.163,0.934,5.889-3.013,8.559-0.873c3.724,2.982,4.626-1.862,7.86-3.509c1.945-1.012-1.768,8.465-2.244,7.781
+                    c2.463,0.959,4.285,0.901,6.82,0.959c3.504,0.081,1.805,1.205,2.436,3.339c0.466,1.564,28.948-5.997,29.416,0.578
+                    c0.302,3.837-0.987,61.813-0.987,61.813s-39.532,5.533-41.602,5.286c-3.889-0.492-3.587-3.231-8.063-0.933
+                    c-2.028,0.329-6.012,1.205-5.177-2.409c-2.013-4.354-0.111-14.625-4.849-17.088c-1.206-0.659-7.092-2.36-7.504-1.945
+                    c-1.699,1.777-3.739,1.562-6.121,1.121c-2.904,0.027-5.629-1.614-8.243-1.203c-4.178,0.656-0.603-2.986-1.645-3.535
+                    c0.932-2.847,1.411-9.912,0.453-11.856c-0.165-0.331-3.52-7.232-2.547-8.108C186.306,297.688,182.334,299.415,183.198,294.536z"></path>
+                    <text transform="matrix(1 0 0 1 213.2939 306.7236)" fill="#FFFFFF">MS</text>
+                    </a>
+                    <a xlink:href="#goias" class="estado state-region" name="Goiás" code="52" data-region="centro-oeste" role="button" tabindex="0" aria-label="Selecionar Goiás, região centro oeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M237.768,270.519
+                    c0.628-2.904,1.835-7.396,4.709-8.766c1.015-1.644,1.754-5.147,2.275-5.586c2.408-2.247,3.889-3.783,6.63-4.656
+                    c3.723-1.205,3.338-5.342,4.846-8.165c1.504-2.845,4.736-1.15,5.942-3.382c1.479-2.834,0.741-6.161,2.189-8.874
+                    c2.902-5.531,1.862-17.363,8.656-20.567c-4.878,7.641,3.698,4.971,7.201,9.449c2.273,1.738,2.164-1.822,2.71-3.055
+                    c1.618-3.533,2.878,2.247,4.52-1.533c0.413,0.37,4.136,5.765,3.427,5.601c-0.029-0.931,0.326-1.408,1.037-1.438
+                    c0.108,0.534,0.274,1.013,0.602,1.452c-0.602-0.261,9.697-0.095,8.82,1.534c0.36-0.657-0.602-3.11,0.221-3.438
+                    c1.039-0.411,3.971,1.368,6.351,0.438c1.045-0.397,7.889-2.807,7.671-3.683c0.767,0.905,1.262,2.67,2.85,1.286
+                    c-2.632,2.274-2.576,4.466,1.258,3.821c-1.861,1.438-2.846,4.341-2.382,6.547c0.357,1.643,3.752,5.973,3.478,6.751
+                    c-1.78,0.315,0.602,5.438-2.325,6.078c-3.181,0.701-3.973-5.53-4.3,0.688c-0.164,1.48-1.097,1.67-2.768,0.576
+                    c-3.288,0.327-0.549,2.19-1.121,3.888c-0.988,2.902,2.792,6.437-2.411,6.764c-3.586,0.219-2.682,1.341-2.682-2.739
+                    c-0.028-4.573-12.054-3.643-10.218,0.521c-4.901,6.355,12.05-0.326,9.668,6.355c-1.313,3.752,15.83,28.211,10.406,25.416
+                    c-1.944-0.986-50.804,10.271-49.982,12.105c-5.012-2.136-11.804-7.941-17.391-8.162c-0.438-2.189-3.618-1.284-5.095-1.533
+                    c-3.724-0.604,1.04-3.231,0.22-4.109c-1.89-1.916-4.382,1.756-3.588-3.012C239.602,274.627,237.055,273.038,237.768,270.519z"></path>
+                    <text transform="matrix(1 0 0 1 266.9111 254.2139)" fill="#FFFFFF">GO</text>
+                    </a>
+                    <a xlink:href="#parana" class="estado state-region" name="Paraná" code="41" data-region="sul" role="button" tabindex="0" aria-label="Selecionar Paraná, região sul" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M222.225,363.694
+                    c1.807-2.138,1.889-4.881,2.424-7.479c0.301-1.453,0.465-7.86,1.369-8.736c2.3-0.684,2.3-3.315,2.726-5.204
+                    c0.616-2.738,2.821-2.958,3.984-5.616c4.369-9.91,38.947-9.529,46.476-9.227c4.658,0.193,15.775,34.563,17.916,33.794
+                    c-1.728,2.19-5.754,8.929-8.41,8.984c-4.054,0.057-14.215,14.68-14.215,14.68s-37.329-12.05-40.287-11.285
+                    c-3.875-1.449-2.698-6.491-6.054-8.216C226.663,364.623,222.498,367.8,222.225,363.694z"></path>
+                    <text transform="matrix(1 0 0 1 248.4453 356.1045)" fill="#FFFFFF">PR</text>
+                    </a>
+                    <a xlink:href="#santacatarina" class="estado state-region" name="Santa Catarina" code="42" data-region="sul" role="button" tabindex="0" aria-label="Selecionar Santa Catarina, região sul" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M231.029,383.959
+                    c1.669-3.338-0.284-10.516,4.573-10.569c6.631-0.109,13.639,3.559,20.402,3.888c1.317,0.055,5.231,2.163,4.357-1.15
+                    c-1.095-4.164,3.945-1.863,5.67-3.179c2.274-1.724,8.187-4.106,11.311-1.367c1.423,1.809,20.05-5.395,13.284,3.946
+                    c-1.368,1.395,0.713,10.789,0.466,10.734c-3.449,4.438,1.726,11.666-5.096,15.334c-2.901,1.536-7.284,7.779-9.64,9.995
+                    C276.085,411.866,233.534,382.918,231.029,383.959z"></path>
+                    <text transform="matrix(1 0 0 1 266.9111 387.7646)" fill="#FFFFFF">SC</text>
+                    </a>
+                    <a xlink:href="#riograndedosul" class="estado state-region" name="Rio Grande do Sul" code="43" data-region="sul" role="button" tabindex="0" aria-label="Selecionar Rio Grande do Sul, região sul" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M191.236,416.881
+                    c0.52-2.684,7.38-8.409,9.477-10.351c0.37-0.359,8.599-10.08,9.174-8.329c-1.301-3.89,2.781-1.589,3.917-4.819
+                    c0.26-0.521,7.04-4.821,7.109-4.795c1.436-0.191,6.721-3.695,7.421-3.257c1.204-2.028,8.927-1.479,8.653-0.824
+                    c1.165-0.38,2.284-0.877,3.326-1.479c0.221-0.821,22.459,7.533,24.319,11.531c2.523,5.34,12.217,2.822,13.15,5.563
+                    c0.106,0.275-5.809,9.339-3.89,9.173c-0.985,0.08,3.204-2.875,3.834,0.409c-2.793,3.619-4.6,7.834-6.571,11.944
+                    c-3.696,7.614-8.872,12.765-15.886,17.42c-7.394,4.902-7.339,11.941-13.257,17.693c-8.091,7.942-10.159-0.574-4.08-5.752
+                    c3.806-3.231-22.527-19.746-25.578-22.732c-1.918-1.862-2.384,0.274-4.219,1.15c-2.547,1.205-1.917-2.822-3.588-4.273
+                    c-2.3-1.999-4.793-5.479-7.737-6.68c-3.478-1.367-5.615,5.145-9.052,0.821C189.168,418.854,190.332,418.032,191.236,416.881z"></path>
+                    <text transform="matrix(1 0 0 1 231.0313 414.4658)" fill="#FFFFFF">RS</text>
+                    </a>
+                    <a xlink:href="#saopaulo" class="estado state-region" name="São Paulo" code="35" data-region="sudeste" role="button" tabindex="0" aria-label="Selecionar São Paulo, região sudeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M239.3,330.554
+                    c3.26-4.356,9.56-5.039,11.531-10.792c1.369-3.942,3.889-8.818,6.135-13.036c1.561-2.957,7.749-7.121,10.517-8.65
+                    c0.383-0.196,32.974-6.138,42.234-1.701c20.265,9.724,26.017,33.879,27.854,33.304c4.408-1.425,5.34,3.778,2.106,4.49
+                    c-1.754,0.413-6.519,1.479-6.49,3.399c0.027,3.448,0.521,1.615-2.931,3.639c-2.189-1.42-3.34,4.111-4.763,3.426
+                    c-4.271-2.244-6.958,2.96-9.258,1.918c-4.271-1.918-16.98,13.092-19.638,15.336c0.245-0.218-1.148-1.479-1.587-2.685
+                    c-0.466-1.369-2.658,0.385-4.025,0.082c-0.986-0.192,1.751-4.079-2.303-4.52c-1.369-0.164-3.753,0.303-4.929,0.084
+                    c-2.903-0.547,0.108-2.41-0.439-3.862c-1.067-2.986-3.013-4.931-3.751-7.779c-0.52-1.945,0.165-7.531-3.615-7.395
+                    c-0.848-2.956-6.628-1.451-9.066-1.862c-0.162,0.163-8.846-2.684-10.079-2.684c-1.616-0.029-6.791-3.396-7.121-0.274
+                    C247.982,330.386,239.876,331.21,239.3,330.554z"></path>
+                    <text transform="matrix(1 0 0 1 280.6816 327.3193)" fill="#FFFFFF">SP</text>
+                    </a>
+                    <a xlink:href="#minasgerais" class="estado state-region" name="Minas Gerais" code="31" data-region="sudeste" role="button" tabindex="0" aria-label="Selecionar Minas Gerais, região sudeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M262.881,297.305
+                    c-1.696-5.094,15.531-19.882,18.844-13.421c5.531-7.367,15.886,1.588,19.773-3.944c0.988-1.367,3.015-1.453,3.725-2.957
+                    c0.326-0.711-0.493-2.793-0.056-3.888c1.369-3.398-4.873-2.355-0.109-6.603c4.547-4.053-1.917-4.739-1.204-8.186
+                    c0.957-4.604,1.807-4.713,5.613-6.027c1.943-0.688,0.906-8.272,0.083-8.52c-0.108-2.699,1.974-2.546,3.782-1.617
+                    c2.188-0.135-0.276-3.695,0.957-4.243c-0.357,0.151,5.559,1.999,5.724,2.055c0.986,0.358-0.52,3.534-0.931,3.943
+                    c8.217-2.355,14.514-11.789,23.279-11.242c4.983,0.316-0.327,4.339,5.367,5.544c0.684,1.234,3.34-1.054,4.054-1.189
+                    c2.876-0.536,5.53,3.284,8.106,3.886c2.301,3.578,7.503,0.537,10.298,3.001c1.755,1.589,2.188,3.397,3.396,5.313
+                    c1.314,2.052,3.86-0.465,5.726-0.109c3.257,0.656,6.326,2.026,9.338,3.723c2.19,1.205,0.768,3.179-0.548,4.573
+                    c-0.765,0.796-3.259,6.165-2.627,5.643c-2.138,1.781-2.628-1.669-3.397,2.764c-0.628,3.674,0.164,4.714,3.149,7.015
+                    c4.901,3.229-6.765,3.12-6.71,3.504c0.22,0.601-2.846,41.96-3.835,42.179c-6.737,1.562-14.513,5.311-21.744,7.012
+                    c-12.736,2.985-24.295,3.778-29.471,4.656c0,1.452-5.367,6.872-8.518,1.259c0,0-3.041-7.285-2.821-7.229
+                    c0.105-0.027,2.138-5.506,2.244-6.137c0.768-3.504-5.042-0.765-5.749-2.188c-0.878-1.81-2.358-4.576-2.166-6.628
+                    c1.699-1.205,1.672-2.383-0.08-3.562c-1.04-1.095-1.205-2.303-0.521-3.672c-2.329-1.424-3.065-2.683-5.698-2.462
+                    c-1.479,0.138-4.055,3.668-5.506,0.629c0.878,2.108-4.188,0.769-5.094,1.56c-2.354-1.202-1.779,2.028-2.384,3.069
+                    c-0.137,0.22-1.014-2.904-1.065-2.961c-1.149-1.175-2.767,4.165-3.505-0.055c0.766-4.105-4.657-2.709-7.67-2.93
+                    c-4.708-0.353-5.53-1.613-9.858,0.631C262.993,300.562,262.336,299.274,262.881,297.305z"></path>
+                    <text transform="matrix(1 0 0 1 328.4063 286.4561)" fill="#FFFFFF">MG</text>
+                    </a>
+                    <a xlink:href="#riodejaneiro" class="estado state-region" name="Rio de Janeiro" code="33" data-region="sudeste" role="button" tabindex="0" aria-label="Selecionar Rio de Janeiro, região sudeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M332.886,337.429
+                    c-1.26-2.768,8.409-4.795,7.89-6.71c-3.177-1.864-4.602,1.148-6.63-2.959c4.274-0.686,9.533-4.49,13.831-3.562
+                    c0.548-0.219,4.902-1.753,4.96,0.167c2.546-1.566,5.479-2.412,8.105-3.837c2.246-1.206,0.932-8.218,3.725-9.643
+                    c6.054-3.123,1.398,1.836,7.066,2.959c5.888,1.205,5.395,1.48,5.641,7.067c0.247,5.642-8.763,4.381-11.063,8.764
+                    c-1.039,1.999,1.698,5.368-3.368,4.903c-4.188-0.413-10.628,2.355-9.285-3.18c-1.039-0.08-1.861,0.301-2.464,1.124
+                    c0,0,0.105,2.767-0.74,2.741c-0.766-0.056-7.643,1.094-7.449,0.463c1.398-0.359,2.708-0.684,4.135-0.794
+                    c-1.667-0.713-2.957-1.839-4.901-0.142c0.465,0.195-4.227-0.086-3.379-0.113c-0.521,1.727-3.814,0.699-3.879,3.045
+                    C336.717,337.908,333.927,342.41,332.886,337.429z"></path>
+                    <path class="circle" d="M355.094,318.613c6.209,0,11.263,5.021,11.263,11.259c0,6.208-5.056,11.264-11.263,11.264
+                    c-6.211,0-11.263-5.054-11.263-11.264C343.831,323.634,348.883,318.613,355.094,318.613z"></path>
+                    <text transform="matrix(1 0 0 1 347.4648 334.6807)" fill="#FFFFFF">RJ</text>
+                    </a>
+                    <a xlink:href="#espiritosanto" class="estado state-region" name="Espírito Santo" code="32" data-region="sudeste" role="button" tabindex="0" aria-label="Selecionar Espírito Santo, região sudeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M367.119,308.834
+                    c1.044-1.999-0.298-5.451,1.841-6.326c3.697-1.453,3.858-0.467,5.941-4.49c0.767-1.563,3.999-5.807,2.848-7.835
+                    c-0.439-0.765-3.204-3.613-3.286-4.05c1.04-0.249,2.079-0.219,3.123,0.054c1.366-0.654-6.465-10.519,2.137-8.054
+                    c-1.204-0.655-1.535-1.365-0.932-2.135c4.358-0.138,13.856,0.027,12.845,6.738c-0.577,3.835,0.933,8.079-0.577,11.804
+                    c-0.218,0.576-5.861,8.954-5.831,8.954c0.985,3.289-5.18,5.808-6.054,8.165c-1.313,3.56-2.135,3.013-5.614,2.573
+                    c-1.64-0.274-3.202-0.768-4.736-1.451C368.819,311.297,369.424,309.055,367.119,308.834z"></path>
+                    <path class="circle" d="M381.917,284.723c6.21,0,11.261,5.055,11.261,11.262c0,6.212-5.051,11.261-11.261,11.261
+                    c-6.212,0-11.263-5.049-11.263-11.261C370.654,289.777,375.705,284.723,381.917,284.723z"></path>
+                    <text transform="matrix(1 0 0 1 373.3047 300.4971)" fill="#FFFFFF">ES</text>
+                    </a>
+                    <a xlink:href="#distritofederal" class="estado state-region" name="Distrito Federal" code="53" data-region="centro-oeste" role="button" tabindex="0" aria-label="Selecionar Distrito Federal, região centro oeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M292.461,246.197
+                    c0,0,12.929-2.903,14.188,0c1.233,2.903,0.659,10.683-1.424,11.504c-2.08,0.849-14.296-1.806-14.023-3.313
+                    C291.503,252.853,292.461,246.197,292.461,246.197z"></path>
+                    <path class="circle" d="M300.735,238.34c6.212,0,11.26,5.035,11.26,11.258c0,6.21-5.048,11.263-11.26,11.263
+                    c-6.209,0-11.261-5.053-11.261-11.263C289.475,243.377,294.523,238.34,300.735,238.34z"></path>
+                    <text transform="matrix(1 0 0 1 292.4141 254.2139)" fill="#FFFFFF">DF</text>
+                    </a>
+                    <a xlink:href="#paraiba" class="estado state-region" name="Paraíba" code="25" data-region="nordeste" role="button" tabindex="0" aria-label="Selecionar Paraíba, região nordeste" aria-pressed="false">
+                    <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M401.575,141.096
+                    c2.081-3.081,16.791-6.82,19.117-4.616c0,1.918,7.259,1.686,10.133,2.712c-0.492,3.038,12.652,1.533,14.408,2.259
+                    c1.421,0.589,3.833,11.983,1.421,12.202c-0.874-1.124-2.083-1.739-3.586-1.835c-2.957-0.027-2.546,1.863-4.383,3.108
+                    c-2.626,1.767-6.571,1.917-9.558,2.109c-0.162,1.232-3.943,4.438-5.259,4.916c-3.122,1.149-2.657-2.727-5.095-3.602
+                    c0.713-1.124,4.082-5.203,3.725-6.205c-1.423-3.846-12.051,5.52-14.981,3.506c-1.396-0.973-6.218,1.493-3.476-2.588
+                    C405.574,150.776,400.398,142.889,401.575,141.096z"></path>
+                    <path class="circle" d="M433.797,133.597c6.237,0,11.26,5.051,11.26,11.261c0,6.226-5.022,11.262-11.26,11.262
+                    c-6.208,0-11.257-5.036-11.257-11.262C422.54,138.647,427.589,133.597,433.797,133.597z"></path>
+                    <text transform="matrix(1 0 0 1 425.2129 148.9893)" fill="#FFFFFF">PB</text>
+                    </a>
+                    </g>
+                    </svg>
+
+                    <div class="region-chip-list" aria-label="Selecionar região do Brasil">
+                        <button class="region-chip is-selected" type="button" data-region-control="norte" aria-pressed="true">Norte</button>
+                        <button class="region-chip" type="button" data-region-control="nordeste" aria-pressed="false">Nordeste</button>
+                        <button class="region-chip" type="button" data-region-control="centro-oeste" aria-pressed="false">Centro-Oeste</button>
+                        <button class="region-chip" type="button" data-region-control="sudeste" aria-pressed="false">Sudeste</button>
+                        <button class="region-chip" type="button" data-region-control="sul" aria-pressed="false">Sul</button>
+                    </div>
+
+                    <p class="map-hint"><span aria-hidden="true"></span> Estados em azul representam a região selecionada.</p>
+                </div>
+
+                <aside class="coverage-panel" aria-live="polite" aria-atomic="true">
+                    <span class="coverage-panel-tag">Planejamento por região</span>
+                    <h3 id="selectedRegionTitle">Região Norte</h3>
+                    <p id="selectedRegionDescription">A análise de rotas começa pelo entendimento da sua demanda, com alinhamento comercial antes da definição operacional.</p>
+                    <div class="coverage-panel-note">
+                        <h4>Próximo passo</h4>
+                        <p id="selectedRegionNote">Compartilhe a sua necessidade para iniciar uma conversa sobre planejamento logístico.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== COTAÇÃO & CONTATO ====== -->
+    <section class="quote-contact-section" id="contato">
+        <div class="quote-contact-container">
+            <!-- Box de Cotação -->
+            <div class="quote-card" id="cotacao">
+                <div>
+                    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #60a5fa; margin-bottom: 8px; display: inline-block;">Coleta e Cotações</span>
+                    <h3>Conte o que você precisa movimentar</h3>
+                    <p>Envie os dados da sua carga e da rota desejada. Nossa equipe entra na conversa para entender o cenário e orientar os próximos passos.</p>
+                    
+                    <div class="quote-action-box">
+                        <div class="quote-channel-heading">
+                            <h5>Escolha o canal para sua cotação</h5>
+                            <div class="quote-channel-toggle" role="group" aria-label="Canal para orçamento e cotação">
+                                <button class="quote-channel-button is-active" type="button" data-quote-channel="email" aria-pressed="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>E-mail</button>
+                                <button class="quote-channel-button" type="button" data-quote-channel="whatsapp" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 9.17 9.17 0 0 1-4-.95L3 21l1.7-4.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 9.2c.4 2.1 1.8 3.8 4 4.5l1.3-1.3 1.8.9c-.8 1.3-2.2 1.9-3.7 1.4-2.7-.8-4.5-2.9-5.1-5.5-.3-1.4.3-2.7 1.6-3.3l1 1.8Z"/></svg>WhatsApp</button>
+                            </div>
+                        </div>
+                        <a href="mailto:barbosafretes@gmail.com" class="quote-email-link" id="quoteChannelLink">
+                            <span class="quote-channel-icon" aria-hidden="true">
+                                <svg data-quote-icon="email" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <svg data-quote-icon="whatsapp" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 9.17 9.17 0 0 1-4-.95L3 21l1.7-4.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 9.2c.4 2.1 1.8 3.8 4 4.5l1.3-1.3 1.8.9c-.8 1.3-2.2 1.9-3.7 1.4-2.7-.8-4.5-2.9-5.1-5.5-.3-1.4.3-2.7 1.6-3.3l1 1.8Z"/></svg>
+                            </span>
+                            <span id="quoteChannelValue">barbosafretes@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="mailto:barbosafretes@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Cota%C3%A7%C3%A3o%20-%20Barbosa%20Fretes" class="btn-send-email" id="quoteActionCta">
+                        <span class="button-label" id="quoteActionLabel">Enviar e-mail de cotação</span>
+                        <span class="button-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dados de Contato e Estrutura Operacional -->
+            <div class="contact-info-card">
+                <h3>Fale com a Barbosa Fretes</h3>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <h5>Sede Matriz / Endereço:</h5>
+                        <p>Av. Copacabana, 1142 – Setor Santa Maria</p>
+                        <p style="font-weight: 500; color: #475569;">Itumbiara – GO | CEP: 75520-210</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <h5>Telefones de Atendimento:</h5>
+                        <p><a href="tel:64981306666">(64) 98130-6666</a></p>
+                        <p><a href="tel:643431122">(64) 3431-122</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <h5>E-mail Oficial:</h5>
+                        <p><a href="mailto:barbosafretes@gmail.com">barbosafretes@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo-frame" aria-label="Barbosa Fretes e Cargas">
+                        <span class="footer-brand-icon" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h25v21H4z"/><path d="M29 19h9l6 7v7H29z"/><path d="M10 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM36 39a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M29 31H14M38 26h6"/></svg>
+                        </span>
+                        <span class="footer-brand-copy"><strong>BARBOSA</strong><small>Fretes e Cargas</small></span>
+                    </a>
+                    <p>Atividades de logística de transportes iniciadas em 4 de fevereiro de 2016. Sede Matriz em Itumbiara – GO.</p>
+                    <p style="font-size: 12.5px; color: #64748b;">Av. Copacabana, 1142 – Setor Santa Maria, Itumbiara-GO | CEP: 75520-210</p>
+                    <div class="footer-quick-actions" aria-label="Canais de contato rápido">
+                        <a class="footer-quick-action" href="https://wa.me/5564981306666" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+                        <a class="footer-quick-action" href="mailto:barbosafretes@gmail.com">E-mail <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+
+                <details class="footer-col footer-disclosure" open>
+                    <summary>Segmentos <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <ul>
+                        <li><a href="#segmentos">Carga seca</a></li>
+                        <li><a href="#segmentos">Granéis sólidos</a></li>
+                        <li><a href="#segmentos">Pranchas</a></li>
+                        <li><a href="#segmentos">Especiais</a></li>
+                    </ul>
+                </details>
+
+                <details class="footer-col footer-disclosure" open>
+                    <summary>Planejamento <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <ul>
+                        <li><span>Entendimento da demanda</span></li>
+                        <li><span>Planejamento de rota</span></li>
+                        <li><span>Alinhamento comercial</span></li>
+                        <li><span>Atendimento sob medida</span></li>
+                    </ul>
+                </details>
+
+                <details class="footer-col footer-disclosure" open>
+                    <summary>Contato <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <ul>
+                        <li><a href="tel:64981306666">(64) 98130-6666</a></li>
+                        <li><a href="tel:643431122">(64) 3431-122</a></li>
+                        <li><a href="mailto:barbosafretes@gmail.com">barbosafretes@gmail.com</a></li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; Barbosa Fretes. Todos os direitos reservados.</p>
+                <p>Planejamento logístico para cada necessidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // Menu Mobile Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const header = document.querySelector('.header');
+
+        function closeMobileNavigation() {
+            if (!navMenu || !mobileToggle) return;
+            navMenu.classList.remove('is-open');
+            mobileToggle.classList.remove('is-open');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            mobileToggle.setAttribute('aria-label', 'Abrir menu');
+        }
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = navMenu.classList.toggle('is-open');
+                mobileToggle.classList.toggle('is-open', isOpen);
+                mobileToggle.setAttribute('aria-expanded', String(isOpen));
+                mobileToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+            });
+        }
+
+        if (header) {
+            let previousScrollY = window.scrollY;
+            const updateHeaderState = () => {
+                const currentScrollY = Math.max(window.scrollY, 0);
+                const isScrolled = currentScrollY > 12;
+                header.classList.toggle('is-scrolled', isScrolled);
+
+                if (!isScrolled) {
+                    header.classList.remove('is-scrolling-down');
+                } else if (currentScrollY > previousScrollY + 2) {
+                    header.classList.add('is-scrolling-down');
+                } else if (currentScrollY < previousScrollY - 2) {
+                    header.classList.remove('is-scrolling-down');
+                }
+
+                previousScrollY = currentScrollY;
+            };
+            updateHeaderState();
+            window.addEventListener('scroll', updateHeaderState, { passive: true });
+        }
+
+        // A primeira leitura do site mostra prova social e área de atuação logo após a introdução.
+        const coverageSection = document.getElementById('atuacao');
+        const partnersSection = document.getElementById('parceiros');
+        const introductionSection = document.querySelector('.service-callout-section');
+
+        if (introductionSection && partnersSection) {
+            introductionSection.after(partnersSection);
+        }
+
+        if (partnersSection && coverageSection) {
+            partnersSection.after(coverageSection);
+        }
+
+        if (coverageSection && window.location.hash === '#atuacao') {
+            requestAnimationFrame(() => coverageSection.scrollIntoView());
+        }
+
+        // Links de navegação usam uma única rolagem consistente, inclusive depois da reorganização das seções.
+        const scrollLinks = document.querySelectorAll('a[href^="#"]');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        scrollLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                const targetHash = link.getAttribute('href');
+                const target = targetHash === '#' ? document.documentElement : document.querySelector(targetHash);
+
+                if (!target) return;
+
+                event.preventDefault();
+                target.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start' });
+
+                if (targetHash === '#') {
+                    window.history.replaceState(null, '', window.location.pathname);
+                } else {
+                    window.history.pushState(null, '', targetHash);
+                }
+
+                if (window.innerWidth <= 768) {
+                    closeMobileNavigation();
+                }
+            });
+        });
+
+        const navigationLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+        const navigationTargets = [...document.querySelectorAll('section[id], .quote-card[id]')].filter(section =>
+            [...navigationLinks].some(link => link.getAttribute('href') === `#${section.id}`)
+        );
+
+        const updateActiveNavigation = activeId => {
+            navigationLinks.forEach(link => {
+                const isActive = link.getAttribute('href') === `#${activeId}`;
+                link.toggleAttribute('aria-current', isActive);
+                if (isActive) link.setAttribute('aria-current', 'page');
+            });
+        };
+
+        const initialSection = window.location.hash.slice(1);
+        if (initialSection) updateActiveNavigation(initialSection);
+
+        if ('IntersectionObserver' in window && navigationTargets.length) {
+            const sectionObserver = new IntersectionObserver(entries => {
+                const visibleEntry = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+                if (visibleEntry) updateActiveNavigation(visibleEntry.target.id);
+            }, { rootMargin: '-25% 0px -62% 0px', threshold: [0.1, 0.35, 0.6] });
+
+            navigationTargets.forEach(section => sectionObserver.observe(section));
+        }
+
+        // No desktop, todas as informações ficam abertas; no Android, viram opções compactas e expansíveis.
+        const footerDisclosures = document.querySelectorAll('.footer-disclosure');
+        const compactFooterMedia = window.matchMedia('(max-width: 768px)');
+        const syncFooterDisclosures = () => {
+            footerDisclosures.forEach(disclosure => {
+                disclosure.open = !compactFooterMedia.matches;
+            });
+        };
+
+        syncFooterDisclosures();
+        compactFooterMedia.addEventListener('change', syncFooterDisclosures);
+
+        // Mapa interativo por região
+        const stateRegions = document.querySelectorAll('.state-map .state-region');
+        const stateMap = document.querySelector('.state-map');
+        const regionControls = document.querySelectorAll('[data-region-control]');
+        const selectedRegionTitle = document.getElementById('selectedRegionTitle');
+        const selectedRegionDescription = document.getElementById('selectedRegionDescription');
+        const selectedRegionNote = document.getElementById('selectedRegionNote');
+        const regionContent = {
+            norte: {
+                title: 'Região Norte',
+                description: 'A análise de rotas começa pelo entendimento da sua demanda, com alinhamento comercial antes da definição operacional.',
+                note: 'Compartilhe a sua necessidade para iniciar uma conversa sobre planejamento logístico.'
+            },
+            nordeste: {
+                title: 'Região Nordeste',
+                description: 'O planejamento parte das características da sua solicitação para orientar os próximos passos de forma organizada.',
+                note: 'A equipe comercial pode ajudar a estruturar as informações iniciais da demanda.'
+            },
+            'centro-oeste': {
+                title: 'Região Centro-Oeste',
+                description: 'Cada conversa começa com a leitura da carga, da rota desejada e das prioridades do seu negócio.',
+                note: 'O alinhamento inicial ajuda a construir uma proposta clara para a sua necessidade.'
+            },
+            sudeste: {
+                title: 'Região Sudeste',
+                description: 'O planejamento busca organizar as etapas da solicitação antes de qualquer definição operacional.',
+                note: 'Envie os dados da sua demanda para iniciar o alinhamento comercial.'
+            },
+            sul: {
+                title: 'Região Sul',
+                description: 'A conversa comercial considera as particularidades da solicitação para orientar o planejamento logístico.',
+                note: 'O próximo passo é compartilhar sua necessidade com a equipe Barbosa Fretes.'
+            }
+        };
+
+        function selectMapRegion(regionKey) {
+            const content = regionContent[regionKey];
+            if (!content) return;
+
+            stateMap.classList.remove('region-norte', 'region-nordeste', 'region-centro-oeste', 'region-sudeste', 'region-sul');
+            stateMap.classList.add(`region-${regionKey}`);
+
+            stateRegions.forEach(state => {
+                state.setAttribute('aria-pressed', String(state.dataset.region === regionKey));
+            });
+
+            regionControls.forEach(control => {
+                const isSelected = control.dataset.regionControl === regionKey;
+                control.classList.toggle('is-selected', isSelected);
+                control.setAttribute('aria-pressed', String(isSelected));
+            });
+
+            selectedRegionTitle.textContent = content.title;
+            selectedRegionDescription.textContent = content.description;
+            selectedRegionNote.textContent = content.note;
+        }
+
+        stateRegions.forEach(state => {
+            state.addEventListener('click', event => {
+                event.preventDefault();
+                selectMapRegion(state.dataset.region);
+            });
+            state.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectMapRegion(state.dataset.region);
+                }
+            });
+        });
+
+        regionControls.forEach(control => {
+            control.addEventListener('click', () => selectMapRegion(control.dataset.regionControl));
+        });
+
+        // Alternância entre e-mail e WhatsApp na cotação.
+        const quoteChannelButtons = document.querySelectorAll('[data-quote-channel]');
+        const quoteChannelLink = document.getElementById('quoteChannelLink');
+        const quoteChannelValue = document.getElementById('quoteChannelValue');
+        const quoteActionCta = document.getElementById('quoteActionCta');
+        const quoteActionLabel = document.getElementById('quoteActionLabel');
+        const quoteChannels = {
+            email: {
+                value: 'barbosafretes@gmail.com',
+                href: 'mailto:barbosafretes@gmail.com',
+                ctaHref: 'mailto:barbosafretes@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20Cota%C3%A7%C3%A3o%20-%20Barbosa%20Fretes',
+                ctaLabel: 'Enviar e-mail de cotação',
+                external: false
+            },
+            whatsapp: {
+                value: '(64) 98130-6666',
+                href: 'https://wa.me/5564981306666',
+                ctaHref: 'https://wa.me/5564981306666',
+                ctaLabel: 'Falar no WhatsApp',
+                external: true
+            }
+        };
+
+        function selectQuoteChannel(channelKey) {
+            const channel = quoteChannels[channelKey];
+            if (!channel || !quoteChannelLink || !quoteChannelValue || !quoteActionCta || !quoteActionLabel) return;
+
+            quoteChannelButtons.forEach(button => {
+                const isSelected = button.dataset.quoteChannel === channelKey;
+                button.classList.toggle('is-active', isSelected);
+                button.setAttribute('aria-pressed', String(isSelected));
+            });
+
+            document.querySelectorAll('[data-quote-icon]').forEach(icon => {
+                icon.hidden = icon.dataset.quoteIcon !== channelKey;
+            });
+
+            [quoteChannelLink, quoteActionCta].forEach(link => {
+                link.href = link === quoteChannelLink ? channel.href : channel.ctaHref;
+                link.toggleAttribute('target', channel.external);
+                if (channel.external) {
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                } else {
+                    link.removeAttribute('rel');
+                }
+            });
+
+            quoteChannelValue.textContent = channel.value;
+            quoteActionLabel.textContent = channel.ctaLabel;
+        }
+
+        quoteChannelButtons.forEach(button => {
+            button.addEventListener('click', () => selectQuoteChannel(button.dataset.quoteChannel));
+        });
+    </script>
+</body>
+</html>
