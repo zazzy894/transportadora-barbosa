@@ -63,7 +63,7 @@
   font-weight: 900;
   letter-spacing: .13em;
 }
-.page-home .partners-heading h2 { max-width: 620px; color: var(--white); }
+.page-home .partners-heading h2 { max-width: 620px; color: var(--white) !important; text-shadow: 0 2px 18px rgba(0, 12, 37, .3); }
 .page-home .partners-heading p { max-width: 410px; color: #cfe5ff; font-size: 15px; line-height: 1.65; }
 .page-home .partners-marquee { overflow: visible; padding: 0; mask-image: none; }
 .page-home .partners-track { display: grid; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; animation: none; }
