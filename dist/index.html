@@ -2348,7 +2348,7 @@
         <div class="header-inner">
             <a href="#" class="logo-wrap" aria-label="Barbosa Fretes e Cargas — página inicial">
                 <span class="header-logo-frame">
-                    <img src="assets/logo-horizontal.png" alt="Barbosa Fretes e Cargas" class="header-logo-image" width="168" height="56">
+                    <img src="assets/logo-transparent.png" alt="Barbosa Fretes e Cargas" class="header-logo-image" width="168" height="56">
                 </span>
             </a>
 
@@ -2591,20 +2591,20 @@
             <div class="partners-marquee" aria-label="Parceiros mencionados na trajetória da Barbosa Fretes">
                 <div class="partners-track">
                     <div class="partners-set">
-                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-4k.webp" alt="Briqfeno"></div>
-                        <div class="partner-wordmark"><img src="assets/partner-major-4k.webp" alt="Major Nutrição Animal"></div>
-                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-4k.webp" alt="Complem Agrícola"></div>
-                        <div class="partner-wordmark"><img src="assets/partner-caramuru-4k.webp" alt="Caramuru"></div>
-                        <div class="partner-wordmark"><img src="assets/partner-comigo-4k.webp" alt="Comigo"></div>
-                        <div class="partner-wordmark"><img src="assets/partner-agrofava-4k.webp" alt="Agro Fava Sementes"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-clean.webp" alt="Briqfeno"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-major-clean.webp" alt="Major Nutrição Animal"></div>
+                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-clean.webp" alt="Complem Agrícola"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-caramuru-clean.webp" alt="Caramuru"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-comigo-clean.webp" alt="Comigo"></div>
+                        <div class="partner-wordmark"><img src="assets/partner-agrofava-clean.webp" alt="Agro Fava Sementes"></div>
                     </div>
                     <div class="partners-set" aria-hidden="true">
-                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-4k.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-major-4k.webp" alt=""></div>
-                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-4k.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-caramuru-4k.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-comigo-4k.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-agrofava-4k.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-clean.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-major-clean.webp" alt=""></div>
+                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-clean.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-caramuru-clean.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-comigo-clean.webp" alt=""></div>
+                        <div class="partner-wordmark"><img src="assets/partner-agrofava-clean.webp" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -3066,11 +3066,11 @@
 
                 <aside class="coverage-panel" aria-live="polite" aria-atomic="true">
                     <span class="coverage-panel-tag">Cobertura nacional</span>
-                    <h3 id="selectedRegionTitle">Todo o Brasil</h3>
-                    <p id="selectedRegionDescription">Atendemos rotas em todos os estados brasileiros. Selecione um estado para ver o contexto regional e iniciar o planejamento da sua demanda.</p>
+                    <h3 id="selectedRegionTitle"><span aria-hidden="true">🇧🇷</span> Goiás</h3>
+                    <p id="selectedRegionDescription">Em Goiás, planejamos rotas a partir de Itumbiara com atenção aos corredores logísticos, à origem da carga e ao destino final.</p>
                     <div class="coverage-panel-note">
-                        <h4 id="selectedRegionNoteTitle">Rotas em todo o país</h4>
-                        <p id="selectedRegionNote">Compartilhe origem, destino e tipo de carga. A equipe Barbosa Fretes organiza o próximo passo com você.</p>
+                        <h4 id="selectedRegionNoteTitle">Rotas para todo o Brasil</h4>
+                        <p id="selectedRegionNote">Atendemos Goiás e conectamos sua operação a todo o Brasil com planejamento compatível com a demanda.</p>
                     </div>
                 </aside>
             </div>
@@ -3158,7 +3158,7 @@
             <div class="footer-grid">
                 <div class="footer-about">
                     <a href="#" class="footer-logo-frame" aria-label="Barbosa Fretes e Cargas">
-                        <img src="assets/logo-horizontal.png" class="footer-main-logo" alt="Barbosa Fretes e Cargas">
+                        <img src="assets/logo-transparent.png" class="footer-main-logo" alt="Barbosa Fretes e Cargas">
                     </a>
                     <p>Atividades de logística de transportes iniciadas em 4 de fevereiro de 2016. Sede Matriz em Itumbiara – GO.</p>
                     <p style="font-size: 12.5px; color: #64748b;">Av. Copacabana, 1142 – Setor Santa Maria, Itumbiara-GO | CEP: 75520-210</p>
@@ -3565,7 +3565,12 @@
             });
         });
 
-        showNationalCoverage();
+        const initialState = [...stateRegions].find(state => stateCodeFor(state) === 'GO');
+        if (initialState) {
+            selectMapState(initialState);
+        } else {
+            showNationalCoverage();
+        }
     </script>
 </body>
 </html>

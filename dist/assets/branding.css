@@ -9,6 +9,7 @@
 .logo-wrap .header-logo-image {
   width: 100%;
   height: 100%;
+  background: transparent;
   object-fit: contain;
   object-position: center;
 }
@@ -26,8 +27,9 @@
   padding: 3px 5px;
   object-fit: contain;
   object-position: center;
-  background: #fff;
-  border-radius: 8px;
+  background: transparent;
+  border-radius: 0;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, .28));
 }
 
 .footer-logo-frame .footer-main-logo {
@@ -36,8 +38,9 @@
   padding: 3px 5px;
   object-fit: contain;
   object-position: center;
-  background: #fff;
-  border-radius: 8px;
+  background: transparent;
+  border-radius: 0;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, .28));
 }
 
 @media (max-width: 620px) {
