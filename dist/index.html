@@ -2337,8 +2337,9 @@
     <link rel="stylesheet" href="assets/branding.css">
     <link rel="stylesheet" href="assets/partner-marquee.css">
     <link rel="stylesheet" href="assets/map-refinement.css?v=20261008-inline-state-flags">
+    <link rel="stylesheet" href="assets/site-polish.css?v=20261008-editorial">
 </head>
-<body>
+<body class="page-home">
 
     <!-- ====== HEADER / NAVBAR ====== -->
     <header class="header">
@@ -2581,11 +2582,11 @@
     <!-- ====== PARCEIROS ====== -->
     <section class="clients-section" id="parceiros" aria-labelledby="partnersTitle">
         <div class="clients-container">
-            <div class="partners-heading">
+            <div class="partners-heading" data-reveal="left">
                 <h2 id="partnersTitle">Parceiros comerciais</h2>
-                <p>Marcas que fazem parte da nossa trajetória, reunidas em uma faixa contínua de parceiros comerciais.</p>
+                <p>Marcas que fazem parte da nossa trajetória e ajudam a transformar planejamento em operações bem conduzidas.</p>
             </div>
-            <div class="partners-marquee" aria-label="Parceiros mencionados na trajetória da Barbosa Fretes">
+            <div class="partners-marquee" aria-label="Parceiros mencionados na trajetória da Barbosa Fretes" data-reveal="right">
                 <div class="partners-track">
                     <div class="partners-set">
                         <div class="partner-wordmark"><img src="assets/partner-briqfeno-clean.webp" alt="Briqfeno"></div>
@@ -2597,17 +2598,6 @@
                         <div class="partner-wordmark partner-wordmark--locar"><img src="assets/partner-locar.png" alt="LocaR"></div>
                         <div class="partner-wordmark partner-wordmark--tegma"><img src="assets/partner-tegma.png" alt="TEGMA Gestão Logística"></div>
                         <div class="partner-wordmark partner-wordmark--mills"><img src="assets/partner-mills.png" alt="Mills"></div>
-                    </div>
-                    <div class="partners-set" aria-hidden="true">
-                        <div class="partner-wordmark"><img src="assets/partner-briqfeno-clean.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-major-clean.webp" alt=""></div>
-                        <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-clean.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-caramuru-clean.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-comigo-clean.webp" alt=""></div>
-                        <div class="partner-wordmark"><img src="assets/partner-agrofava-clean.webp" alt=""></div>
-                        <div class="partner-wordmark partner-wordmark--locar"><img src="assets/partner-locar.png" alt=""></div>
-                        <div class="partner-wordmark partner-wordmark--tegma"><img src="assets/partner-tegma.png" alt=""></div>
-                        <div class="partner-wordmark partner-wordmark--mills"><img src="assets/partner-mills.png" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -2668,13 +2658,19 @@
     <!-- ====== SEGURANÇA E ORGANIZAÇÃO OPERACIONAL ====== -->
     <section class="security-section">
         <div class="security-container">
-            <div class="section-header">
-                <span class="section-tag">Cuidado operacional</span>
-                <h2 class="section-title">Segurança que orienta cada decisão</h2>
-                <p class="section-desc">Uma operação responsável começa com processos claros, comunicação próxima e atenção às características de cada carga.</p>
+            <div class="security-feature">
+                <div class="section-header" data-reveal="left">
+                    <span class="section-tag">Cuidado operacional</span>
+                    <h2 class="section-title">Segurança que orienta cada decisão</h2>
+                    <p class="section-desc">Uma operação responsável começa com processos claros, comunicação próxima e atenção às características de cada carga.</p>
+                </div>
+                <figure class="security-visual" data-reveal="right">
+                    <img src="assets/fleet-machinery.webp" alt="Equipamentos sendo preparados para transporte especializado" loading="lazy" decoding="async">
+                    <figcaption><span>OPERAÇÃO REAL</span>Planejamento e segurança para cada tipo de movimentação.</figcaption>
+                </figure>
             </div>
 
-            <div class="security-grid">
+            <div class="security-grid" data-reveal>
                 <div class="security-card">
                     <div class="security-card-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -3564,5 +3560,6 @@
             showNationalCoverage();
         }
     </script>
+    <script defer src="assets/site-motion.js"></script>
 </body>
 </html>
