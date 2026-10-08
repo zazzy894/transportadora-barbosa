@@ -2313,7 +2313,7 @@
         .service-card h4 { margin-top: 34px; font-size: 20px; }
         .service-card p { font-size: 14px; line-height: 1.65; }
         .clients-section { position: relative; overflow: hidden; padding-block: 92px; background: linear-gradient(125deg, #061a3a, #073d80); }
-        .clients-section::before { content: ''; position: absolute; inset: 0; opacity: .16; background: url('assets/hero-truck-4k.png') center/cover; }
+        .clients-section::before { content: ''; position: absolute; inset: 0; opacity: .16; background: url('assets/truck-terminal-agro.webp') center/cover; }
         .clients-container { position: relative; }
         .partners-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 30px; }
         .partners-heading h2 { max-width: 560px; color: #fff; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08; letter-spacing: -.04em; }
@@ -2325,21 +2325,18 @@
         .partner-wordmark--light { background: #fff; }
         .partner-wordmark--light img { mix-blend-mode: normal; }
         .region-map, .region-chip-list { display: none; }
-        .state-picker-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 22px; }
-        .state-picker { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 34px; padding: 7px 8px; border: 1px solid #d7e2ee; border-radius: 9px; background: #fff; color: #4a5b72; font: inherit; font-size: 11px; font-weight: 800; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
-        .state-picker:hover, .state-picker.is-selected { border-color: var(--primary-light); background: var(--primary-light); color: #fff; }
-        .state-picker .state-flag { font-size: 12px; line-height: 1; }
         .state-map { margin-top: 12px; }
         .state-map .state-region.is-active-state path:not(.circle) { fill: var(--primary-light) !important; }
         .state-map .state-region.is-active-state .circle { fill: #fff !important; stroke: var(--primary-light) !important; }
         .state-map .state-region.is-active-state text { fill: var(--primary-dark) !important; }
         .coverage-panel-tag::after { content: ' · todos os estados'; }
-        @media (max-width: 900px) { .partners-heading { display: block; } .partners-heading p { margin-top: 13px; } .partners-track { grid-template-columns: 1fr; } .state-picker-grid { grid-template-columns: repeat(5, 1fr); } }
-        @media (max-width: 620px) { .services-section, .clients-section { padding-block: 64px; } .service-card { min-height: auto; } .state-picker-grid { grid-template-columns: repeat(4, 1fr); } .partners-heading h2 { font-size: 32px; } }
+        @media (max-width: 900px) { .partners-heading { display: block; } .partners-heading p { margin-top: 13px; } .partners-track { grid-template-columns: 1fr; } }
+        @media (max-width: 620px) { .services-section, .clients-section { padding-block: 64px; } .service-card { min-height: auto; } .partners-heading h2 { font-size: 32px; } }
         @media (prefers-reduced-motion: reduce) { .service-card { transition: none; } }
     </style>
     <link rel="stylesheet" href="assets/branding.css">
     <link rel="stylesheet" href="assets/partner-marquee.css">
+    <link rel="stylesheet" href="assets/map-refinement.css">
 </head>
 <body>
 
@@ -3059,14 +3056,12 @@
                     </g>
                     </svg>
 
-                    <div class="state-picker-grid" id="statePicker" aria-label="Selecionar estado do Brasil"></div>
-
-                    <p class="map-hint"><span aria-hidden="true"></span> Clique no mapa ou em uma sigla para ver o estado individualmente.</p>
+                    <p class="map-hint"><span aria-hidden="true"></span> Selecione um estado diretamente no mapa para abrir o resumo regional.</p>
                 </div>
 
                 <aside class="coverage-panel" aria-live="polite" aria-atomic="true">
                     <span class="coverage-panel-tag">Cobertura nacional</span>
-                    <h3 id="selectedRegionTitle"><span aria-hidden="true">🇧🇷</span> Goiás</h3>
+                    <h3 id="selectedRegionTitle"><span class="state-flag" aria-hidden="true"><svg viewBox="0 0 40 30" focusable="false"><rect width="40" height="30" fill="var(--flag-green)"/><path d="M20 3 37 15 20 27 3 15Z" fill="var(--flag-yellow)"/><circle cx="20" cy="15" r="7" fill="var(--flag-blue)"/><path d="M14 14c4 3 8 3 12 1" fill="none" stroke="var(--bg-card)" stroke-width="1.4"/></svg></span><span>Goiás</span></h3>
                     <p id="selectedRegionDescription">Em Goiás, planejamos rotas a partir de Itumbiara com atenção aos corredores logísticos, à origem da carga e ao destino final.</p>
                     <div class="coverage-panel-note">
                         <h4 id="selectedRegionNoteTitle">Rotas para todo o Brasil</h4>
@@ -3494,12 +3489,20 @@
             TO: 'Tocantins é um importante ponto de conexão nacional; planejamos a rota de acordo com o cenário da sua demanda.'
         };
 
-        const statePicker = document.getElementById('statePicker');
         const selectedRegionNoteTitle = document.getElementById('selectedRegionNoteTitle');
         const coveragePanelTag = document.querySelector('.coverage-panel-tag');
+        const brazilFlagMarkup = '<span class="state-flag" aria-hidden="true"><svg viewBox="0 0 40 30" focusable="false"><rect width="40" height="30" fill="var(--flag-green)"/><path d="M20 3 37 15 20 27 3 15Z" fill="var(--flag-yellow)"/><circle cx="20" cy="15" r="7" fill="var(--flag-blue)"/><path d="M14 14c4 3 8 3 12 1" fill="none" stroke="var(--bg-card)" stroke-width="1.4"/></svg></span>';
 
         function stateCodeFor(state) {
             return state.querySelector('text')?.textContent?.trim() || '';
+        }
+
+        function setSelectedStateTitle(name) {
+            if (!selectedRegionTitle) return;
+            selectedRegionTitle.innerHTML = brazilFlagMarkup;
+            const stateName = document.createElement('span');
+            stateName.textContent = name;
+            selectedRegionTitle.appendChild(stateName);
         }
 
         function selectMapState(state) {
@@ -3513,14 +3516,8 @@
                 item.setAttribute('aria-pressed', String(item === state));
             });
 
-            statePicker?.querySelectorAll('button').forEach(button => {
-                const isSelected = button.dataset.stateCode === code;
-                button.classList.toggle('is-selected', isSelected);
-                button.setAttribute('aria-pressed', String(isSelected));
-            });
-
             if (coveragePanelTag) coveragePanelTag.textContent = 'Estado selecionado';
-            if (selectedRegionTitle) selectedRegionTitle.innerHTML = `<span aria-hidden="true">🇧🇷</span> ${name}`;
+            setSelectedStateTitle(name);
             if (selectedRegionDescription) selectedRegionDescription.textContent = nationalStateProfile[code] || 'Planejamos rotas conforme a origem, o destino e as particularidades da sua carga.';
             if (selectedRegionNoteTitle) selectedRegionNoteTitle.textContent = 'Rotas para todo o Brasil';
             if (selectedRegionNote) selectedRegionNote.textContent = `Atendemos ${name} e os demais estados brasileiros. Envie os detalhes da sua carga para iniciar o planejamento.`;
@@ -3533,7 +3530,7 @@
                 item.setAttribute('aria-pressed', 'false');
             });
             if (coveragePanelTag) coveragePanelTag.textContent = 'Cobertura nacional';
-            if (selectedRegionTitle) selectedRegionTitle.textContent = 'Todo o Brasil';
+            setSelectedStateTitle('Todo o Brasil');
             if (selectedRegionDescription) selectedRegionDescription.textContent = 'Atendemos rotas em todos os estados brasileiros. Selecione um estado para ver o contexto regional e iniciar o planejamento da sua demanda.';
             if (selectedRegionNoteTitle) selectedRegionNoteTitle.textContent = 'Rotas em todo o país';
             if (selectedRegionNote) selectedRegionNote.textContent = 'Compartilhe origem, destino e tipo de carga. A equipe Barbosa Fretes organiza o próximo passo com você.';
@@ -3542,16 +3539,7 @@
         stateRegions.forEach(state => {
             const code = stateCodeFor(state);
             const name = state.getAttribute('name');
-            if (!code || !name || !statePicker) return;
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'state-picker';
-            button.dataset.stateCode = code;
-            button.setAttribute('aria-pressed', 'false');
-            button.setAttribute('aria-label', `Selecionar ${name}`);
-            button.innerHTML = `<span class="state-flag" aria-hidden="true">🇧🇷</span>${code}`;
-            button.addEventListener('click', () => selectMapState(state));
-            statePicker.appendChild(button);
+            if (!code || !name) return;
 
             state.addEventListener('click', event => {
                 event.preventDefault();

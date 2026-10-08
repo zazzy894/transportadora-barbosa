@@ -8,7 +8,10 @@
     "primary": "#0056b3",
     "primary-fg": "#ffffff",
     "accent": "#0b63ce",
-    "border": "#e2e8f0"
+    "border": "#e2e8f0",
+    "flag-green": "#009c3b",
+    "flag-yellow": "#ffdf00",
+    "flag-blue": "#002776"
   },
   "font": {
     "display": "Inter, sans-serif",
