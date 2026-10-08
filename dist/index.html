@@ -2299,6 +2299,45 @@
             }
         }
     </style>
+    <style>
+        /* Atualização visual: páginas dedicadas, estados individuais e cartões de serviço. */
+        #sobre, #frota, #contato { display: none; }
+        .hero-bg-img { object-position: 61% center; }
+        .services-section { position: relative; padding-block: 94px; background: linear-gradient(180deg, #fff 0%, #f6faff 100%); }
+        .segments-intro { max-width: 750px; }
+        .services-grid { gap: 18px; }
+        .service-card { position: relative; min-height: 244px; padding: 26px; border-radius: 16px; background: #fff; box-shadow: 0 10px 28px rgba(13, 70, 145, .055); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+        .service-card::before { content: ''; position: absolute; inset: 0 auto auto 0; width: 100%; height: 4px; border-radius: 16px 16px 0 0; background: linear-gradient(90deg, var(--primary-light), #6fb8ff); transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
+        .service-card:hover { transform: translateY(-7px); border-color: #bedafe; box-shadow: 0 18px 40px rgba(10, 66, 142, .13); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card h4 { margin-top: 34px; font-size: 20px; }
+        .service-card p { font-size: 14px; line-height: 1.65; }
+        .clients-section { position: relative; overflow: hidden; padding-block: 92px; background: linear-gradient(125deg, #061a3a, #073d80); }
+        .clients-section::before { content: ''; position: absolute; inset: 0; opacity: .16; background: url('assets/hero-truck-4k.png') center/cover; }
+        .clients-container { position: relative; }
+        .partners-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 30px; }
+        .partners-heading h2 { max-width: 560px; color: #fff; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08; letter-spacing: -.04em; }
+        .partners-heading p { max-width: 330px; margin: 0; color: #c3dcfa; }
+        .partners-marquee { overflow: visible; border: 0; background: transparent; }
+        .partners-track { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 0; animation: none; }
+        .partner-wordmark { display: flex; min-height: 112px; align-items: center; justify-content: center; padding: 14px; border: 1px solid rgba(181, 216, 255, .32); border-radius: 15px; background: rgba(255, 255, 255, .09); color: #fff; }
+        .partner-wordmark img { display: block; width: 100%; height: 82px; object-fit: contain; mix-blend-mode: screen; }
+        .partner-wordmark--light { background: #fff; }
+        .partner-wordmark--light img { mix-blend-mode: normal; }
+        .region-map, .region-chip-list { display: none; }
+        .state-picker-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 22px; }
+        .state-picker { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 34px; padding: 7px 8px; border: 1px solid #d7e2ee; border-radius: 9px; background: #fff; color: #4a5b72; font: inherit; font-size: 11px; font-weight: 800; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
+        .state-picker:hover, .state-picker.is-selected { border-color: var(--primary-light); background: var(--primary-light); color: #fff; }
+        .state-picker .state-flag { font-size: 12px; line-height: 1; }
+        .state-map { margin-top: 12px; }
+        .state-map .state-region.is-active-state path:not(.circle) { fill: var(--primary-light) !important; }
+        .state-map .state-region.is-active-state .circle { fill: #fff !important; stroke: var(--primary-light) !important; }
+        .state-map .state-region.is-active-state text { fill: var(--primary-dark) !important; }
+        .coverage-panel-tag::after { content: ' · todos os estados'; }
+        @media (max-width: 900px) { .partners-heading { display: block; } .partners-heading p { margin-top: 13px; } .partners-track { grid-template-columns: 1fr; } .state-picker-grid { grid-template-columns: repeat(5, 1fr); } }
+        @media (max-width: 620px) { .services-section, .clients-section { padding-block: 64px; } .service-card { min-height: auto; } .state-picker-grid { grid-template-columns: repeat(4, 1fr); } .partners-heading h2 { font-size: 32px; } }
+        @media (prefers-reduced-motion: reduce) { .service-card { transition: none; } }
+    </style>
 </head>
 <body>
 
@@ -2325,10 +2364,10 @@
                             <a href="#segmentos" class="dropdown-item">Especiais</a>
                         </div>
                     </li>
-                    <li><a href="#frota" class="nav-link">Frota</a></li>
+                    <li><a href="/frota/" class="nav-link">Frota</a></li>
                     <li><a href="#atuacao" class="nav-link">Área de Atuação</a></li>
-                    <li><a href="#sobre" class="nav-link">Sobre nós</a></li>
-                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                    <li><a href="/nossa-historia/" class="nav-link">Sobre nós</a></li>
+                    <li><a href="/contato/" class="nav-link">Contato</a></li>
                     <li class="mobile-nav-contact"><a href="https://wa.me/5564981306666" class="nav-link mobile-whatsapp-link" target="_blank" rel="noopener noreferrer">Falar no WhatsApp <span aria-hidden="true">↗</span></a></li>
                 </ul>
             </nav>
@@ -2349,7 +2388,7 @@
     <!-- ====== HERO SECTION ====== -->
     <section class="hero-section">
         <div class="hero-bg-container">
-            <img src="assets/hero-truck.png" alt="Caminhão Barbosa Fretes" class="hero-bg-img">
+            <img src="assets/hero-truck-4k.png" alt="Caminhão Barbosa Fretes em rodovia" class="hero-bg-img">
         </div>
         <div class="hero-overlay"></div>
 
@@ -2358,7 +2397,7 @@
                 <h1 class="hero-title">Logística que acompanha<br>o ritmo do seu negócio.</h1>
                 <p class="hero-subtitle">Transporte planejado para conectar carga, rota e decisão com mais clareza em cada etapa da operação.</p>
                 <div class="hero-buttons">
-                    <a href="#cotacao" class="btn-hero-primary">
+                    <a href="/contato/" class="btn-hero-primary">
                         <span class="button-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
                         <span class="button-label">Solicitar cotação</span>
                         <span class="button-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
@@ -2380,7 +2419,7 @@
                     <p>Planejamento logístico e resposta comercial para avaliar sua necessidade.</p>
                 </div>
             </div>
-            <a href="#cotacao" class="btn-service-callout">
+            <a href="/contato/" class="btn-service-callout">
                 <span class="button-label">Solicitar cotação</span>
                 <span class="button-arrow" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </a>
@@ -2391,8 +2430,8 @@
     <section class="services-section" id="segmentos" aria-labelledby="segmentsTitle">
         <div class="segments-intro">
             <span class="section-tag">Segmentos</span>
-            <h2 class="section-title" id="segmentsTitle">Soluções para cada tipo de carga</h2>
-            <p class="section-desc">Conheça os segmentos atendidos e encontre o ponto de partida mais adequado para a sua operação.</p>
+            <h2 class="section-title" id="segmentsTitle">Soluções à altura da complexidade da sua operação</h2>
+            <p class="section-desc">Da leitura inicial da demanda à entrega, combinamos planejamento, estrutura e comunicação para cada tipo de carga.</p>
         </div>
         <div class="services-grid">
             <!-- Carga Seca -->
@@ -2545,17 +2584,17 @@
     <section class="clients-section" id="parceiros" aria-labelledby="partnersTitle">
         <div class="clients-container">
             <div class="partners-heading">
-                <h2 id="partnersTitle">Parcerias que fazem parte da nossa história</h2>
-                <p>Empresas mencionadas em nossa trajetória.</p>
+                <h2 id="partnersTitle">Parcerias que reforçam a nossa trajetória</h2>
+                <p>Relações construídas com diálogo, responsabilidade e atenção à operação.</p>
             </div>
             <div class="partners-marquee" aria-label="Parceiros mencionados na trajetória da Barbosa Fretes">
                 <div class="partners-track">
-                    <div class="partner-wordmark"><span class="partner-mark">M</span><span>Major<small>Nutrição Animal</small></span></div>
-                    <div class="partner-wordmark"><span class="partner-mark">C</span><span>Caramuru<small>Alimentos</small></span></div>
-                    <div class="partner-wordmark"><span class="partner-mark">A</span><span>Agro Fava<small>Sementes</small></span></div>
-                    <div class="partner-wordmark"><span class="partner-mark">M</span><span>Major<small>Nutrição Animal</small></span></div>
-                    <div class="partner-wordmark"><span class="partner-mark">C</span><span>Caramuru<small>Alimentos</small></span></div>
-                    <div class="partner-wordmark"><span class="partner-mark">A</span><span>Agro Fava<small>Sementes</small></span></div>
+                    <div class="partner-wordmark"><img src="assets/partner-briqfeno-4k.webp" alt="Briqfeno"></div>
+                    <div class="partner-wordmark"><img src="assets/partner-major-4k.webp" alt="Major Nutrição Animal"></div>
+                    <div class="partner-wordmark partner-wordmark--light"><img src="assets/partner-complem-4k.webp" alt="Complem Agrícola"></div>
+                    <div class="partner-wordmark"><img src="assets/partner-caramuru-4k.webp" alt="Caramuru"></div>
+                    <div class="partner-wordmark"><img src="assets/partner-comigo-4k.webp" alt="Comigo"></div>
+                    <div class="partner-wordmark"><img src="assets/partner-agrofava-4k.webp" alt="Agro Fava Sementes"></div>
                 </div>
             </div>
         </div>
@@ -2653,16 +2692,16 @@
     <section class="regions-section" id="atuacao" aria-labelledby="coverageTitle">
         <div class="coverage-container">
             <div class="section-header">
-                <span class="section-tag">Planejamento por região</span>
-                <h2 class="section-title" id="coverageTitle">Quando sua demanda pedir, planejamos por região</h2>
-                <p class="section-desc">Depois de entender sua necessidade, selecione uma região para orientar os próximos passos da conversa.</p>
+                <span class="section-tag">Cobertura nacional</span>
+                <h2 class="section-title" id="coverageTitle">Rotas planejadas para todo o Brasil</h2>
+                <p class="section-desc">Selecione um estado para conhecer o contexto regional. Nossa operação planeja rotas de acordo com a sua demanda, em todo o país.</p>
             </div>
 
             <div class="coverage-layout">
                 <div class="coverage-map-card">
                     <div class="coverage-map-heading">
-                        <h3>Brasil em detalhes</h3>
-                        <p>Toque em um estado ou escolha uma região.</p>
+                        <h3>Brasil, estado por estado</h3>
+                        <p>Selecione qualquer estado para ver um resumo e iniciar uma conversa.</p>
                     </div>
 
                     <svg class="brazil-map region-map" viewBox="0 0 540 520" role="group" aria-labelledby="regionalMapTitle regionalMapDescription" aria-hidden="true">
@@ -3009,24 +3048,18 @@
                     </g>
                     </svg>
 
-                    <div class="region-chip-list" aria-label="Selecionar região do Brasil">
-                        <button class="region-chip is-selected" type="button" data-region-control="norte" aria-pressed="true">Norte</button>
-                        <button class="region-chip" type="button" data-region-control="nordeste" aria-pressed="false">Nordeste</button>
-                        <button class="region-chip" type="button" data-region-control="centro-oeste" aria-pressed="false">Centro-Oeste</button>
-                        <button class="region-chip" type="button" data-region-control="sudeste" aria-pressed="false">Sudeste</button>
-                        <button class="region-chip" type="button" data-region-control="sul" aria-pressed="false">Sul</button>
-                    </div>
+                    <div class="state-picker-grid" id="statePicker" aria-label="Selecionar estado do Brasil"></div>
 
-                    <p class="map-hint"><span aria-hidden="true"></span> Estados em azul representam a região selecionada.</p>
+                    <p class="map-hint"><span aria-hidden="true"></span> Clique no mapa ou em uma sigla para ver o estado individualmente.</p>
                 </div>
 
                 <aside class="coverage-panel" aria-live="polite" aria-atomic="true">
-                    <span class="coverage-panel-tag">Planejamento por região</span>
-                    <h3 id="selectedRegionTitle">Região Norte</h3>
-                    <p id="selectedRegionDescription">A análise de rotas começa pelo entendimento da sua demanda, com alinhamento comercial antes da definição operacional.</p>
+                    <span class="coverage-panel-tag">Cobertura nacional</span>
+                    <h3 id="selectedRegionTitle">Todo o Brasil</h3>
+                    <p id="selectedRegionDescription">Atendemos rotas em todos os estados brasileiros. Selecione um estado para ver o contexto regional e iniciar o planejamento da sua demanda.</p>
                     <div class="coverage-panel-note">
-                        <h4>Próximo passo</h4>
-                        <p id="selectedRegionNote">Compartilhe a sua necessidade para iniciar uma conversa sobre planejamento logístico.</p>
+                        <h4 id="selectedRegionNoteTitle">Rotas em todo o país</h4>
+                        <p id="selectedRegionNote">Compartilhe origem, destino e tipo de carga. A equipe Barbosa Fretes organiza o próximo passo com você.</p>
                     </div>
                 </aside>
             </div>
@@ -3421,6 +3454,110 @@
         quoteChannelButtons.forEach(button => {
             button.addEventListener('click', () => selectQuoteChannel(button.dataset.quoteChannel));
         });
+
+        // Cobertura nacional: o mapa passa a detalhar cada estado individualmente.
+        const nationalStateProfile = {
+            AC: 'Porta de ligação com a Amazônia Ocidental e as fronteiras internacionais. Planejamos a rota conforme origem, destino e características da carga.',
+            AL: 'Conectamos sua demanda ao território alagoano com planejamento de coleta, entrega e comunicação em cada etapa.',
+            AP: 'Operações para o Amapá pedem leitura atenta de rota e janela logística; começamos entendendo o seu cenário.',
+            AM: 'No Amazonas, o planejamento considera distâncias, conexões e particularidades da operação antes de cada definição.',
+            BA: 'A Bahia reúne corredores relevantes entre Nordeste, Centro-Oeste e Sudeste; avaliamos a melhor composição para a sua demanda.',
+            CE: 'Para o Ceará, organizamos as informações da carga e da rota para orientar uma operação clara e responsável.',
+            DF: 'No Distrito Federal, o alinhamento entre coleta, destino e prazo ajuda a dar ritmo à operação.',
+            ES: 'O Espírito Santo é um ponto estratégico de conexão; a proposta é construída conforme a necessidade real do transporte.',
+            GO: 'De Goiás para todo o Brasil, planejamos cada movimentação a partir da carga, da rota e da urgência do cliente.',
+            MA: 'No Maranhão, avaliamos cuidadosamente o contexto da rota para transformar a necessidade em um plano operacional viável.',
+            MT: 'Em Mato Grosso, o planejamento começa pelos detalhes da carga e pelas condições que fazem diferença na viagem.',
+            MS: 'Para Mato Grosso do Sul, combinamos leitura de demanda, rota e alinhamento comercial antes da operação.',
+            MG: 'Minas Gerais conecta importantes destinos nacionais; organizamos a movimentação com foco em clareza e continuidade.',
+            PA: 'No Pará, o ponto de partida é compreender as particularidades de origem, destino e prazo da sua solicitação.',
+            PB: 'Paraíba: uma conversa objetiva sobre carga e rota cria a base para o planejamento da operação.',
+            PR: 'No Paraná, estruturamos o transporte a partir do seu cenário, com atenção à coleta, ao destino e ao cronograma.',
+            PE: 'Em Pernambuco, cada rota é planejada com informações claras e atenção às necessidades específicas do cliente.',
+            PI: 'Para o Piauí, reunimos os dados da demanda para orientar uma proposta compatível com a operação.',
+            RJ: 'No Rio de Janeiro, a operação é desenhada considerando rota, tipo de carga e prioridades de entrega.',
+            RN: 'No Rio Grande do Norte, começamos entendendo sua necessidade para alinhar os próximos passos com objetividade.',
+            RS: 'No Rio Grande do Sul, conectamos demanda e planejamento para conduzir a movimentação com responsabilidade.',
+            RO: 'Em Rondônia, a análise da rota e das condições da carga orienta a construção da operação.',
+            RR: 'Para Roraima, avaliamos origem, destino e características da demanda antes de estabelecer o plano de transporte.',
+            SC: 'Em Santa Catarina, combinamos planejamento de rota e comunicação clara para apoiar cada nova solicitação.',
+            SP: 'São Paulo concentra conexões essenciais para o país; a operação é estruturada conforme o contexto da sua carga.',
+            SE: 'Para Sergipe, reunimos as informações necessárias para uma conversa comercial e operacional bem direcionada.',
+            TO: 'Tocantins é um importante ponto de conexão nacional; planejamos a rota de acordo com o cenário da sua demanda.'
+        };
+
+        const statePicker = document.getElementById('statePicker');
+        const selectedRegionNoteTitle = document.getElementById('selectedRegionNoteTitle');
+        const coveragePanelTag = document.querySelector('.coverage-panel-tag');
+
+        function stateCodeFor(state) {
+            return state.querySelector('text')?.textContent?.trim() || '';
+        }
+
+        function selectMapState(state) {
+            const code = stateCodeFor(state);
+            const name = state.getAttribute('name') || 'Estado selecionado';
+            if (!code) return;
+
+            stateMap.classList.remove('region-norte', 'region-nordeste', 'region-centro-oeste', 'region-sudeste', 'region-sul');
+            stateRegions.forEach(item => {
+                item.classList.toggle('is-active-state', item === state);
+                item.setAttribute('aria-pressed', String(item === state));
+            });
+
+            statePicker?.querySelectorAll('button').forEach(button => {
+                const isSelected = button.dataset.stateCode === code;
+                button.classList.toggle('is-selected', isSelected);
+                button.setAttribute('aria-pressed', String(isSelected));
+            });
+
+            if (coveragePanelTag) coveragePanelTag.textContent = 'Estado selecionado';
+            if (selectedRegionTitle) selectedRegionTitle.innerHTML = `<span aria-hidden="true">🇧🇷</span> ${name}`;
+            if (selectedRegionDescription) selectedRegionDescription.textContent = nationalStateProfile[code] || 'Planejamos rotas conforme a origem, o destino e as particularidades da sua carga.';
+            if (selectedRegionNoteTitle) selectedRegionNoteTitle.textContent = 'Rotas para todo o Brasil';
+            if (selectedRegionNote) selectedRegionNote.textContent = `Atendemos ${name} e os demais estados brasileiros. Envie os detalhes da sua carga para iniciar o planejamento.`;
+        }
+
+        function showNationalCoverage() {
+            stateMap.classList.remove('region-norte', 'region-nordeste', 'region-centro-oeste', 'region-sudeste', 'region-sul');
+            stateRegions.forEach(item => {
+                item.classList.remove('is-active-state');
+                item.setAttribute('aria-pressed', 'false');
+            });
+            if (coveragePanelTag) coveragePanelTag.textContent = 'Cobertura nacional';
+            if (selectedRegionTitle) selectedRegionTitle.textContent = 'Todo o Brasil';
+            if (selectedRegionDescription) selectedRegionDescription.textContent = 'Atendemos rotas em todos os estados brasileiros. Selecione um estado para ver o contexto regional e iniciar o planejamento da sua demanda.';
+            if (selectedRegionNoteTitle) selectedRegionNoteTitle.textContent = 'Rotas em todo o país';
+            if (selectedRegionNote) selectedRegionNote.textContent = 'Compartilhe origem, destino e tipo de carga. A equipe Barbosa Fretes organiza o próximo passo com você.';
+        }
+
+        stateRegions.forEach(state => {
+            const code = stateCodeFor(state);
+            const name = state.getAttribute('name');
+            if (!code || !name || !statePicker) return;
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'state-picker';
+            button.dataset.stateCode = code;
+            button.setAttribute('aria-pressed', 'false');
+            button.setAttribute('aria-label', `Selecionar ${name}`);
+            button.innerHTML = `<span class="state-flag" aria-hidden="true">🇧🇷</span>${code}`;
+            button.addEventListener('click', () => selectMapState(state));
+            statePicker.appendChild(button);
+
+            state.addEventListener('click', event => {
+                event.preventDefault();
+                selectMapState(state);
+            });
+            state.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectMapState(state);
+                }
+            });
+        });
+
+        showNationalCoverage();
     </script>
 </body>
 </html>
