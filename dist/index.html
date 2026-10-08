@@ -2336,7 +2336,7 @@
     </style>
     <link rel="stylesheet" href="assets/branding.css">
     <link rel="stylesheet" href="assets/partner-marquee.css">
-    <link rel="stylesheet" href="assets/map-refinement.css?v=20261008-state-flags">
+    <link rel="stylesheet" href="assets/map-refinement.css?v=20261008-inline-state-flags">
 </head>
 <body>
 
@@ -3067,7 +3067,7 @@
 
                 <aside class="coverage-panel" aria-live="polite" aria-atomic="true">
                     <div class="coverage-panel__meta"><span class="coverage-panel-tag">Estado selecionado</span><span class="coverage-panel__status"><span aria-hidden="true"></span>Rota sob medida</span></div>
-                    <h3 id="selectedRegionTitle"><span class="state-flag" aria-hidden="true"><img src="assets/state-flags/go.svg" alt="" width="44" height="29"></span><span>Goiás</span></h3>
+                    <h3 id="selectedRegionTitle"><span class="state-flag" aria-hidden="true" style="background: url('assets/state-flags/go.svg') center / cover no-repeat #fff"></span><span>Goiás</span></h3>
                     <p id="selectedRegionDescription">Em Goiás, planejamos rotas a partir de Itumbiara com atenção aos corredores logísticos, à origem da carga e ao destino final.</p>
                     <div class="coverage-panel-note">
                         <h4 id="selectedRegionNoteTitle">Rotas para todo o Brasil</h4>
@@ -3503,7 +3503,7 @@
 
         function setSelectedStateTitle(code, name) {
             if (!selectedRegionTitle) return;
-            selectedRegionTitle.innerHTML = code ? `<span class="state-flag" aria-hidden="true"><img src="assets/state-flags/${code.toLowerCase()}.svg" alt="" width="44" height="29"></span>` : '';
+            selectedRegionTitle.innerHTML = code ? `<span class="state-flag" aria-hidden="true" style="background: url('assets/state-flags/${code.toLowerCase()}.svg') center / cover no-repeat #fff"></span>` : '';
             const stateName = document.createElement('span');
             stateName.textContent = name;
             selectedRegionTitle.appendChild(stateName);
