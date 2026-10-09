@@ -18,7 +18,7 @@
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
   function responsiveSource(source) {
-    const match = source.match(/^(.*\/assets\/)([^/?#]+)$/i);
+    const match = source.match(/^(.*\/?assets\/)([^/?#]+)$/i);
     if (!match) return source;
     const replacement = responsiveExceptions[match[2]] || match[2].replace(/\.4k(?:-wide)?\.(webp|png)$/i, '.$1');
     return `${match[1]}${replacement}`;
@@ -32,7 +32,7 @@
 
       const original = image.dataset.originalSrc || source;
       image.dataset.originalSrc = original;
-      const match = original.match(/^(.*\/assets\/)([^/?#]+\.(?:webp|png))$/i);
+      const match = original.match(/^(.*\/?assets\/)([^/?#]+\.(?:webp|png))$/i);
       if (!match) return;
 
       if (!use4K) {
