@@ -81,20 +81,19 @@
 .page-home .partner-wordmark:hover { transform: translateY(-5px); border-color: var(--white); box-shadow: 0 20px 34px rgba(0, 16, 46, .34); }
 .page-home .partner-wordmark img { max-width: 100%; }
 
-/* Guia operacional: painel que flutua entre seções e mantém a leitura em trilhos. */
-.page-home .features-strip-section { position: relative; z-index: 2; padding-bottom: 80px; }
-.page-home .features-guide { padding: 20px; border: 1px solid rgba(112, 177, 255, .42); border-radius: var(--radius-lg, 22px); background: linear-gradient(135deg, #061d43, #092c61); box-shadow: 0 18px 42px rgba(3, 25, 61, .22); }
-.page-home .features-guide__top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 4px 17px; color: var(--white); }
-.page-home .features-guide__eyebrow { display: block; margin-bottom: 5px; color: #9ed0ff; font-size: 10px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
-.page-home .features-guide__top p { margin: 0; color: #d7e9ff; font-size: 13px; line-height: 1.45; }
-.page-home .features-guide__controls { display: flex; gap: 8px; flex-shrink: 0; }
-.page-home .features-guide__controls button { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(178, 219, 255, .5); border-radius: 50%; background: rgba(255, 255, 255, .08); color: var(--white); font: inherit; cursor: pointer; transition: background var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease); }
-.page-home .features-guide__controls button:hover, .page-home .features-guide__controls button:focus-visible { outline: 0; background: var(--blue-2); transform: translateY(-2px); }
-.page-home .features-strip-card { display: flex; gap: 14px; overflow-x: auto; padding: 0 42px 13px 0; border-radius: 0; background: transparent; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: #7bbdff rgba(255, 255, 255, .12); scrollbar-width: thin; }
+/* Guia operacional: mesma linguagem aberta da antiga faixa de parceiros, com rolagem apenas quando necessário. */
+.page-home .features-strip-section { position: relative; z-index: 2; max-width: none; padding: 82px 24px 88px; background: linear-gradient(125deg, rgba(6, 26, 58, .97), rgba(7, 61, 128, .92)), url('../assets/truck-terminal-agro.webp') center/cover; }
+.page-home .features-strip-section::before { position: absolute; inset: 0; content: ''; background: linear-gradient(180deg, rgba(3, 23, 54, .18), rgba(3, 23, 54, .32)); pointer-events: none; }
+.page-home .features-guide { position: relative; max-width: var(--content, 1180px); margin: 0 auto; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.page-home .features-guide__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin: 0 0 30px; color: var(--white); }
+.page-home .features-guide__eyebrow { display: block; margin-bottom: 11px; color: #9ed0ff; font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+.page-home .features-guide__top p { max-width: 410px; margin: 0; color: #cfe5ff; font-size: 15px; line-height: 1.65; }
+.page-home .features-guide__controls { display: none; }
+.page-home .features-strip-card { display: flex; gap: 16px; overflow-x: auto; padding: 0 0 3px; border-radius: 0; background: transparent; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: #7bbdff rgba(255, 255, 255, .12); scrollbar-width: thin; }
 .page-home .features-strip-card::-webkit-scrollbar { height: 7px; }
 .page-home .features-strip-card::-webkit-scrollbar-track { border-radius: 999px; background: rgba(255, 255, 255, .12); }
 .page-home .features-strip-card::-webkit-scrollbar-thumb { border-radius: 999px; background: #7bbdff; }
-.page-home .feature-item { min-width: min(462px, calc(100% - 32px)); min-height: 148px; padding: 25px; border: 1px solid rgba(176, 219, 255, .3); border-radius: var(--radius-md, 14px); background: rgba(255, 255, 255, .08); scroll-snap-align: start; }
+.page-home .feature-item { min-width: 0; min-height: 174px; flex: 1 1 0; padding: 27px; border: 1px solid rgba(181, 216, 255, .32); border-radius: 15px; background: rgba(255, 255, 255, .09); scroll-snap-align: start; }
 .page-home .feature-icon-circle { width: 48px; height: 48px; min-width: 48px; border: 1px solid rgba(190, 225, 255, .34); background: rgba(118, 184, 255, .16); }
 .page-home .feature-text { position: relative; padding-right: 30px; }
 .page-home .feature-step { position: absolute; top: 0; right: 0; color: #9ed0ff; font-size: 11px; font-weight: 900; letter-spacing: .1em; }
@@ -182,9 +181,8 @@
   .page-home .partner-wordmark { min-height: 94px; padding: 12px; }
   .page-home .partner-wordmark img { height: 60px; }
   .page-home .security-visual { min-height: 210px; }
-  .page-home .features-strip-section { padding: 0 14px 62px; }
-  .page-home .features-guide { padding: 16px; }
-  .page-home .features-guide__top { align-items: flex-start; margin: 0 0 14px; }
+  .page-home .features-strip-section { padding: 66px 20px 70px; }
+  .page-home .features-guide__top { display: block; margin: 0 0 22px; }
   .page-home .features-guide__top p { max-width: 25ch; }
   .page-home .features-strip-card { padding-right: 22px; }
   .page-home .feature-item { min-width: calc(100% - 18px); min-height: 142px; padding: 20px; }
