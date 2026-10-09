@@ -36,7 +36,7 @@
         <span aria-hidden="true">↗</span><strong>Solicitar cotação</strong>
       </a>
       <a class="mobile-action-bar__whatsapp" href="https://wa.me/5564981306666" target="_blank" rel="noopener">
-        <span aria-hidden="true">◉</span><strong>WhatsApp</strong>
+        <span aria-hidden="true">✆</span><strong>WhatsApp</strong>
       </a>`;
     document.body.appendChild(bar);
     document.body.classList.add('has-mobile-action-bar');
