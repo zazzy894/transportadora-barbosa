@@ -2387,7 +2387,10 @@
     <!-- ====== HERO SECTION ====== -->
     <section class="hero-section">
         <div class="hero-bg-container">
-            <img src="assets/hero-truck-4k.png" alt="Caminhão Barbosa Fretes em rodovia" class="hero-bg-img">
+            <picture>
+                <source media="(max-width: 768px)" srcset="assets/hero-truck-mobile.webp" type="image/webp">
+                <img src="assets/hero-truck-4k.webp" alt="Caminhão Barbosa Fretes em rodovia" class="hero-bg-img" width="3840" height="2160" fetchpriority="high">
+            </picture>
         </div>
         <div class="hero-overlay"></div>
 

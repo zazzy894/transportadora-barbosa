@@ -4,6 +4,7 @@
   const fourKExceptions = { 'logo-transparent.png': 'logo-transparent-4k.webp' };
   const responsiveExceptions = {
     'logo-transparent-4k.webp': 'logo-transparent.png',
+    'hero-truck-4k.webp': 'hero-truck-mobile.webp',
     'partner-briqfeno-4k-wide.webp': 'partner-briqfeno-clean.webp',
     'partner-major-4k-wide.webp': 'partner-major-clean.webp',
     'partner-complem-4k-wide.webp': 'partner-complem-clean.webp',
