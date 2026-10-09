@@ -261,6 +261,25 @@ html,
 body { overflow-x: clip; }
 
 @media (max-width: 768px) {
+  .page-home .header {
+    top: 8px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    height: 62px;
+    border: 1px solid rgba(190, 216, 244, .9);
+    border-radius: 20px;
+    box-shadow: 0 10px 26px rgba(4, 29, 69, .12);
+    backdrop-filter: none;
+  }
+
+  .page-home .header::after { display: none; }
+  .page-home .header-inner { width: 100%; padding: 0 12px; }
+  .page-home .header-logo-frame { width: 136px; max-width: 136px; height: 48px; }
+  .page-home .header-logo-image { width: 122px; max-width: 100%; height: auto; }
+  .page-home .mobile-toggle { border: 1px solid #d5e8fb; border-radius: 12px; background: #eef7ff; }
+  .page-home .nav-menu.is-open { top: 70px; right: 0; left: 0; border: 1px solid #d5e8fb; border-radius: 16px; }
+
   .topbar {
     top: max(8px, env(safe-area-inset-top));
     margin: 8px 10px 0;
