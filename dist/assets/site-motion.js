@@ -2,8 +2,27 @@
   // Use 4K delivery on desktop, but keep the original responsive assets on
   // phones. This avoids downloading large files before the first paint.
   const fourKExceptions = { 'logo-transparent.png': 'logo-transparent-4k.webp' };
+  const responsiveExceptions = {
+    'logo-transparent-4k.webp': 'logo-transparent.png',
+    'partner-briqfeno-4k-wide.webp': 'partner-briqfeno-clean.webp',
+    'partner-major-4k-wide.webp': 'partner-major-clean.webp',
+    'partner-complem-4k-wide.webp': 'partner-complem-clean.webp',
+    'partner-caramuru-4k-wide.webp': 'partner-caramuru-clean.webp',
+    'partner-comigo-4k-wide.webp': 'partner-comigo-clean.webp',
+    'partner-agrofava-4k-wide.webp': 'partner-agrofava-clean.webp',
+    'partner-locar-4k.webp': 'partner-locar.png',
+    'partner-tegma-4k.webp': 'partner-tegma.png',
+    'partner-mills-4k.webp': 'partner-mills.png'
+  };
   const fourKQuery = window.matchMedia('(min-width: 769px)');
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+  function responsiveSource(source) {
+    const match = source.match(/^(.*\/assets\/)([^/?#]+)$/i);
+    if (!match) return source;
+    const replacement = responsiveExceptions[match[2]] || match[2].replace(/\.4k(?:-wide)?\.(webp|png)$/i, '.$1');
+    return `${match[1]}${replacement}`;
+  }
 
   function applyImageDelivery() {
     const use4K = fourKQuery.matches && !connection?.saveData;
@@ -17,7 +36,8 @@
       if (!match) return;
 
       if (!use4K) {
-        if (image.getAttribute('src') !== original) image.setAttribute('src', original);
+        const responsive = responsiveSource(original);
+        if (image.getAttribute('src') !== responsive) image.setAttribute('src', responsive);
         image.removeAttribute('data-delivery');
         return;
       }
