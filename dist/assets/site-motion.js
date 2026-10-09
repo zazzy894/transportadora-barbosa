@@ -28,7 +28,7 @@
     const use4K = fourKQuery.matches && !connection?.saveData;
     document.querySelectorAll('img[src]').forEach((image) => {
       const source = image.getAttribute('src');
-      if (!source || !source.includes('/assets/')) return;
+      if (!source || !source.includes('assets/')) return;
 
       const original = image.dataset.originalSrc || source;
       image.dataset.originalSrc = original;
