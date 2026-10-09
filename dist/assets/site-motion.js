@@ -13,6 +13,40 @@
     image.setAttribute('data-delivery', '4k');
   });
 
+  // Android-first quick actions: keep the two highest-value contacts within
+  // thumb reach without replacing the full desktop footer information.
+  const mobileActionsQuery = window.matchMedia('(max-width: 768px)');
+  const installMobileActions = () => {
+    const existing = document.querySelector('.mobile-action-bar');
+    if (!mobileActionsQuery.matches) {
+      existing?.remove();
+      document.body.classList.remove('has-mobile-action-bar');
+      return;
+    }
+    if (existing) return;
+
+    const isRoot = location.pathname === '/' || location.pathname.endsWith('/index.html');
+    const isContact = location.pathname.includes('/contato');
+    const quoteHref = isContact ? '#conteudo' : (isRoot ? 'contato/' : '../contato/');
+    const bar = document.createElement('nav');
+    bar.className = 'mobile-action-bar';
+    bar.setAttribute('aria-label', 'Ações rápidas');
+    bar.innerHTML = `
+      <a class="mobile-action-bar__quote" href="${quoteHref}">
+        <span aria-hidden="true">↗</span><strong>Solicitar cotação</strong>
+      </a>
+      <a class="mobile-action-bar__whatsapp" href="https://wa.me/5564981306666" target="_blank" rel="noopener">
+        <span aria-hidden="true">◉</span><strong>WhatsApp</strong>
+      </a>`;
+    document.body.appendChild(bar);
+    document.body.classList.add('has-mobile-action-bar');
+  };
+
+  installMobileActions();
+  const handleMobileActionChange = () => installMobileActions();
+  if (mobileActionsQuery.addEventListener) mobileActionsQuery.addEventListener('change', handleMobileActionChange);
+  else mobileActionsQuery.addListener(handleMobileActionChange);
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const targets = document.querySelectorAll('[data-reveal]');
 

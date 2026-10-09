@@ -218,3 +218,39 @@
   .page-home .partner-wordmark--tegma img { width: 94%; max-width: 94%; height: 60px; }
   .page-home .partner-wordmark--locar img, .page-home .partner-wordmark--mills img { max-height: 60px; }
 }
+
+/* Android polish: thumb-friendly actions, safe-area spacing and a lighter
+   operational caption that reads as part of the photo instead of a box. */
+html { -webkit-text-size-adjust: 100%; }
+.page-home .security-visual::after { background: linear-gradient(180deg, rgba(4,24,57,.06) 14%, rgba(4,24,57,.84) 100%); }
+.page-home .security-visual figcaption { right: 18px; bottom: 17px; left: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; text-shadow: 0 2px 10px rgba(0,0,0,.48); backdrop-filter: none; font-size: 14px; line-height: 1.35; }
+.page-home .security-visual figcaption span { display: inline-flex; width: max-content; margin: 0; padding: 5px 9px; border: 1px solid rgba(216,239,255,.5); border-radius: 999px; background: rgba(11,86,168,.55); color: #eff9ff; font-size: 9px; line-height: 1; letter-spacing: .12em; text-shadow: none; }
+.mobile-action-bar { display: none; }
+
+@media (max-width: 768px) {
+  body.has-mobile-action-bar { padding-bottom: calc(78px + env(safe-area-inset-bottom)); }
+  .mobile-action-bar { position: fixed; z-index: 40; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom)); left: 12px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 8px; padding: 8px; border: 1px solid rgba(190,216,244,.9); border-radius: 18px; background: rgba(255,255,255,.94); box-shadow: 0 14px 34px rgba(4,29,69,.2); backdrop-filter: blur(16px); }
+  .mobile-action-bar a { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 7px; border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 850; text-decoration: none; }
+  .mobile-action-bar a span { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; font-size: 14px; }
+  .mobile-action-bar__quote { background: #0869d8; color: #fff; box-shadow: 0 7px 16px rgba(8,105,216,.24); }
+  .mobile-action-bar__quote span { background: rgba(255,255,255,.18); }
+  .mobile-action-bar__whatsapp { border: 1px solid #b9d7f3; background: #eef7ff; color: #064994; }
+  .mobile-action-bar__whatsapp span { background: #d8ecff; color: #0869d8; }
+  .mobile-action-bar a:focus-visible { outline: 3px solid #7ec2ff; outline-offset: 2px; }
+  .page-home .security-feature { gap: 22px; }
+  .page-home .security-visual { min-height: 228px; border-radius: 18px; }
+  .page-home .security-visual figcaption { right: 15px; bottom: 15px; left: 15px; font-size: 13px; }
+  .page-home .security-visual figcaption span { padding: 5px 8px; font-size: 8px; }
+  .page-home .features-strip-card { overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scroll-padding-inline: 2px; }
+  .page-home .feature-item { min-height: 150px; }
+  .page-home .partner-wordmark--tegma img { height: 60px !important; }
+  .page-frota .capacity-feature { min-height: 390px; }
+  .page-frota .capacity-feature__content { right: 16px; bottom: 16px; left: 16px; padding: 18px; border-radius: 16px; }
+  .page-frota .fleet-shot figcaption { right: 16px; bottom: 16px; left: 16px; }
+  .page-contact .contact-cta__route, .page-contact .button { min-height: 48px; }
+  .topbar .nav-cta, .nav-cta { min-height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-action-bar a { transition: none; }
+}
