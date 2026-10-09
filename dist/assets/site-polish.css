@@ -63,7 +63,7 @@
   font-weight: 900;
   letter-spacing: .13em;
 }
-.page-home .partners-heading h2 { max-width: 620px; color: var(--white) !important; text-shadow: 0 2px 18px rgba(0, 12, 37, .3); }
+.page-home .partners-heading h2 { max-width: 620px; color: #f4faff !important; text-shadow: 0 2px 18px rgba(0, 12, 37, .42); }
 .page-home .partners-heading p { max-width: 410px; color: #cfe5ff; font-size: 15px; line-height: 1.65; }
 .page-home .partners-marquee { overflow: visible; padding: 0; mask-image: none; }
 .page-home .partners-track { display: grid; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; animation: none; }
@@ -80,6 +80,27 @@
 }
 .page-home .partner-wordmark:hover { transform: translateY(-5px); border-color: var(--white); box-shadow: 0 20px 34px rgba(0, 16, 46, .34); }
 .page-home .partner-wordmark img { max-width: 100%; }
+
+/* Guia operacional: painel que flutua entre seções e mantém a leitura em trilhos. */
+.page-home .features-strip-section { position: relative; z-index: 2; padding-bottom: 80px; }
+.page-home .features-guide { padding: 20px; border: 1px solid rgba(112, 177, 255, .42); border-radius: var(--radius-lg, 22px); background: linear-gradient(135deg, #061d43, #092c61); box-shadow: 0 18px 42px rgba(3, 25, 61, .22); }
+.page-home .features-guide__top { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 4px 17px; color: var(--white); }
+.page-home .features-guide__eyebrow { display: block; margin-bottom: 5px; color: #9ed0ff; font-size: 10px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+.page-home .features-guide__top p { margin: 0; color: #d7e9ff; font-size: 13px; line-height: 1.45; }
+.page-home .features-guide__controls { display: flex; gap: 8px; flex-shrink: 0; }
+.page-home .features-guide__controls button { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(178, 219, 255, .5); border-radius: 50%; background: rgba(255, 255, 255, .08); color: var(--white); font: inherit; cursor: pointer; transition: background var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease); }
+.page-home .features-guide__controls button:hover, .page-home .features-guide__controls button:focus-visible { outline: 0; background: var(--blue-2); transform: translateY(-2px); }
+.page-home .features-strip-card { display: flex; gap: 14px; overflow-x: auto; padding: 0 42px 13px 0; border-radius: 0; background: transparent; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: #7bbdff rgba(255, 255, 255, .12); scrollbar-width: thin; }
+.page-home .features-strip-card::-webkit-scrollbar { height: 7px; }
+.page-home .features-strip-card::-webkit-scrollbar-track { border-radius: 999px; background: rgba(255, 255, 255, .12); }
+.page-home .features-strip-card::-webkit-scrollbar-thumb { border-radius: 999px; background: #7bbdff; }
+.page-home .feature-item { min-width: min(462px, calc(100% - 32px)); min-height: 148px; padding: 25px; border: 1px solid rgba(176, 219, 255, .3); border-radius: var(--radius-md, 14px); background: rgba(255, 255, 255, .08); scroll-snap-align: start; }
+.page-home .feature-icon-circle { width: 48px; height: 48px; min-width: 48px; border: 1px solid rgba(190, 225, 255, .34); background: rgba(118, 184, 255, .16); }
+.page-home .feature-text { position: relative; padding-right: 30px; }
+.page-home .feature-step { position: absolute; top: 0; right: 0; color: #9ed0ff; font-size: 11px; font-weight: 900; letter-spacing: .1em; }
+.page-home .feature-text h4 { padding-right: 4px; font-size: 17px; }
+.page-home .feature-text p { color: #c3daf5; font-size: 13.5px; }
+.page-home .features-strip-card:focus-visible { outline: 3px solid #9ed0ff; outline-offset: 5px; }
 
 /* Segurança: a imagem de operação vira uma âncora visual para os compromissos. */
 .page-home .security-section { padding: 96px 24px; background: linear-gradient(180deg, var(--surface), var(--white)); }
@@ -103,12 +124,33 @@
 .page-history .story-card__content { padding: 34px 36px 36px; }
 .page-history .story-card__content > * { position: relative; }
 
-/* Frota: serviços com ícones técnicos e imagens reais em uma grade editorial. */
+/* Frota: leitura em etapas, com a fotografia principal dando escala à capacidade. */
 .page-frota .page-hero__image { object-position: 58% center; filter: saturate(.92) contrast(1.05); }
-.page-frota .service { min-height: 278px; }
-.page-frota .service__icon { width: 52px; height: 52px; margin-top: 18px; border: 1px solid #d6e7fb; background: var(--blue-wash); }
+.page-frota .capacity-section { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--white), #f0f7ff); }
+.page-frota .capacity-section::after { position: absolute; z-index: 0; top: -190px; right: -160px; width: 470px; height: 470px; border: 1px solid #cfe3fa; border-radius: 50%; content: ''; box-shadow: 0 0 0 52px rgba(222, 238, 255, .5), 0 0 0 104px rgba(238, 247, 255, .68); }
+.page-frota .capacity-section .container { position: relative; z-index: 1; }
+.page-frota .capacity-layout { display: grid; grid-template-columns: .92fr 1.08fr; gap: 20px; align-items: stretch; }
+.page-frota .capacity-feature { position: relative; min-height: 542px; overflow: hidden; border: 1px solid rgba(155, 201, 249, .55); border-radius: var(--radius-lg, 22px); background: var(--blue-deep); box-shadow: var(--image-shadow); color: var(--white); }
+.page-frota .capacity-feature::after { position: absolute; inset: 0; content: ''; background: linear-gradient(180deg, rgba(4, 26, 61, .04) 12%, rgba(4, 26, 61, .9) 90%); }
+.page-frota .capacity-feature img { display: block; width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+.page-frota .capacity-feature__content { position: absolute; z-index: 1; right: 30px; bottom: 28px; left: 30px; }
+.page-frota .capacity-feature__content > span { display: inline-flex; margin-bottom: 10px; color: #a8d2ff; font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.page-frota .capacity-feature h3 { max-width: 13ch; margin: 0; font-size: clamp(28px, 3.1vw, 39px); line-height: 1.03; letter-spacing: -.045em; }
+.page-frota .capacity-feature p { max-width: 46ch; margin: 14px 0 19px; color: #d2e5fb; font-size: 14px; line-height: 1.6; }
+.page-frota .capacity-feature ul { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.page-frota .capacity-feature li { padding: 7px 9px; border: 1px solid rgba(188, 222, 255, .27); border-radius: var(--pill); background: rgba(2, 21, 51, .32); color: #eff7ff; font-size: 11px; font-weight: 750; }
+.page-frota .capacity-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.page-frota .capacity-service-grid .service { display: grid; min-height: 261px; grid-template-columns: 112px 1fr; padding: 0; border-color: #d3e5f7; }
+.page-frota .capacity-service-grid .service::before { z-index: 2; height: 3px; }
+.page-frota .service__media { position: relative; margin: 0; overflow: hidden; background: #dbeafa; }
+.page-frota .service__media::after { position: absolute; inset: 0; content: ''; background: linear-gradient(90deg, rgba(5, 31, 74, .06), rgba(5, 31, 74, .25)); }
+.page-frota .service__media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--motion-standard) var(--motion-ease); }
+.page-frota .capacity-service-grid .service:hover .service__media img { transform: scale(1.05); }
+.page-frota .service__body { display: flex; flex-direction: column; padding: 22px 20px 19px; }
+.page-frota .service__icon { display: grid; width: 42px; height: 42px; margin-top: 14px; place-items: center; border: 1px solid #d6e7fb; border-radius: 12px; background: var(--blue-wash); }
 .page-frota .service__icon svg { width: 24px; height: 24px; }
-.page-frota .service h3 { margin-top: 18px; }
+.page-frota .capacity-service-grid .service h3 { margin: 13px 0 7px; font-size: 18px; line-height: 1.12; }
+.page-frota .capacity-service-grid .service p { font-size: 13px; line-height: 1.55; }
 .page-frota .feature-hero__image--special { background-image: linear-gradient(90deg, rgba(4,24,57,.04), rgba(4,24,57,.38)), url('../assets/fleet-lift-transport.webp'); background-position: center; }
 .page-frota .fleet-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .page-frota .fleet-shot { min-height: 232px; }
@@ -129,6 +171,8 @@
 
 @media (max-width: 960px) {
   .page-home .security-feature { grid-template-columns: 1fr; align-items: start; }
+  .page-frota .capacity-layout { grid-template-columns: 1fr; }
+  .page-frota .capacity-feature { min-height: 470px; }
   .page-frota .fleet-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -138,7 +182,22 @@
   .page-home .partner-wordmark { min-height: 94px; padding: 12px; }
   .page-home .partner-wordmark img { height: 60px; }
   .page-home .security-visual { min-height: 210px; }
+  .page-home .features-strip-section { padding: 0 14px 62px; }
+  .page-home .features-guide { padding: 16px; }
+  .page-home .features-guide__top { align-items: flex-start; margin: 0 0 14px; }
+  .page-home .features-guide__top p { max-width: 25ch; }
+  .page-home .features-strip-card { padding-right: 22px; }
+  .page-home .feature-item { min-width: calc(100% - 18px); min-height: 142px; padding: 20px; }
+  .page-home .feature-text p { font-size: 13px; }
   .page-history .story-card__content { padding: 28px; }
+  .page-frota .capacity-section::after { top: -240px; right: -260px; }
+  .page-frota .capacity-feature { min-height: 450px; }
+  .page-frota .capacity-feature__content { right: 22px; bottom: 22px; left: 22px; }
+  .page-frota .capacity-service-grid { grid-template-columns: 1fr; }
+  .page-frota .capacity-service-grid .service { min-height: 206px; grid-template-columns: 102px 1fr; }
+  .page-frota .service__body { padding: 20px 17px; }
+  .page-frota .service__icon { width: 38px; height: 38px; margin-top: 11px; }
+  .page-frota .capacity-service-grid .service h3 { margin-top: 11px; }
   .page-frota .fleet-gallery { grid-template-columns: 1fr; }
   .page-frota .fleet-shot, .page-frota .fleet-shot--wide, .page-frota .fleet-shot--tall { min-height: 244px; grid-column: auto; }
 }
@@ -146,4 +205,5 @@
 @media (prefers-reduced-motion: reduce) {
   .page-hero__inner > *, [data-reveal] { animation: none; opacity: 1; transform: none; transition: none; }
   .page-home .partner-wordmark, .page-home .security-card { transition: none; }
+  .page-home .features-guide__controls button, .page-frota .service__media img { transition: none; }
 }
