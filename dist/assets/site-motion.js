@@ -1,17 +1,45 @@
 (() => {
-  // Upgrade every local raster image to its 4K delivery variant when available.
-  // The source photos remain unchanged; this keeps the layout stable while
-  // serving the higher-resolution assets on every route.
+  // Use 4K delivery on desktop, but keep the original responsive assets on
+  // phones. This avoids downloading large files before the first paint.
   const fourKExceptions = { 'logo-transparent.png': 'logo-transparent-4k.webp' };
+  const fourKQuery = window.matchMedia('(min-width: 769px)');
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+  function applyImageDelivery() {
+    const use4K = fourKQuery.matches && !connection?.saveData;
+    document.querySelectorAll('img[src]').forEach((image) => {
+      const source = image.getAttribute('src');
+      if (!source || !source.includes('/assets/')) return;
+
+      const original = image.dataset.originalSrc || source;
+      image.dataset.originalSrc = original;
+      const match = original.match(/^(.*\/assets\/)([^/?#]+\.(?:webp|png))$/i);
+      if (!match) return;
+
+      if (!use4K) {
+        if (image.getAttribute('src') !== original) image.setAttribute('src', original);
+        image.removeAttribute('data-delivery');
+        return;
+      }
+
+      if (/(?:^|[-.])4k(?:-wide)?\./i.test(original)) return;
+      const candidate = fourKExceptions[match[2]] || match[2].replace(/\.webp$/i, '.4k.webp');
+      image.setAttribute('src', `${match[1]}${candidate}`);
+      image.setAttribute('data-delivery', '4k');
+    });
+  }
+
+  const heroImage = document.querySelector('.page-hero__image');
+  if (heroImage) heroImage.setAttribute('fetchpriority', 'high');
+
   document.querySelectorAll('img[src]').forEach((image) => {
-    const source = image.getAttribute('src');
-    if (!source || !source.includes('/assets/') || /(?:^|[-.])4k(?:-wide)?\./i.test(source)) return;
-    const match = source.match(/^(.*\/assets\/)([^/?#]+\.(?:webp|png))$/i);
-    if (!match) return;
-    const candidate = fourKExceptions[match[2]] || match[2].replace(/\.webp$/i, '.4k.webp');
-    image.setAttribute('src', `${match[1]}${candidate}`);
-    image.setAttribute('data-delivery', '4k');
+    image.setAttribute('decoding', 'async');
+    if (image.closest('.partner-wordmark, .fleet-shot, .service__media')) image.setAttribute('loading', 'lazy');
   });
+
+  applyImageDelivery();
+  if (fourKQuery.addEventListener) fourKQuery.addEventListener('change', applyImageDelivery);
+  else fourKQuery.addListener(applyImageDelivery);
 
   // Android-first quick actions: keep the two highest-value contacts within
   // thumb reach without replacing the full desktop footer information.

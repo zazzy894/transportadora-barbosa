@@ -254,3 +254,183 @@ html { -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .mobile-action-bar a { transition: none; }
 }
+
+/* Mobile refinement: compact proportions, intentional hierarchy and fewer
+   simultaneous image surfaces for phones. */
+html,
+body { overflow-x: clip; }
+
+@media (max-width: 768px) {
+  .topbar {
+    top: max(8px, env(safe-area-inset-top));
+    margin: 8px 10px 0;
+    border: 1px solid rgba(190, 216, 244, .9);
+    border-radius: 20px;
+    box-shadow: 0 10px 26px rgba(4, 29, 69, .12);
+    backdrop-filter: none;
+  }
+
+  .topbar__inner {
+    width: 100%;
+    height: 62px;
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  .topbar .brand img {
+    width: 122px;
+    height: 48px;
+  }
+
+  .topbar .nav-cta {
+    min-height: 44px;
+    padding: 10px 13px;
+    border-radius: var(--pill, 999px);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .page-hero {
+    min-height: clamp(460px, 78svh, 560px);
+  }
+
+  .page-hero__inner,
+  .container,
+  .footer__inner {
+    width: min(calc(100% - 32px), var(--content));
+  }
+
+  .page-hero__inner { padding: 60px 0 42px; }
+  .page-hero h1 { font-size: clamp(35px, 10vw, 46px); }
+  .page-hero p { font-size: 15px; line-height: 1.52; }
+  .hero-actions { gap: 8px; }
+  .hero-actions .button { width: 100%; min-height: 48px; }
+  .section { padding: 54px 0; }
+  .section-heading h2 { font-size: clamp(28px, 8.5vw, 38px); }
+
+  .page-home .clients-section {
+    padding: 52px 14px !important;
+  }
+
+  .page-home .partners-heading {
+    margin-bottom: 20px;
+  }
+
+  .page-home .partners-heading h2 {
+    max-width: 100%;
+    font-size: clamp(29px, 8.5vw, 36px);
+  }
+
+  .page-home .partners-heading p {
+    max-width: 34ch;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .page-home .partners-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .page-home .partners-set .partner-wordmark:nth-child(n + 5) {
+    display: none;
+  }
+
+  .page-home .partner-wordmark {
+    min-height: 78px;
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .page-home .partner-wordmark img,
+  .page-home .partner-wordmark--tegma img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 48px !important;
+  }
+
+  .page-home .coverage-container {
+    width: min(calc(100% - 32px), var(--content));
+  }
+
+  .page-home .coverage-layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .page-home .coverage-map-card {
+    min-width: 0;
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .page-home .coverage-map-heading { gap: 4px; }
+  .page-home .coverage-map-heading h3 { font-size: 18px; }
+  .page-home .coverage-map-heading p { font-size: 12px; line-height: 1.45; }
+  .page-home .state-map { width: 100%; max-height: 360px; }
+
+  .page-home .coverage-panel {
+    min-width: 0;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .page-home .coverage-panel h3 { font-size: 22px; }
+  .page-home .coverage-panel p { font-size: 13.5px; line-height: 1.55; }
+  .page-home .coverage-panel-note { padding: 13px 14px; }
+  .page-home .coverage-panel-note p { font-size: 12.5px; }
+
+  .page-frota .fleet-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .page-frota .fleet-gallery .fleet-shot:nth-child(n + 5) {
+    display: none;
+  }
+
+  .page-frota .fleet-shot,
+  .page-frota .fleet-shot--wide,
+  .page-frota .fleet-shot--tall {
+    min-height: 220px;
+    max-height: 270px;
+    grid-column: auto;
+    border-radius: 16px;
+  }
+
+  .page-frota .capacity-feature {
+    min-height: 350px;
+    border-radius: 18px;
+  }
+
+  .page-frota .capacity-feature__content {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    padding: 14px;
+    border-radius: 15px;
+    background: rgba(4, 24, 57, .35);
+  }
+
+  .page-frota .capacity-feature h3 { font-size: clamp(26px, 8vw, 34px); }
+  .page-frota .capacity-feature p { font-size: 13px; }
+  .page-frota .capacity-feature li { font-size: 10px; }
+
+  .mobile-action-bar {
+    right: 10px;
+    left: 10px;
+    border-radius: 20px;
+  }
+
+  .page-home .clients-section,
+  .page-frota .fleet-showcase {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 760px;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar .brand img { width: 112px; }
+  .topbar .nav-cta { padding-inline: 10px; font-size: 10px; }
+  .mobile-action-bar a { padding-inline: 8px; font-size: 11px; }
+}
