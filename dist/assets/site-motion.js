@@ -1,4 +1,18 @@
 (() => {
+  // Upgrade every local raster image to its 4K delivery variant when available.
+  // The source photos remain unchanged; this keeps the layout stable while
+  // serving the higher-resolution assets on every route.
+  const fourKExceptions = { 'logo-transparent.png': 'logo-transparent-4k.webp' };
+  document.querySelectorAll('img[src]').forEach((image) => {
+    const source = image.getAttribute('src');
+    if (!source || !source.includes('/assets/') || /(?:^|[-.])4k(?:-wide)?\./i.test(source)) return;
+    const match = source.match(/^(.*\/assets\/)([^/?#]+\.(?:webp|png))$/i);
+    if (!match) return;
+    const candidate = fourKExceptions[match[2]] || match[2].replace(/\.webp$/i, '.4k.webp');
+    image.setAttribute('src', `${match[1]}${candidate}`);
+    image.setAttribute('data-delivery', '4k');
+  });
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const targets = document.querySelectorAll('[data-reveal]');
 
