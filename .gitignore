@@ -1,0 +1,41 @@
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependências e artefatos de ferramentas
+node_modules/
+coverage/
+.cache/
+.parcel-cache/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Pacotes/exportações gerados localmente
+*.zip
+*.tar
+*.tar.gz
+
+# Temporários
+*.tmp
+*.temp
+.tmp/
+
+# O diretório dist/ contém o site publicado e, portanto, permanece versionado.
