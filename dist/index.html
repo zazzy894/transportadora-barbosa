@@ -337,6 +337,14 @@
             object-position: center right;
         }
 
+        .hero-bg-video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center right;
+        }
+
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -2067,6 +2075,9 @@
             .hero-bg-img {
                 object-position: 62% center;
             }
+            .hero-bg-video {
+                object-position: 62% center;
+            }
             .hero-buttons,
             .btn-hero-primary,
             .btn-service-callout,
@@ -2387,10 +2398,13 @@
     <!-- ====== HERO SECTION ====== -->
     <section class="hero-section">
         <div class="hero-bg-container">
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/hero-truck-mobile.webp" type="image/webp">
-                <img src="assets/hero-truck-4k.webp" alt="Caminhão Barbosa Fretes em rodovia" class="hero-bg-img" width="3840" height="2160" fetchpriority="high">
-            </picture>
+            <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-truck-loop-poster.webp" aria-hidden="true">
+                <source src="assets/hero-truck-loop.mp4" type="video/mp4">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/hero-truck-mobile.webp" type="image/webp">
+                    <img src="assets/hero-truck-4k.webp" alt="" class="hero-bg-img" width="3840" height="2160" fetchpriority="high">
+                </picture>
+            </video>
         </div>
         <div class="hero-overlay"></div>
 
@@ -3576,6 +3590,17 @@
             selectMapState(initialState);
         } else {
             showNationalCoverage();
+        }
+    </script>
+    <script>
+        const heroVideo = document.querySelector('.hero-bg-video');
+        if (heroVideo) {
+            heroVideo.muted = true;
+            heroVideo.defaultMuted = true;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                heroVideo.removeAttribute('autoplay');
+                heroVideo.pause();
+            }
         }
     </script>
     <script defer src="assets/site-motion.js?v=20261009-mobile-actions"></script>
