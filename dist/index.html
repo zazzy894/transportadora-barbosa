@@ -2415,7 +2415,7 @@
                     <img src="assets/hero-truck-4k.webp" alt="" class="hero-bg-img" width="3840" height="2160" fetchpriority="high">
                 </picture>
             </video>
-            <video class="hero-bg-video hero-bg-video--loop" autoplay muted loop playsinline preload="auto" poster="assets/hero-truck-loop-poster.webp" aria-hidden="true">
+            <video class="hero-bg-video hero-bg-video--loop" muted loop playsinline preload="auto" poster="assets/hero-truck-loop-poster.webp" aria-hidden="true">
                 <source src="assets/hero-truck-loop-2.mp4" type="video/mp4">
             </video>
         </div>
@@ -3615,6 +3615,7 @@
             });
 
             // Keep the continuation buffered and parked at frame zero until the intro ends.
+            heroLoop.autoplay = false;
             heroLoop.pause();
             heroLoop.currentTime = 0;
             heroLoop.load();
