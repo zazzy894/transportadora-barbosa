@@ -339,10 +339,20 @@
 
         .hero-bg-video {
             display: block;
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center right;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .hero-bg-video.is-active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .hero-overlay {
@@ -2398,12 +2408,15 @@
     <!-- ====== HERO SECTION ====== -->
     <section class="hero-section">
         <div class="hero-bg-container">
-            <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-truck-loop-poster.webp" aria-hidden="true">
+            <video class="hero-bg-video is-active hero-bg-video--intro" autoplay muted playsinline preload="auto" poster="assets/hero-truck-loop-poster.webp" aria-hidden="true">
                 <source src="assets/hero-truck-loop.mp4" type="video/mp4">
                 <picture>
                     <source media="(max-width: 768px)" srcset="assets/hero-truck-mobile.webp" type="image/webp">
                     <img src="assets/hero-truck-4k.webp" alt="" class="hero-bg-img" width="3840" height="2160" fetchpriority="high">
                 </picture>
+            </video>
+            <video class="hero-bg-video hero-bg-video--loop" autoplay muted loop playsinline preload="auto" poster="assets/hero-truck-loop-poster.webp" aria-hidden="true">
+                <source src="assets/hero-truck-loop-2.mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay"></div>
@@ -3593,13 +3606,33 @@
         }
     </script>
     <script>
-        const heroVideo = document.querySelector('.hero-bg-video');
-        if (heroVideo) {
-            heroVideo.muted = true;
-            heroVideo.defaultMuted = true;
+        const heroIntro = document.querySelector('.hero-bg-video--intro');
+        const heroLoop = document.querySelector('.hero-bg-video--loop');
+        if (heroIntro && heroLoop) {
+            [heroIntro, heroLoop].forEach((video) => {
+                video.muted = true;
+                video.defaultMuted = true;
+            });
+
+            // Keep the continuation buffered and parked at frame zero until the intro ends.
+            heroLoop.pause();
+            heroLoop.currentTime = 0;
+            heroLoop.load();
+
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                heroVideo.removeAttribute('autoplay');
-                heroVideo.pause();
+                heroIntro.removeAttribute('autoplay');
+                heroLoop.removeAttribute('autoplay');
+                heroIntro.pause();
+                heroLoop.pause();
+            } else {
+                heroIntro.addEventListener('ended', () => {
+                    heroIntro.classList.remove('is-active');
+                    heroLoop.classList.add('is-active');
+                    heroLoop.currentTime = 0;
+                    heroLoop.play().catch(() => {});
+                }, { once: true });
+
+                heroIntro.play().catch(() => {});
             }
         }
     </script>
