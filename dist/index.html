@@ -2367,7 +2367,9 @@
         <div class="header-inner">
             <a href="#" class="logo-wrap" aria-label="Barbosa Fretes e Cargas — página inicial">
                 <span class="header-logo-frame">
-                    <img src="assets/logo-transparent-4k.webp" alt="Barbosa Fretes e Cargas" class="header-logo-image" width="168" height="56">
+                    <video class="header-logo-image header-logo-animation" autoplay muted playsinline preload="auto" poster="assets/logo-transparent-4k.webp" aria-label="Barbosa Fretes e Cargas">
+                        <source src="assets/logo-animation.mp4" type="video/mp4">
+                    </video>
                 </span>
             </a>
 
@@ -3603,6 +3605,13 @@
             selectMapState(initialState);
         } else {
             showNationalCoverage();
+        }
+    </script>
+    <script>
+        const headerLogoAnimation = document.querySelector('.header-logo-animation');
+        if (headerLogoAnimation && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            headerLogoAnimation.removeAttribute('autoplay');
+            headerLogoAnimation.pause();
         }
     </script>
     <script>
