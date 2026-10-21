@@ -257,9 +257,9 @@ body { overflow-x: clip; }
     left: 10px;
     width: auto;
     height: 62px;
-    border: 1px solid rgba(190, 216, 244, .9);
-    border-radius: 20px;
-    box-shadow: 0 10px 26px rgba(4, 29, 69, .12);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     backdrop-filter: none;
   }
 
@@ -273,9 +273,9 @@ body { overflow-x: clip; }
   .topbar {
     top: max(8px, env(safe-area-inset-top));
     margin: 8px 10px 0;
-    border: 1px solid rgba(190, 216, 244, .9);
-    border-radius: 20px;
-    box-shadow: 0 10px 26px rgba(4, 29, 69, .12);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     backdrop-filter: none;
   }
 
@@ -286,7 +286,8 @@ body { overflow-x: clip; }
     padding: 0 12px;
   }
 
-  .topbar .brand img {
+  .topbar .brand img,
+  .topbar .brand video {
     width: 122px;
     height: 48px;
   }
@@ -445,6 +446,7 @@ body { overflow-x: clip; }
 }
 
 @media (max-width: 380px) {
-  .topbar .brand img { width: 112px; }
+  .topbar .brand img,
+  .topbar .brand video { width: 112px; }
   .topbar .nav-cta { padding-inline: 10px; font-size: 10px; }
 }

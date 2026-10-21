@@ -14,12 +14,22 @@
   object-position: center;
 }
 
-.topbar .brand img {
+.topbar .brand img,
+.topbar .brand video {
   width: 146px;
   height: 57px;
   object-fit: contain;
   object-position: center;
 }
+
+.brand .logo-animation-video,
+.brand .logo-animation-fallback {
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.brand .logo-animation-video[hidden],
+.brand .logo-animation-fallback[hidden] { display: none; }
 
 .footer .footer-logo {
   width: 124px !important;
