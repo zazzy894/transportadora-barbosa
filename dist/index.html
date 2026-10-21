@@ -167,21 +167,6 @@
             width: 100%;
         }
 
-        .header-logo-video,
-        .header-logo-fallback {
-            display: block;
-            width: 100% !important;
-            height: 100% !important;
-            max-width: none !important;
-            object-fit: contain !important;
-            object-position: center !important;
-            background: transparent;
-            mix-blend-mode: normal;
-        }
-
-        .header-logo-video[hidden],
-        .header-logo-fallback[hidden] { display: none !important; }
-
         .logo-wrap:hover .header-logo-frame,
         .logo-wrap:focus-visible .header-logo-frame {
             filter: drop-shadow(0 8px 12px rgba(11, 99, 206, 0.16));
@@ -2383,10 +2368,7 @@
         <div class="header-inner">
             <a href="#" class="logo-wrap" aria-label="Barbosa Fretes e Cargas — página inicial">
                 <span class="header-logo-frame">
-                    <video class="header-logo-video" data-logo-animation muted playsinline preload="auto" poster="assets/logo-animation-header-start.webp?v=41" aria-hidden="true">
-                        <source src="assets/logo-animation-header-clean.mp4?v=41" type="video/mp4">
-                    </video>
-                    <img class="header-logo-fallback" src="assets/logo-animation-header-end.webp?v=41" alt="Barbosa Fretes e Cargas" hidden>
+                    <img class="header-logo-image" src="assets/logo-animation-header-end.webp?v=41" alt="Barbosa Fretes e Cargas">
                 </span>
             </a>
 
@@ -3657,6 +3639,5 @@
         }
     </script>
     <script defer src="assets/site-motion.js?v=20261009-mobile-actions"></script>
-    <script defer src="assets/logo-animation.js?v=40"></script>
 </body>
 </html>
