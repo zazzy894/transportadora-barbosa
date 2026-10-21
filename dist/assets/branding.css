@@ -25,7 +25,6 @@
 .brand .logo-animation-video,
 .brand .logo-animation-fallback {
   display: block;
-  mix-blend-mode: multiply;
 }
 
 .brand .logo-animation-video[hidden],

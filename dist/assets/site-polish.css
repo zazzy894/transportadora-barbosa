@@ -250,6 +250,26 @@ html { -webkit-text-size-adjust: 100%; }
 html,
 body { overflow-x: clip; }
 
+:root {
+  --logo-video-background: #fbfbfb;
+  --bg: #fbfbfb;
+  --white: #fbfbfb;
+  --bg-card: #fbfbfb;
+}
+
+:root {
+  --logo-video-background: #fbfbfb;
+  --bg: #fbfbfb;
+  --white: #fbfbfb;
+  --bg-card: #fbfbfb;
+}
+
+body { background-color: var(--logo-video-background); }
+.header,
+.header.is-scrolled,
+.topbar { background-color: var(--logo-video-background); }
+.logo-wrap .header-logo-frame { background-color: var(--logo-video-background); }
+
 @media (max-width: 768px) {
   .page-home .header {
     top: 8px;
