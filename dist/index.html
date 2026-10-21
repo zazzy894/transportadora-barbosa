@@ -2394,12 +2394,35 @@
 </head>
 <body class="page-home">
 
+    <script>
+        window.recoverHeaderLogo = function (image) {
+            const pagePath = window.location.pathname;
+            const pageDirectory = pagePath.endsWith('/') ? pagePath : `${pagePath}/`;
+            const firstDirectory = `/${pagePath.split('/').filter(Boolean)[0] || ''}/`;
+            const roots = [...new Set([pageDirectory, firstDirectory, '/'])];
+            const candidates = roots.flatMap((root) => [
+                new URL(`${root}assets/logo-header-poster.webp?v=39`, window.location.origin).href,
+                new URL(`${root}assets/logo-transparent.png?v=39`, window.location.origin).href
+            ]).filter((url) => url !== image.src);
+            const nextIndex = Number(image.dataset.fallbackIndex || 0);
+
+            if (nextIndex < candidates.length) {
+                image.dataset.fallbackIndex = String(nextIndex + 1);
+                image.src = candidates[nextIndex];
+            } else {
+                image.onerror = null;
+                image.alt = '';
+                image.style.visibility = 'hidden';
+            }
+        };
+    </script>
+
     <!-- ====== HEADER / NAVBAR ====== -->
     <header class="header">
         <div class="header-inner">
             <a href="#" class="logo-wrap" aria-label="Barbosa Fretes e Cargas — página inicial">
                 <span class="header-logo-frame">
-                    <img class="header-logo-image header-logo-animation" src="assets/logo-header-poster.webp" alt="Barbosa Fretes e Cargas">
+                    <img class="header-logo-image header-logo-animation" src="assets/logo-header-poster.webp?v=39" alt="Barbosa Fretes e Cargas" onerror="window.recoverHeaderLogo(this)">
                 </span>
             </a>
 
