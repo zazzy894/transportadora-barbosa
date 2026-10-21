@@ -2360,8 +2360,15 @@
     <link rel="stylesheet" href="assets/partner-marquee.css">
     <link rel="stylesheet" href="assets/map-refinement.css?v=20261008-inline-state-flags">
     <link rel="stylesheet" href="assets/site-polish.css?v=41">
+    <link rel="stylesheet" href="assets/page-transition.css?v=20261021">
 </head>
 <body class="page-home">
+
+    <div class="site-transition-layer is-visible" data-site-transition data-loop-count="2" aria-hidden="true">
+        <video class="site-transition-layer__video" muted playsinline preload="auto" poster="assets/logo-animation-header-end.webp">
+            <source src="assets/barbosa-page-transition.mp4" type="video/mp4">
+        </video>
+    </div>
 
     <!-- ====== HEADER / NAVBAR ====== -->
     <header class="header">
@@ -3638,6 +3645,7 @@
             }
         }
     </script>
+    <script defer src="assets/page-transition.js?v=20261021"></script>
     <script defer src="assets/site-motion.js?v=20261009-mobile-actions"></script>
 </body>
 </html>

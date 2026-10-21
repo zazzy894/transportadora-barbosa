@@ -1,0 +1,43 @@
+:root {
+  --page-transition-z: 10000;
+  --page-transition-speed: 260ms;
+}
+
+.site-transition-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--page-transition-z);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--page-transition-speed) ease, visibility 0s linear var(--page-transition-speed);
+}
+
+.site-transition-layer.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.site-transition-layer__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+
+body.site-transition-active {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-transition-layer {
+    transition: none;
+  }
+}
