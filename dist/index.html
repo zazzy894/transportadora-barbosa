@@ -50,6 +50,9 @@
             --radius-pill: 999px;
             --shadow-lift: 0 16px 30px rgba(11, 99, 206, 0.22), 0 4px 10px rgba(7, 21, 41, 0.12);
             --focus-ring: 0 0 0 4px rgba(13, 110, 253, 0.24);
+            --hero-overlay-mobile-top: rgba(5, 13, 26, 0.24);
+            --hero-overlay-mobile-mid: rgba(5, 13, 26, 0.68);
+            --hero-overlay-mobile-end: rgba(5, 13, 26, 0.88);
         }
 
         html {
@@ -2081,7 +2084,7 @@
                 max-width: 100%;
             }
             .hero-overlay {
-                background: linear-gradient(180deg, rgba(5, 13, 26, 0.58) 0%, rgba(5, 13, 26, 0.9) 48%, #050d1a 100%);
+                background: linear-gradient(180deg, var(--hero-overlay-mobile-top) 0%, var(--hero-overlay-mobile-mid) 48%, var(--hero-overlay-mobile-end) 100%);
             }
             .hero-bg-img {
                 object-position: 62% center;
@@ -2364,7 +2367,7 @@
 </head>
 <body class="page-home">
 
-    <div class="site-transition-layer is-visible" data-site-transition data-loop-count="2" aria-hidden="true">
+    <div class="site-transition-layer is-visible" data-site-transition data-loop-count="1" aria-hidden="true">
         <video class="site-transition-layer__video" muted playsinline preload="auto" poster="assets/logo-animation-header-end.webp">
             <source src="assets/barbosa-page-transition.mp4" type="video/mp4">
         </video>
